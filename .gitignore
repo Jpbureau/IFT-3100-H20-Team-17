@@ -1,4 +1,11 @@
 .vs/
+*.suo
+*.user
+*.ncb
+Debug/
+Release/
+CodeAnalyst/
+
 # Prerequisites
 *.d
 
