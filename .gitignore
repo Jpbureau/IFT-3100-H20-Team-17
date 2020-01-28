@@ -38,3 +38,8 @@ CodeAnalyst/
 *.exe
 *.out
 *.app
+
+# Others
+*.pdb
+*.ilk
+*.exp
