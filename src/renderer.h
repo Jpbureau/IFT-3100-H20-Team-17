@@ -1,21 +1,21 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
+#include "fileManager.h"
 
 class Renderer
 {
+private:
+	FileManager fileManager;
+
+	ofxPanel gui;
+	ofxButton exportButton;
+	void exportButtonPressed();
+
 public:
-
-	ofImage image;
-
-	ofShader shader;
-	ofShader shader_passthrough;
-	ofShader shader_invert;
-
-	bool filter;
+	Renderer(const FileManager& fileManager);
 
 	void setup();
 	void draw();
-
-	void image_export(const string name, const string extension, const string option) const;
 };

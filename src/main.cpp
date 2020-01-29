@@ -7,7 +7,7 @@ int main( ){
   ofGLFWWindowSettings windowSettings;
 
   // option de redimentionnement de la fenêtre d'affichage
-  windowSettings.resizable = false;
+  windowSettings.resizable = true;
 
   // sélection de la version de OpenGL
   windowSettings.setGLVersion(3, 3);
