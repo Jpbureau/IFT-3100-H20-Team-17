@@ -3,11 +3,18 @@
 
 //========================================================================
 int main( ){
-	ofSetupOpenGL(1024,768,OF_WINDOW);			// <-------- setup the GL context
+	// paramètres du contexte de rendu OpenGL
+  ofGLFWWindowSettings windowSettings;
 
-	// this kicks off the running of my app
-	// can be OF_WINDOW or OF_FULLSCREEN
-	// pass in width and height too:
-	ofRunApp(new ofApp());
+  // option de redimentionnement de la fenêtre d'affichage
+  windowSettings.resizable = false;
 
+  // sélection de la version de OpenGL
+  windowSettings.setGLVersion(3, 3);
+
+  // création de la fenêtre
+  ofCreateWindow(windowSettings);
+
+  // démarrer l'exécution de l'application
+  ofRunApp(new ofApp());
 }
