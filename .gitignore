@@ -38,3 +38,12 @@ CodeAnalyst/
 *.exe
 *.out
 *.app
+
+# Images
+*.png
+*.jpg
+
+# Others
+*.pdb
+*.ilk
+*.exp
