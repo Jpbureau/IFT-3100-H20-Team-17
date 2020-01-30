@@ -27,5 +27,5 @@ void Renderer::draw()
 
 void Renderer::exportButtonPressed()
 {
-	fileManager.image_export("render", "png", "");
+	fileManager.saveImage();
 }

@@ -30,3 +30,16 @@ void FileManager::image_export(const string name, const string extension, const 
 
 	ofLog() << "<export image: " << file_name << ">";
 }
+
+void FileManager::saveImage()
+{
+	ofFileDialogResult result = ofSystemSaveDialog("render.png", "Image Export");
+
+	if (result.bSuccess) {
+		ofImage image;
+		image.grabScreen(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
+		image.save(result.getPath());
+
+		ofLog() << "<export image: " << result.getPath() << ">";
+	}
+}
