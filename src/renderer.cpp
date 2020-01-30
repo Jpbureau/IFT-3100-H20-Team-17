@@ -2,9 +2,9 @@
 
 
 
-Renderer::Renderer(const FileManager & fileManager)
+Renderer::Renderer(const FileManager & fileManager) :
+	fileManager(fileManager)
 {
-	this->fileManager = fileManager;
 }
 
 void Renderer::setup()

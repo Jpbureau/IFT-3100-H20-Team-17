@@ -6,16 +6,16 @@
 
 class Renderer
 {
+public:
+	Renderer(const FileManager & fileManager);
+
+	void setup();
+	void draw();
+
 private:
-	FileManager fileManager;
+	const FileManager& fileManager;
 
 	ofxPanel gui;
 	ofxButton exportButton;
 	void exportButtonPressed();
-
-public:
-	Renderer(const FileManager& fileManager);
-
-	void setup();
-	void draw();
 };

@@ -31,7 +31,7 @@ void FileManager::image_export(const string name, const string extension, const 
 	ofLog() << "<export image: " << file_name << ">";
 }
 
-void FileManager::saveImage()
+void FileManager::saveImage() const
 {
 	ofFileDialogResult result = ofSystemSaveDialog("render.png", "Image Export");
 
