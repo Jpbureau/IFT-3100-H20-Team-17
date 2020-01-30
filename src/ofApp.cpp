@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-
+	renderer.setup();
 }
 
 //--------------------------------------------------------------
@@ -12,9 +12,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	ofSetColor(255, 130, 0);
-	ofFill();
-	ofDrawCircle(100, 100, 50);
+	renderer.draw();
 }
 
 //--------------------------------------------------------------
@@ -28,14 +26,14 @@ void ofApp::keyReleased(int key){
 
 	// valider si la touche du clavier est la barre d'espacement (spacebar)
 	if (key == '1')
-		renderer.image_export("render", "png", "high");
+		fileManager.image_export("render", "png", "high");
 	else if (key == '2') {
-		renderer.image_export("render", "png", "medium");
+		fileManager.image_export("render", "png", "medium");
 	}
 	else if (key == '3') {
-		renderer.image_export("render", "png", "low");
+		fileManager.image_export("render", "png", "low");
 	} else {
-		renderer.image_export("render", "png", "");
+		fileManager.image_export("render", "png", "");
 	}
 	
 }

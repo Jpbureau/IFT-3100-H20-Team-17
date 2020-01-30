@@ -56,7 +56,10 @@
       <Filter>addons\ofxGui\src</Filter>
     </ClCompile>
     <ClCompile Include="src\renderer.cpp">
-      <Filter>src</Filter>
+      <Filter>src\MainRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fileManager.cpp">
+      <Filter>src\FileManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +101,12 @@
     </Filter>
     <Filter Include="addons\ofxGui\src">
       <UniqueIdentifier>{645E9533-4DCD-6179-1CDF-CB65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\MainRenderer">
+      <UniqueIdentifier>{9519c149-4dbe-4f40-af1f-8d335066d8cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FileManager">
+      <UniqueIdentifier>{9a7827fd-ffe8-439e-8616-f638d8e4be9f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -282,7 +291,10 @@
       <Filter>addons\ofxGui\src</Filter>
     </ClInclude>
     <ClInclude Include="src\renderer.h">
-      <Filter>src</Filter>
+      <Filter>src\MainRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fileManager.h">
+      <Filter>src\FileManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,44 +1,31 @@
 #include "renderer.h"
 
+
+
+Renderer::Renderer(const FileManager & fileManager) :
+	fileManager(fileManager)
+{
+}
+
 void Renderer::setup()
 {
+	exportButton.addListener(this, &Renderer::exportButtonPressed);
+
+	gui.setup("Test");
+	gui.add(exportButton.setup("Export Image"));
 
 }
 
 void Renderer::draw()
 {
+	ofBackgroundGradient(ofColor::white, ofColor::gray);
 	ofSetColor(255, 130, 0);
-	ofFill();
-	ofDrawCircle(100, 100, 50);
+	ofDrawCircle(ofGetWidth() / 2, ofGetHeight() / 2, 50);
+
+	gui.draw();
 }
 
-// fonction qui exporte une image à partir de son nom et de son extension, à partir du répertoire ./bin/data ou d'un chemin absolue
-void Renderer::image_export(const string name, const string extension, const string option) const
+void Renderer::exportButtonPressed()
 {
-	ofImage image;
-	string qualityOption;
-
-	// générer un nom de fichier unique et ordonné
-	string file_name = name + option + "." + extension;
-
-	// capturer le contenu du framebuffer actif
-	image.grabScreen(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
-
-	if (qualityOption == "high") {
-		image.save(file_name, OF_IMAGE_QUALITY_HIGH);
-	} 
-	else if (qualityOption == "medium") {
-		image.save(file_name, OF_IMAGE_QUALITY_MEDIUM);
-	}
-	else if (qualityOption == "low"){
-		image.save(file_name, OF_IMAGE_QUALITY_LOW);
-	}
-	else if("worst"){
-		image.save(file_name, OF_IMAGE_QUALITY_WORST);
-	}
-	else {
-		image.save(file_name);
-	}
-
-	ofLog() << "<export image: " << file_name << ">";
+	fileManager.saveImage();
 }
