@@ -1,5 +1,5 @@
 #include "ofMain.h"
-#include "ofApp.h"
+#include "Application.h"
 
 //========================================================================
 int main( ){
@@ -8,6 +8,9 @@ int main( ){
 	// this kicks off the running of my app
 	// can be OF_WINDOW or OF_FULLSCREEN
 	// pass in width and height too:
-	ofRunApp(new ofApp());
+	//ofRunApp(new ofApp());
+
+	//ofSetupOpenGL(512, 512, OF_WINDOW);
+	ofRunApp(new Application());
 
 }
