@@ -1,12 +1,5 @@
 #include "renderer.h"
 
-
-
-Renderer::Renderer(const FileManager & fileManager) :
-	fileManager(fileManager)
-{
-}
-
 void Renderer::setup()
 {
 	exportButton.addListener(this, &Renderer::exportButtonPressed);

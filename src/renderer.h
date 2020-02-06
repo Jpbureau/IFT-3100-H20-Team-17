@@ -7,13 +7,11 @@
 class Renderer
 {
 public:
-	Renderer(const FileManager & fileManager);
-
 	void setup();
 	void draw();
 
 private:
-	const FileManager& fileManager;
+	FileManager fileManager;
 
 	ofxPanel gui;
 	ofxButton exportButton;

@@ -5,10 +5,6 @@
 #include "fileManager.h"
 
 class ofApp : public ofBaseApp{
-private:
-	FileManager fileManager;
-	Renderer renderer = Renderer(fileManager);
-
 public:
 
 	void setup();
@@ -26,5 +22,7 @@ public:
 	void windowResized(int w, int h);
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
-		
+
+private:
+	Renderer renderer;
 };
