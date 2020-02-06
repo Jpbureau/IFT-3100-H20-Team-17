@@ -1,5 +1,5 @@
 #include "ofMain.h"
-#include "Application.h"
+#include "ofApp.h"
 
 //========================================================================
 int main( ){
@@ -11,6 +11,6 @@ int main( ){
 	//ofRunApp(new ofApp());
 
 	//ofSetupOpenGL(512, 512, OF_WINDOW);
-	ofRunApp(new Application());
+	ofRunApp(new ofApp());
 
 }
