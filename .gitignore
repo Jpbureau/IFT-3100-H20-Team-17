@@ -39,6 +39,10 @@ CodeAnalyst/
 *.out
 *.app
 
+# Images
+*.png
+*.jpg
+
 # Others
 *.pdb
 *.ilk
