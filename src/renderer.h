@@ -11,9 +11,15 @@ public:
 	void draw();
 
 private:
+	ofImage image;
+
 	FileManager fileManager;
 
 	ofxPanel gui;
+
+	ofxButton importButton;
+	void importButton_pressed();
+
 	ofxButton exportButton;
 	void exportButtonPressed();
 };

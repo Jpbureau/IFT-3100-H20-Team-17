@@ -1,5 +1,17 @@
 #include "fileManager.h"
 
+ofImage FileManager::image_import() const
+{
+	ofImage image;
+	ofFileDialogResult result = ofSystemLoadDialog("Load file");
+	if (result.bSuccess) {
+		string path = result.getPath();
+		cout << path << endl;
+		image.load(path);
+	}
+	return image;
+}
+
 void FileManager::saveImage() const
 {
 	ofFileDialogResult result = ofSystemSaveDialog("render.png", "Image Export");
