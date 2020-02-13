@@ -8,7 +8,7 @@ void Renderer::setup()
 
 	exportButton.addListener(this, &Renderer::exportButtonPressed);
 
-	gui.setup("Test");
+	gui.setup("Menu");
 	gui.add(importButton.setup("Import Image"));
 	gui.add(exportButton.setup("Export Image"));
 }
