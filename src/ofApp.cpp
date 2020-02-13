@@ -13,14 +13,14 @@ void ofApp::setup(){
 
 	pannelPrimitive.setup(groupeLigne);*/
 
-	group_primitives.setup("Primitives Vectorielles");
+	/*group_primitives.setup("Primitives Vectorielles");
 	group_ligne.setup("Ligne");
 	group_cercle.setup("Cercle");
-	group_rectangle.setup("Rectangle");
+	group_rectangle.setup("Rectangle");*/
 
 	//group_primitives.add(group_ligne);
 
-	group_ligne.add(x1.setup("x1", 5, 3, 90));
+	/*group_ligne.add(x1.setup("x1", 5, 3, 90));
 	group_ligne.add(y1.setup("y1", 5, 3, 90));
 	group_ligne.add(x2.setup("x2", 5, 3, 90));
 	group_ligne.add(y2.setup("y2", 5, 3, 90));
@@ -39,7 +39,7 @@ void ofApp::setup(){
 	pannelPrimitive.setup("Primitives Vectorielles");
 	pannelPrimitive.add(&group_ligne);
 	pannelPrimitive.add(&group_cercle);
-	pannelPrimitive.add(&group_rectangle);
+	pannelPrimitive.add(&group_rectangle);*/
 }
 
 //--------------------------------------------------------------
@@ -76,11 +76,13 @@ void ofApp::mouseDragged(int x, int y, int button){
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
 	renderer.cursor.setPosition(x, y);
+	renderer.mousePressed(x, y);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
 	renderer.cursor.setPosition(x, y);
+	renderer.mouseReleased(x, y);
 }
 
 //--------------------------------------------------------------
