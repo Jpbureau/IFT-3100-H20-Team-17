@@ -2,12 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	boutonDessiner.addListener(this, &ofApp::boutonDessinerPressed);
-	x1.addListener(this, &ofApp::paramX1Changed);
-	y1.addListener(this, &ofApp::paramY1Changed);
-	x2.addListener(this, &ofApp::paramX2Changed);
-	y2.addListener(this, &ofApp::paramY2Changed);
-
+	ofSetFrameRate(60);
 	renderer.setup();
 
 	/*groupeLigne.setName("param");
@@ -70,22 +65,22 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-
+	renderer.cursor.setPosition(x, y);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-
+	renderer.cursor.setPosition(x, y);
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+	renderer.cursor.setPosition(x, y);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-
+	renderer.cursor.setPosition(x, y);
 }
 
 //--------------------------------------------------------------
