@@ -22,4 +22,11 @@ private:
 
 	ofxButton exportButton;
 	void exportButtonPressed();
+
+	ofxButton mosaiqueButton;
+	void mosaiqueButtonPressed();
+
+	int offsetVertical;
+	int offsetHorizontal;
+
 };
