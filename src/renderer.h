@@ -26,7 +26,6 @@ private:
 	ofxButton mosaiqueButton;
 	void mosaiqueButtonPressed();
 
-	int offsetVertical;
-	int offsetHorizontal;
+	ofFbo fbo;
 
 };
