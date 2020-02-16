@@ -10,6 +10,7 @@ class Renderer
 {
 public:
 	void setup();
+	void update();
 	void draw();
 
 	int canvasSize;
@@ -28,9 +29,12 @@ public:
 private:
 	ofImage image;
 
+	ofParameter<ofColor> backGroundColor;
+
 	FileManager fileManager;
 
 	ofxPanel menuPanel;
+	ofxGuiGroup coloringGroup;
 	ofxPanel drawingOptionsPanel;
 
 	ofxButton drawLineButton;

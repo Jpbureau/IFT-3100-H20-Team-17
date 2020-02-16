@@ -15,6 +15,10 @@ void Renderer::setup()
 
 	drawingOptionsPanel.setup("Outils de dessin");
 	drawingOptionsPanel.setPosition(10, 200);
+
+	backGroundColor.set("Couleur du fond", ofColor(255), ofColor(0, 0), ofColor(255, 255));
+
+	drawingOptionsPanel.add(backGroundColor);
 	drawingOptionsPanel.add(drawPointButton.setup("point"));
 	drawingOptionsPanel.add(drawLineButton.setup("ligne"));
 	drawingOptionsPanel.add(drawRectangleButton.setup("rectangle"));
@@ -26,10 +30,14 @@ void Renderer::setup()
 	drawEllipseButton.addListener(this, &Renderer::selectEllipseType);
 }
 
+void Renderer::update()
+{
+
+}
+
 void Renderer::draw()
 {
-	textureDrawer.draw();
-
+	ofClear(backGroundColor);
 	/*ofBackgroundGradient(ofColor::white, ofColor::gray);
 	ofSetColor(255, 130, 0);
 	ofDrawCircle(ofGetWidth() / 2, ofGetHeight() / 2, 50);*/
@@ -38,6 +46,7 @@ void Renderer::draw()
 		ofSetColor(255);
 		image.draw(0, 0, ofGetWidth(), ofGetHeight());
 	}*/
+	textureDrawer.draw();
 	cursor.draw();
 	menuPanel.draw();
 	drawingOptionsPanel.draw();

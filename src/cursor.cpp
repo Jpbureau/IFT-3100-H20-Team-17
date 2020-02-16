@@ -33,7 +33,7 @@ void Cursor::draw()
 
 void Cursor::setPosition(int x, int y)
 {
-	//temporaire
+	//temporaire afin de naviguer avec la flèche sur le menu de formes
 	if (x > 9 && y > 199 && x < 200 && y < 300) {
 		this->type = none;
 	}
