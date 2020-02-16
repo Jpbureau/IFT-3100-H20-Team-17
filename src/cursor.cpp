@@ -24,7 +24,8 @@ void Cursor::draw()
 		handImage.draw(x, y - 30, 30, 30);
 		break;
 	case none:
-		ofShowCursor;
+		ofShowCursor();
+		break;
 	default:
 		break;
 	}
@@ -32,6 +33,13 @@ void Cursor::draw()
 
 void Cursor::setPosition(int x, int y)
 {
+	//temporaire
+	if (x > 9 && y > 199 && x < 200 && y < 300) {
+		this->type = none;
+	}
+	else {
+		this->type = pencil;
+	}
 	this->x = x;
 	this->y = y;
 }

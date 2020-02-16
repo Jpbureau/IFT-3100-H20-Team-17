@@ -64,6 +64,9 @@
     <ClCompile Include="src\cursor.cpp">
       <Filter>src\MainRenderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\textureDrawer.cpp">
+      <Filter>src\MainRenderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -300,6 +303,9 @@
       <Filter>src\FileManager</Filter>
     </ClInclude>
     <ClInclude Include="src\cursor.h">
+      <Filter>src\MainRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\textureDrawer.h">
       <Filter>src\MainRenderer</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,29 +2,45 @@
 
 void Renderer::setup()
 {
-	importButton.addListener(this, &Renderer::importButton_pressed);
 	cursor.setup();
+	textureDrawer.setup();
 	cursor.setCursorImage(CursorTypes::pencil);
 
 	exportButton.addListener(this, &Renderer::exportButtonPressed);
+	importButton.addListener(this, &Renderer::importButton_pressed);
 
-	gui.setup("Menu");
-	gui.add(importButton.setup("Import Image"));
-	gui.add(exportButton.setup("Export Image"));
+	menuPanel.setup("Menu");
+	menuPanel.add(importButton.setup("Import Image"));
+	menuPanel.add(exportButton.setup("Export Image"));
+
+	drawingOptionsPanel.setup("Outils de dessin");
+	drawingOptionsPanel.setPosition(10, 200);
+	drawingOptionsPanel.add(drawPointButton.setup("point"));
+	drawingOptionsPanel.add(drawLineButton.setup("ligne"));
+	drawingOptionsPanel.add(drawRectangleButton.setup("rectangle"));
+	drawingOptionsPanel.add(drawEllipseButton.setup("ellipse"));
+
+	drawPointButton.addListener(this, &Renderer::selectPointType);
+	drawLineButton.addListener(this, &Renderer::selectLineType);
+	drawRectangleButton.addListener(this, &Renderer::selectRectangleType);
+	drawEllipseButton.addListener(this, &Renderer::selectEllipseType);
 }
 
 void Renderer::draw()
 {
-	ofBackgroundGradient(ofColor::white, ofColor::gray);
-	ofSetColor(255, 130, 0);
-	ofDrawCircle(ofGetWidth() / 2, ofGetHeight() / 2, 50);
+	textureDrawer.draw();
 
-	if (image.isAllocated()) {
+	/*ofBackgroundGradient(ofColor::white, ofColor::gray);
+	ofSetColor(255, 130, 0);
+	ofDrawCircle(ofGetWidth() / 2, ofGetHeight() / 2, 50);*/
+
+	/*if (image.isAllocated()) {
 		ofSetColor(255);
 		image.draw(0, 0, ofGetWidth(), ofGetHeight());
-	}
+	}*/
 	cursor.draw();
-	gui.draw();
+	menuPanel.draw();
+	drawingOptionsPanel.draw();
 }
 
 void Renderer::drawCursor()
@@ -42,4 +58,36 @@ void Renderer::importButton_pressed()
 void Renderer::exportButtonPressed()
 {
 	fileManager.saveImage();
+}
+
+//Malheureusement nécessaire pour l'instant si on veut déclencher une action avec le listener
+void Renderer::selectPointType()
+{
+	textureDrawer.selectPointType();
+}
+void Renderer::selectLineType()
+{
+	textureDrawer.selectLineType();
+}
+void Renderer::selectRectangleType()
+{
+	textureDrawer.selectRectangleType();
+}
+void Renderer::selectEllipseType()
+{
+	textureDrawer.selectEllipseType();
+}
+
+void Renderer::mousePressed(int x, int y)
+{
+	textureDrawer.mouse_pressed_posX = x;
+	textureDrawer.mouse_pressed_posY = y;
+	
+}
+
+void Renderer::mouseReleased(int x, int y)
+{
+	textureDrawer.mouse_current_posX = x;
+	textureDrawer.mouse_current_posY = y;
+	textureDrawer.add_vector_shape();
 }
