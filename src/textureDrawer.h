@@ -37,6 +37,8 @@ public:
 
 	void add_vector_shape();
 
+	void updateColors(ofColor stroke, ofColor fill);
+
 private:
 	int count;
 	int head;
@@ -58,6 +60,9 @@ private:
 
 	VectorPrimitive* shapes;
 	VectorPrimitiveType selectedType;
+
+	void setStrokeColor(ofColor color);
+	void setFillColor(ofColor color);
 
 	void draw_point(float x, float y, float radius) const;
 	void draw_line(float x1, float y1, float x2, float y2) const;

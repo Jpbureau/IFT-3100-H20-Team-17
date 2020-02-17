@@ -30,11 +30,12 @@ private:
 	ofImage image;
 
 	ofParameter<ofColor> backGroundColor;
+	ofParameter<ofColor> strokeColorPicker;
+	ofParameter<ofColor> fillColorPicker;
 
 	FileManager fileManager;
 
 	ofxPanel menuPanel;
-	ofxGuiGroup coloringGroup;
 	ofxPanel drawingOptionsPanel;
 
 	ofxButton drawLineButton;

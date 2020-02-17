@@ -17,8 +17,12 @@ void Renderer::setup()
 	drawingOptionsPanel.setPosition(10, 200);
 
 	backGroundColor.set("Couleur du fond", ofColor(255), ofColor(0, 0), ofColor(255, 255));
+	strokeColorPicker.set("Couleur du contour/trait", ofColor(255), ofColor(0, 0), ofColor(255, 255));
+	fillColorPicker.set("Couleur du remplissage", ofColor(255), ofColor(0, 0), ofColor(255, 255));
 
 	drawingOptionsPanel.add(backGroundColor);
+	drawingOptionsPanel.add(strokeColorPicker);
+	drawingOptionsPanel.add(fillColorPicker);
 	drawingOptionsPanel.add(drawPointButton.setup("point"));
 	drawingOptionsPanel.add(drawLineButton.setup("ligne"));
 	drawingOptionsPanel.add(drawRectangleButton.setup("rectangle"));
@@ -32,7 +36,7 @@ void Renderer::setup()
 
 void Renderer::update()
 {
-
+	textureDrawer.updateColors(strokeColorPicker, fillColorPicker);
 }
 
 void Renderer::draw()

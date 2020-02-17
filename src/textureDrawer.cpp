@@ -193,6 +193,28 @@ void TextureDrawer::add_vector_shape()
 	head = ++head >= count ? 0 : head;
 }
 
+void TextureDrawer::updateColors(ofColor stroke, ofColor fill)
+{
+	setStrokeColor(stroke);
+	setFillColor(fill);
+}
+
+void TextureDrawer::setStrokeColor(ofColor color)
+{
+	stroke_color_r = color.r;
+	stroke_color_g = color.g;
+	stroke_color_b = color.b;
+	stroke_color_a = color.a;
+}
+
+void TextureDrawer::setFillColor(ofColor color)
+{
+	fill_color_r = color.r;
+	fill_color_g = color.g;
+	fill_color_b = color.b;
+	fill_color_a = color.a;
+}
+
 void TextureDrawer::draw_point(float x, float y, float radius) const
 {
 	ofDrawEllipse(x, y, radius, radius);
