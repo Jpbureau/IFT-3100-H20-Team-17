@@ -19,10 +19,12 @@ void Renderer::setup()
 	backGroundColor.set("Couleur du fond", ofColor(255), ofColor(0, 0), ofColor(255, 255));
 	strokeColorPicker.set("Couleur du contour/trait", ofColor(255), ofColor(0, 0), ofColor(255, 255));
 	fillColorPicker.set("Couleur du remplissage", ofColor(255), ofColor(0, 0), ofColor(255, 255));
+	strokeWeightSlider.set("Largeur de la ligne", 1.0f, 0.0f, 5.0f);
 
 	drawingOptionsPanel.add(backGroundColor);
 	drawingOptionsPanel.add(strokeColorPicker);
 	drawingOptionsPanel.add(fillColorPicker);
+	drawingOptionsPanel.add(strokeWeightSlider);
 	drawingOptionsPanel.add(drawPointButton.setup("point"));
 	drawingOptionsPanel.add(drawLineButton.setup("ligne"));
 	drawingOptionsPanel.add(drawRectangleButton.setup("rectangle"));
@@ -37,11 +39,12 @@ void Renderer::setup()
 void Renderer::update()
 {
 	textureDrawer.updateColors(strokeColorPicker, fillColorPicker);
+	textureDrawer.updateStrokeWeight(strokeWeightSlider);
 }
 
 void Renderer::draw()
 {
-	ofClear(backGroundColor);
+	ofSetBackgroundColor(backGroundColor);
 	/*ofBackgroundGradient(ofColor::white, ofColor::gray);
 	ofSetColor(255, 130, 0);
 	ofDrawCircle(ofGetWidth() / 2, ofGetHeight() / 2, 50);*/
@@ -54,6 +57,7 @@ void Renderer::draw()
 	cursor.draw();
 	menuPanel.draw();
 	drawingOptionsPanel.draw();
+	textureDrawer.draw();
 }
 
 void Renderer::drawCursor()

@@ -32,6 +32,8 @@ private:
 	ofParameter<ofColor> backGroundColor;
 	ofParameter<ofColor> strokeColorPicker;
 	ofParameter<ofColor> fillColorPicker;
+	ofParameter<float> strokeWeightSlider;
+	ofParameter<float> radiusSlider;
 
 	FileManager fileManager;
 

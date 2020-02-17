@@ -38,6 +38,8 @@ public:
 	void add_vector_shape();
 
 	void updateColors(ofColor stroke, ofColor fill);
+	void updateStrokeWeight(float newWeight);
+	void updateRadius(float newRadius); 
 
 private:
 	int count;
@@ -45,7 +47,7 @@ private:
 	int stride;
 	int size;
 
-	float stroke_width_default;
+	float stroke_width;
 	float radius;
 
 	unsigned char stroke_color_r;

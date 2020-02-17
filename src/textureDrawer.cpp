@@ -5,16 +5,6 @@ void TextureDrawer::setup()
 	//Un peu comme on fait dans le cours, on pourrait éventuellement penser à une meilleure structure de données
 	count = 100;
 
-	stroke_color_r = 242;
-	stroke_color_g = 225;
-	stroke_color_b = 31;
-	stroke_color_a = 0;
-
-	fill_color_r = 242;
-	fill_color_g = 225;
-	fill_color_b = 31;
-	fill_color_a = 0;
-
 	head = 0;
 
 	stride = sizeof(VectorPrimitive);
@@ -23,7 +13,7 @@ void TextureDrawer::setup()
 
 	shapes = (VectorPrimitive*)std::malloc(size);
 
-	selectedType = VectorPrimitiveType::point;
+	selectedType = VectorPrimitiveType::line;
 }
 
 void TextureDrawer::draw()
@@ -36,7 +26,7 @@ void TextureDrawer::draw()
 		case VectorPrimitiveType::point:
 
 			ofFill();
-			ofSetLineWidth(0);
+			ofSetLineWidth(radius);
 			ofSetColor(
 				shapes[index].stroke_color[0],
 				shapes[index].stroke_color[1],
@@ -48,7 +38,6 @@ void TextureDrawer::draw()
 			break;
 
 		case VectorPrimitiveType::line:
-
 			ofNoFill();
 			ofSetLineWidth(shapes[index].stroke_width);
 			ofSetColor(
@@ -65,22 +54,23 @@ void TextureDrawer::draw()
 		case VectorPrimitiveType::rectangle:
 
 			ofFill();
-			ofSetLineWidth(0);
+			ofSetLineWidth(shapes[index].stroke_width);
 			ofSetColor(
 				shapes[index].fill_color[0],
 				shapes[index].fill_color[1],
-				shapes[index].fill_color[2]);
+				shapes[index].fill_color[2],
+				shapes[index].fill_color[3]);
 			draw_rectangle(
 				shapes[index].position1[0],
 				shapes[index].position1[1],
 				shapes[index].position2[0],
 				shapes[index].position2[1]);
 			ofNoFill();
-			ofSetLineWidth(shapes[index].stroke_width);
 			ofSetColor(
 				shapes[index].stroke_color[0],
 				shapes[index].stroke_color[1],
-				shapes[index].stroke_color[2]);
+				shapes[index].stroke_color[2],
+				shapes[index].stroke_color[3]);
 			draw_rectangle(
 				shapes[index].position1[0],
 				shapes[index].position1[1],
@@ -91,7 +81,7 @@ void TextureDrawer::draw()
 		case VectorPrimitiveType::ellipse:
 
 			ofFill();
-			ofSetLineWidth(0);
+			ofSetLineWidth(shapes[index].stroke_width);
 			ofSetCircleResolution(48);
 			ofSetColor(
 				shapes[index].fill_color[0],
@@ -124,25 +114,21 @@ void TextureDrawer::draw()
 void TextureDrawer::selectPointType()
 {
 	selectedType = VectorPrimitiveType::point;
-	cout << "point" << endl;
 }
 
 void TextureDrawer::selectLineType()
 {
 	selectedType = VectorPrimitiveType::line;
-	cout << "line" << endl;
 }
 
 void TextureDrawer::selectRectangleType()
 {
 	selectedType = VectorPrimitiveType::rectangle;
-	cout << "rectangle" << endl;
 }
 
 void TextureDrawer::selectEllipseType()
 {
 	selectedType = VectorPrimitiveType::ellipse;
-	cout << "ellipse" << endl;
 }
 
 void TextureDrawer::add_vector_shape()
@@ -168,27 +154,26 @@ void TextureDrawer::add_vector_shape()
 	switch (shapes[head].type)
 	{
 	case VectorPrimitiveType::point:
-		shapes[head].stroke_width = 4;
+		shapes[head].stroke_width = radius;
+		shapes[head].stroke_width = radius;
 		break;
 
 	case VectorPrimitiveType::line:
-		shapes[head].stroke_width = ofRandom(1, 16);
+		shapes[head].stroke_width = 5.0f;
 		break;
 
 	case VectorPrimitiveType::rectangle:
-		shapes[head].stroke_width = stroke_width_default;
+		shapes[head].stroke_width = stroke_width;
 		break;
 
 	case VectorPrimitiveType::ellipse:
-		shapes[head].stroke_width = stroke_width_default;
+		shapes[head].stroke_width = stroke_width;
 		break;
 
 	default:
-		shapes[head].stroke_width = stroke_width_default;
+		shapes[head].stroke_width = stroke_width;
 		break;
 	}
-
-	cout << "<new primitive at index: " << head << ">" << endl;
 
 	head = ++head >= count ? 0 : head;
 }
@@ -197,6 +182,16 @@ void TextureDrawer::updateColors(ofColor stroke, ofColor fill)
 {
 	setStrokeColor(stroke);
 	setFillColor(fill);
+}
+
+void TextureDrawer::updateStrokeWeight(float newWeight)
+{
+	stroke_width = newWeight;
+}
+
+void TextureDrawer::updateRadius(float newRadius)
+{
+	radius = newRadius;
 }
 
 void TextureDrawer::setStrokeColor(ofColor color)
