@@ -24,6 +24,7 @@ class TextureDrawer
 public:
 	void setup();
 	void draw();
+	void update();
 
 	int mouse_pressed_posX;
 	int mouse_pressed_posY;
@@ -61,6 +62,7 @@ private:
 	unsigned char fill_color_a;
 
 	VectorPrimitive* shapes;
+	VectorPrimitive* selectedShapes;
 	VectorPrimitiveType selectedType;
 
 	void setStrokeColor(ofColor color);

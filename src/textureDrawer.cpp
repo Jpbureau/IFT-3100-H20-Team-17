@@ -26,7 +26,7 @@ void TextureDrawer::draw()
 		case VectorPrimitiveType::point:
 
 			ofFill();
-			ofSetLineWidth(radius);
+			ofSetLineWidth(shapes[index].stroke_width);
 			ofSetColor(
 				shapes[index].stroke_color[0],
 				shapes[index].stroke_color[1],
@@ -34,7 +34,7 @@ void TextureDrawer::draw()
 			draw_point(
 				shapes[index].position2[0],
 				shapes[index].position2[1],
-				shapes[index].stroke_width);
+				shapes[index].radius);
 			break;
 
 		case VectorPrimitiveType::line:
@@ -111,6 +111,24 @@ void TextureDrawer::draw()
 	}
 }
 
+void TextureDrawer::update()
+{
+	for (int i = 0; i < head; i++) {
+		if (shapes[i].selected) {
+			shapes[i].fill_color[0] = fill_color_r;
+			shapes[i].fill_color[1] = fill_color_g;
+			shapes[i].fill_color[2] = fill_color_b;
+			shapes[i].fill_color[3] = fill_color_a;
+			shapes[i].stroke_color[0] = stroke_color_r;
+			shapes[i].stroke_color[1] = stroke_color_g;
+			shapes[i].stroke_color[2] = stroke_color_b;
+			shapes[i].stroke_color[3] = stroke_color_a;
+			shapes[i].stroke_width = stroke_width;
+			shapes[i].radius = radius;
+		}
+	}
+}
+
 void TextureDrawer::selectPointType()
 {
 	selectedType = VectorPrimitiveType::point;
@@ -154,8 +172,7 @@ void TextureDrawer::add_vector_shape()
 	switch (shapes[head].type)
 	{
 	case VectorPrimitiveType::point:
-		shapes[head].stroke_width = radius;
-		shapes[head].stroke_width = radius;
+		shapes[head].radius = radius;
 		break;
 
 	case VectorPrimitiveType::line:

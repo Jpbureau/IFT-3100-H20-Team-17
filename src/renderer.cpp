@@ -2,9 +2,14 @@
 
 void Renderer::setup()
 {
-	cursor.setup();
+	cursor.setup(drawingCanvasX, drawingCanvasY, drawingCanvasSize);
+	cursor.setCursorImage(none);
 	textureDrawer.setup();
-	cursor.setCursorImage(CursorTypes::pencil);
+	fboTexture.allocate(drawingCanvasSize, drawingCanvasSize, GL_RGBA);
+	fboTexture.begin();
+	ofClear(255, 255);
+	ofSetColor(255);
+	fboTexture.end();
 
 	exportButton.addListener(this, &Renderer::exportButtonPressed);
 	importButton.addListener(this, &Renderer::importButton_pressed);
@@ -14,11 +19,11 @@ void Renderer::setup()
 	menuPanel.add(exportButton.setup("Export Image"));
 
 	drawingOptionsPanel.setup("Outils de dessin");
-	drawingOptionsPanel.setPosition(10, 200);
+	drawingOptionsPanel.setPosition(10, drawingCanvasY);
 
-	backGroundColor.set("Couleur du fond", ofColor(255), ofColor(0, 0), ofColor(255, 255));
-	strokeColorPicker.set("Couleur du contour/trait", ofColor(255), ofColor(0, 0), ofColor(255, 255));
-	fillColorPicker.set("Couleur du remplissage", ofColor(255), ofColor(0, 0), ofColor(255, 255));
+	backGroundColor.set("Couleur du fond", ofColor::burlyWood, ofColor(0, 0), ofColor(255, 255));
+	strokeColorPicker.set("Couleur du contour/trait", ofColor::darkCyan, ofColor(0, 0), ofColor(255, 255));
+	fillColorPicker.set("Couleur du remplissage", ofColor::crimson, ofColor(0, 0), ofColor(255, 255));
 	strokeWeightSlider.set("Largeur de la ligne", 1.0f, 0.0f, 5.0f);
 
 	radiusSlider.set("LRayon", 1.0f, 0.0f, 40.0f);
@@ -46,11 +51,15 @@ void Renderer::update()
 	textureDrawer.updateColors(strokeColorPicker, fillColorPicker);
 	textureDrawer.updateStrokeWeight(strokeWeightSlider);
 	textureDrawer.updateRadius(radiusSlider);
+	cursor.update();
 }
 
 void Renderer::draw()
 {
 	ofSetBackgroundColor(backGroundColor);
+
+	ofSetColor(255);
+	fboTexture.draw(drawingCanvasX, drawingCanvasY);
 	/*ofBackgroundGradient(ofColor::white, ofColor::gray);
 	ofSetColor(255, 130, 0);
 	ofDrawCircle(ofGetWidth() / 2, ofGetHeight() / 2, 50);*/

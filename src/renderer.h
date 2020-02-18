@@ -13,9 +13,11 @@ public:
 	void update();
 	void draw();
 
-	int canvasSize;
-	int canvasPositionX;
-	int canvasPositionY;
+	const int drawingCanvasSize = 600;
+	int drawingCanvasX = 225;
+	int drawingCanvasY = ofGetHeight() / 3.5;
+
+	ofFbo fboTexture;
 
 	int mousePosX;
 	int mousePosY;
