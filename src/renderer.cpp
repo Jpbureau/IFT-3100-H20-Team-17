@@ -21,11 +21,16 @@ void Renderer::setup()
 	fillColorPicker.set("Couleur du remplissage", ofColor(255), ofColor(0, 0), ofColor(255, 255));
 	strokeWeightSlider.set("Largeur de la ligne", 1.0f, 0.0f, 5.0f);
 
+	radiusSlider.set("LRayon", 1.0f, 0.0f, 40.0f);
+	optionsPoint.setup("Point");
+	optionsPoint.add(radiusSlider);
+	optionsPoint.add(drawPointButton.setup("point"));
+
 	drawingOptionsPanel.add(backGroundColor);
 	drawingOptionsPanel.add(strokeColorPicker);
 	drawingOptionsPanel.add(fillColorPicker);
 	drawingOptionsPanel.add(strokeWeightSlider);
-	drawingOptionsPanel.add(drawPointButton.setup("point"));
+	drawingOptionsPanel.add(&optionsPoint);
 	drawingOptionsPanel.add(drawLineButton.setup("ligne"));
 	drawingOptionsPanel.add(drawRectangleButton.setup("rectangle"));
 	drawingOptionsPanel.add(drawEllipseButton.setup("ellipse"));
@@ -40,6 +45,7 @@ void Renderer::update()
 {
 	textureDrawer.updateColors(strokeColorPicker, fillColorPicker);
 	textureDrawer.updateStrokeWeight(strokeWeightSlider);
+	textureDrawer.updateRadius(radiusSlider);
 }
 
 void Renderer::draw()
@@ -57,7 +63,6 @@ void Renderer::draw()
 	cursor.draw();
 	menuPanel.draw();
 	drawingOptionsPanel.draw();
-	textureDrawer.draw();
 }
 
 void Renderer::drawCursor()

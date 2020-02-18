@@ -159,7 +159,7 @@ void TextureDrawer::add_vector_shape()
 		break;
 
 	case VectorPrimitiveType::line:
-		shapes[head].stroke_width = 5.0f;
+		shapes[head].stroke_width = stroke_width;
 		break;
 
 	case VectorPrimitiveType::rectangle:

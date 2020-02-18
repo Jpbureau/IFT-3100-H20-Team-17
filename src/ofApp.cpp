@@ -4,6 +4,8 @@
 void ofApp::setup(){
 	ofSetFrameRate(60);
 	ofSetBackgroundColor(31);
+	ofSetWindowPosition(0, 30);
+	ofSetWindowShape(ofGetScreenWidth(), ofGetScreenHeight() - 30);
 	renderer.setup();
 }
 

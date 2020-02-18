@@ -39,6 +39,7 @@ private:
 
 	ofxPanel menuPanel;
 	ofxPanel drawingOptionsPanel;
+	ofxGuiGroup optionsPoint;
 
 	ofxButton drawLineButton;
 	ofxButton drawPointButton;
