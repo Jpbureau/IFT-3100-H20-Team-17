@@ -47,6 +47,7 @@ private:
 	ofxButton drawRectangleButton;
 	ofxButton drawEllipseButton;
 	ofxButton selectButton;
+	ofxButton deselectButton;
 	ofxButton deleteButton;
 
 	ofxButton importButton;
@@ -61,4 +62,5 @@ private:
 	void selectEllipseType();
 	void selectAction();
 	void deleteAction();
+	void deselectAction();
 };

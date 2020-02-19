@@ -41,6 +41,7 @@ void Renderer::setup()
 	drawingOptionsPanel.add(drawRectangleButton.setup("rectangle"));
 	drawingOptionsPanel.add(drawEllipseButton.setup("ellipse"));
 	drawingOptionsPanel.add(selectButton.setup("Selectionner"));
+	drawingOptionsPanel.add(deselectButton.setup("Deselectionner"));
 	drawingOptionsPanel.add(deleteButton.setup("Supprimer"));
 
 	drawPointButton.addListener(this, &Renderer::selectPointType);
@@ -48,6 +49,7 @@ void Renderer::setup()
 	drawRectangleButton.addListener(this, &Renderer::selectRectangleType);
 	drawEllipseButton.addListener(this, &Renderer::selectEllipseType);
 	selectButton.addListener(this, &Renderer::selectAction);
+	deselectButton.addListener(this, &Renderer::deselectAction);
 	deleteButton.addListener(this, &Renderer::deleteAction);
 }
 
@@ -117,6 +119,11 @@ void Renderer::selectAction()
 void Renderer::deleteAction()
 {
 	textureDrawer.deleteSelectedShapes();
+}
+
+void Renderer::deselectAction()
+{
+	textureDrawer.resetSelection();
 }
 
 void Renderer::mousePressed(int x, int y)

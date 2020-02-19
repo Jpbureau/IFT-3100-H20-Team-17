@@ -46,6 +46,8 @@ public:
 	void updateStrokeWeight(float newWeight);
 	void updateRadius(float newRadius); 
 
+	void resetSelection();
+
 private:
 	int count;
 	int head;
@@ -77,6 +79,5 @@ private:
 	void draw_rectangle(float x1, float y1, float x2, float y2) const;
 	void draw_ellipse(float x1, float y1, float x2, float y2) const;
 	void drawSelectionRectangles();
-	void resetSelection();
 };
 
