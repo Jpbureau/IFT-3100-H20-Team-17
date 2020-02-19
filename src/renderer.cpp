@@ -4,6 +4,7 @@ void Renderer::setup()
 {
 	cursor.setup(drawingCanvasX, drawingCanvasY, drawingCanvasSize);
 	cursor.setCursorImage(none);
+
 	textureDrawer.setup();
 	fboTexture.allocate(drawingCanvasSize, drawingCanvasSize, GL_RGBA);
 	fboTexture.begin();
@@ -39,11 +40,15 @@ void Renderer::setup()
 	drawingOptionsPanel.add(drawLineButton.setup("ligne"));
 	drawingOptionsPanel.add(drawRectangleButton.setup("rectangle"));
 	drawingOptionsPanel.add(drawEllipseButton.setup("ellipse"));
+	drawingOptionsPanel.add(selectButton.setup("Selectionner"));
+	drawingOptionsPanel.add(deleteButton.setup("Supprimer"));
 
 	drawPointButton.addListener(this, &Renderer::selectPointType);
 	drawLineButton.addListener(this, &Renderer::selectLineType);
 	drawRectangleButton.addListener(this, &Renderer::selectRectangleType);
 	drawEllipseButton.addListener(this, &Renderer::selectEllipseType);
+	selectButton.addListener(this, &Renderer::selectAction);
+	deleteButton.addListener(this, &Renderer::deleteAction);
 }
 
 void Renderer::update()
@@ -51,6 +56,7 @@ void Renderer::update()
 	textureDrawer.updateColors(strokeColorPicker, fillColorPicker);
 	textureDrawer.updateStrokeWeight(strokeWeightSlider);
 	textureDrawer.updateRadius(radiusSlider);
+	textureDrawer.update();
 	cursor.update();
 }
 
@@ -72,12 +78,6 @@ void Renderer::draw()
 	cursor.draw();
 	menuPanel.draw();
 	drawingOptionsPanel.draw();
-}
-
-void Renderer::drawCursor()
-{
-
-	cout << "X: " << mousePosX << " Y: " << mousePosY << endl;
 }
 
 void Renderer::importButton_pressed()
@@ -109,11 +109,21 @@ void Renderer::selectEllipseType()
 	textureDrawer.selectEllipseType();
 }
 
+void Renderer::selectAction()
+{
+	textureDrawer.selectSelectionType();
+}
+
+void Renderer::deleteAction()
+{
+	textureDrawer.deleteSelectedShapes();
+}
+
 void Renderer::mousePressed(int x, int y)
 {
 	textureDrawer.mouse_pressed_posX = x;
 	textureDrawer.mouse_pressed_posY = y;
-	
+	textureDrawer.selectShape(x, y);
 }
 
 void Renderer::mouseReleased(int x, int y)
@@ -122,3 +132,5 @@ void Renderer::mouseReleased(int x, int y)
 	textureDrawer.mouse_current_posY = y;
 	textureDrawer.add_vector_shape();
 }
+
+

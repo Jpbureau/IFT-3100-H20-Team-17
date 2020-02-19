@@ -23,7 +23,6 @@ public:
 	int mousePosY;
 	Cursor cursor;
 	TextureDrawer textureDrawer;
-	void drawCursor();
 
 	void mousePressed(int x, int y);
 	void mouseReleased(int x, int y);
@@ -47,6 +46,8 @@ private:
 	ofxButton drawPointButton;
 	ofxButton drawRectangleButton;
 	ofxButton drawEllipseButton;
+	ofxButton selectButton;
+	ofxButton deleteButton;
 
 	ofxButton importButton;
 	void importButton_pressed();
@@ -58,4 +59,6 @@ private:
 	void selectLineType();
 	void selectRectangleType();
 	void selectEllipseType();
+	void selectAction();
+	void deleteAction();
 };

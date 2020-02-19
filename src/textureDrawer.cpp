@@ -109,10 +109,14 @@ void TextureDrawer::draw()
 			break;
 		}
 	}
+
+
+	drawSelectionRectangles();
 }
 
 void TextureDrawer::update()
 {
+	//On pourrait aussi potentiellement l'activer seulement au clique d'un bouton
 	for (int i = 0; i < head; i++) {
 		if (shapes[i].selected) {
 			shapes[i].fill_color[0] = fill_color_r;
@@ -149,6 +153,67 @@ void TextureDrawer::selectEllipseType()
 	selectedType = VectorPrimitiveType::ellipse;
 }
 
+void TextureDrawer::selectSelectionType()
+{
+	selectedType = VectorPrimitiveType::selection;
+}
+
+void TextureDrawer::selectShape(int x, int y)
+{
+	int pressedX;
+	int releasedX;
+	int pressedY;
+	int releasedY;
+	int temp;
+	bool isAnyShapeSelected = false;
+
+	if (selectedType == VectorPrimitiveType::selection) {
+		for (int index = 0; index < count; index++)
+		{
+			pressedX = shapes[index].position1[0];
+			pressedY = shapes[index].position1[1];
+			releasedX = shapes[index].position2[0];
+			releasedY = shapes[index].position2[1];
+
+			switch (shapes[index].type)
+			{
+			case VectorPrimitiveType::point:
+
+				if (sqrt((x - releasedX)*(x - releasedX) + (y - releasedY)*(y - releasedY)) < shapes[index].radius) {
+					shapes[index].selected = true;
+					isAnyShapeSelected = true;
+				}
+
+				break;
+
+			default:
+				if (releasedX < pressedX) {
+					temp = releasedX;
+					releasedX = pressedX;
+					pressedX = temp;
+				}
+
+				if (releasedY < pressedY) {
+					temp = releasedY;
+					releasedY = pressedY;
+					pressedY = temp;
+				}
+
+				if (x > pressedX && x < releasedX && y > pressedY && y < releasedY) {
+					shapes[index].selected = true;
+					isAnyShapeSelected = true;
+				}
+				break;
+			}
+		}
+
+		if (!isAnyShapeSelected) {
+			resetSelection();
+		}
+	}
+}
+
+
 void TextureDrawer::add_vector_shape()
 {
 	shapes[head].type = selectedType;
@@ -168,11 +233,14 @@ void TextureDrawer::add_vector_shape()
 	shapes[head].fill_color[1] = fill_color_g;
 	shapes[head].fill_color[2] = fill_color_b;
 	shapes[head].fill_color[3] = fill_color_a;
+	
+	shapes[head].selected = false;
 
 	switch (shapes[head].type)
 	{
 	case VectorPrimitiveType::point:
 		shapes[head].radius = radius;
+		shapes[head].stroke_width = stroke_width;
 		break;
 
 	case VectorPrimitiveType::line:
@@ -248,4 +316,79 @@ void TextureDrawer::draw_ellipse(float x1, float y1, float x2, float y2) const
 	float diameter_y = y2 - y1;
 
 	ofDrawEllipse(x1 + diameter_x / 2.0f, y1 + diameter_y / 2.0f, diameter_x, diameter_y);
+}
+
+void TextureDrawer::drawSelectionRectangles()
+{
+	int newX1 = 0;
+	int newX2 = 0;
+	int newY1 = 0;
+	int newY2 = 0;
+	ofNoFill();
+	ofSetColor(200, 200, 255);
+	ofSetLineWidth(1);
+	for (int i = 0; i < head; ++i) {
+		if (shapes[i].selected) {
+			switch (shapes[i].type) {
+			case VectorPrimitiveType::point:
+				newX1 = shapes[i].position2[0] - shapes[i].radius / 2;
+				newY1 = shapes[i].position2[1] - shapes[i].radius / 2;
+				ofDrawRectangle(newX1, newY1, shapes[i].radius, shapes[i].radius);
+				break;
+			case VectorPrimitiveType::line:
+				newX1 = shapes[i].position1[0];
+				newY1 = shapes[i].position1[1];
+				newX2 = shapes[i].position2[0];
+				newY2 = shapes[i].position2[1];
+
+				if (newX1 < newX2 && newY1 > newY2) {
+					ofDrawRectangle(newX1, newY2, newX2 - newX1, newY1 - newY2);
+				}
+				else if (newX1 < newX2 && newY1 < newY2) {
+					ofDrawRectangle(newX2, newY1, newX1 - newX2, newY2 - newY1);
+				}
+				else if (newX2 < newX1 && newY1 < newY2) {
+					ofDrawRectangle(newX2, newY1, newX1 - newX2, newY2 - newY1);
+				}
+				else {
+					ofDrawRectangle(newX1, newY1, newX2 - newX1, newY2 - newY1);
+				}
+				break;
+			case VectorPrimitiveType::rectangle:
+				newX1 = shapes[i].position1[0];
+				newY1 = shapes[i].position1[1];
+				newX2 = shapes[i].position2[0];
+				newY2 = shapes[i].position2[1];
+				ofDrawRectangle(newX1, newY1, newX2 - newX1, newY2 - newY1);
+				break;
+			case VectorPrimitiveType::ellipse:
+
+				newX1 = shapes[i].position1[0];
+				newY1 = shapes[i].position1[1];
+				newX2 = shapes[i].position2[0];
+				newY2 = shapes[i].position2[1];
+				ofDrawRectangle(newX1, newY1, newX2 - newX1, newY2 - newY1);
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+}
+
+void TextureDrawer::resetSelection()
+{
+	for (int i = 0; i < head; ++i) {
+		shapes[i].selected = false;
+	}
+}
+
+void TextureDrawer::deleteSelectedShapes()
+{
+	for (int i = 0; i < head; ++i) {
+		if (shapes[i].selected) {
+			shapes[i].type = VectorPrimitiveType::none;
+		}
+	}
 }
