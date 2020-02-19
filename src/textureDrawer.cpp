@@ -119,16 +119,18 @@ void TextureDrawer::update()
 	//On pourrait aussi potentiellement l'activer seulement au clique d'un bouton
 	for (int i = 0; i < head; i++) {
 		if (shapes[i].selected) {
+			shapes[i].stroke_width = stroke_width;
+			shapes[i].radius = radius;
+
 			shapes[i].fill_color[0] = fill_color_r;
 			shapes[i].fill_color[1] = fill_color_g;
 			shapes[i].fill_color[2] = fill_color_b;
 			shapes[i].fill_color[3] = fill_color_a;
+
 			shapes[i].stroke_color[0] = stroke_color_r;
 			shapes[i].stroke_color[1] = stroke_color_g;
 			shapes[i].stroke_color[2] = stroke_color_b;
 			shapes[i].stroke_color[3] = stroke_color_a;
-			shapes[i].stroke_width = stroke_width;
-			shapes[i].radius = radius;
 		}
 	}
 }
@@ -186,7 +188,8 @@ void TextureDrawer::selectShape(int x, int y)
 
 				break;
 
-			default:
+			default: 
+				//on doit inverser les coordonnées si le clique est plus grand que le release afin d'uniformiser la comparaison plus bas
 				if (releasedX < pressedX) {
 					temp = releasedX;
 					releasedX = pressedX;
@@ -320,54 +323,65 @@ void TextureDrawer::draw_ellipse(float x1, float y1, float x2, float y2) const
 
 void TextureDrawer::drawSelectionRectangles()
 {
-	int newX1 = 0;
-	int newX2 = 0;
-	int newY1 = 0;
-	int newY2 = 0;
-	ofNoFill();
-	ofSetColor(200, 200, 255);
-	ofSetLineWidth(1);
-	for (int i = 0; i < head; ++i) {
-		if (shapes[i].selected) {
-			switch (shapes[i].type) {
-			case VectorPrimitiveType::point:
-				newX1 = shapes[i].position2[0] - shapes[i].radius / 2;
-				newY1 = shapes[i].position2[1] - shapes[i].radius / 2;
-				ofDrawRectangle(newX1, newY1, shapes[i].radius, shapes[i].radius);
-				break;
-			case VectorPrimitiveType::line:
-				newX1 = shapes[i].position1[0];
-				newY1 = shapes[i].position1[1];
-				newX2 = shapes[i].position2[0];
-				newY2 = shapes[i].position2[1];
+	int x1 = 0;
+	int x2 = 0;
+	int y1 = 0;
+	int y2 = 0;
 
-				if (newX1 < newX2 && newY1 > newY2) {
-					ofDrawRectangle(newX1, newY2, newX2 - newX1, newY1 - newY2);
+	ofNoFill();
+	ofSetLineWidth(2);
+	//couleur pour la sélection (vert)
+	ofSetColor(11, 252, 3);
+
+	for (int index = 0; index < head; ++index) {
+		if (shapes[index].selected) {
+			switch (shapes[index].type)
+			{
+
+			case VectorPrimitiveType::point:
+
+				x1 = shapes[index].position2[0] - shapes[index].radius / 2;
+				y1 = shapes[index].position2[1] - shapes[index].radius / 2;
+				ofDrawRectangle(x1, y1, shapes[index].radius, shapes[index].radius);
+				break;
+
+			case VectorPrimitiveType::line:
+
+				x1 = shapes[index].position1[0];
+				y1 = shapes[index].position1[1];
+				x2 = shapes[index].position2[0];
+				y2 = shapes[index].position2[1];
+
+				if (x1 < x2 && y1 > y2) {
+					ofDrawRectangle(x1, y2, x2 - x1, y1 - y2);
 				}
-				else if (newX1 < newX2 && newY1 < newY2) {
-					ofDrawRectangle(newX2, newY1, newX1 - newX2, newY2 - newY1);
+				else if (x1 < x2 && y1 < y2) {
+					ofDrawRectangle(x2, y1, x1 - x2, y2 - y1);
 				}
-				else if (newX2 < newX1 && newY1 < newY2) {
-					ofDrawRectangle(newX2, newY1, newX1 - newX2, newY2 - newY1);
+				else if (x2 < x1 && y1 < y2) {
+					ofDrawRectangle(x2, y1, x1 - x2, y2 - y1);
 				}
 				else {
-					ofDrawRectangle(newX1, newY1, newX2 - newX1, newY2 - newY1);
+					ofDrawRectangle(x1, y1, x2 - x1, y2 - y1);
 				}
 				break;
+
 			case VectorPrimitiveType::rectangle:
-				newX1 = shapes[i].position1[0];
-				newY1 = shapes[i].position1[1];
-				newX2 = shapes[i].position2[0];
-				newY2 = shapes[i].position2[1];
-				ofDrawRectangle(newX1, newY1, newX2 - newX1, newY2 - newY1);
+
+				x1 = shapes[index].position1[0];
+				y1 = shapes[index].position1[1];
+				x2 = shapes[index].position2[0];
+				y2 = shapes[index].position2[1];
+				ofDrawRectangle(x1, y1, x2 - x1, y2 - y1);
 				break;
+
 			case VectorPrimitiveType::ellipse:
 
-				newX1 = shapes[i].position1[0];
-				newY1 = shapes[i].position1[1];
-				newX2 = shapes[i].position2[0];
-				newY2 = shapes[i].position2[1];
-				ofDrawRectangle(newX1, newY1, newX2 - newX1, newY2 - newY1);
+				x1 = shapes[index].position1[0];
+				y1 = shapes[index].position1[1];
+				x2 = shapes[index].position2[0];
+				y2 = shapes[index].position2[1];
+				ofDrawRectangle(x1, y1, x2 - x1, y2 - y1);
 				break;
 
 			default:
