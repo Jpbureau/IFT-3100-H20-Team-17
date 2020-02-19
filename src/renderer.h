@@ -45,7 +45,9 @@ private:
 	ofxButton drawLineButton;
 	ofxButton drawPointButton;
 	ofxButton drawRectangleButton;
+	ofxButton drawSquareButton;
 	ofxButton drawEllipseButton;
+	ofxButton drawCircleButton;
 	ofxButton selectButton;
 	ofxButton deselectButton;
 	ofxButton deleteButton;
@@ -59,7 +61,9 @@ private:
 	void selectPointType();
 	void selectLineType();
 	void selectRectangleType();
+	void selectSquareType();
 	void selectEllipseType();
+	void selectCircleType();
 	void selectAction();
 	void deleteAction();
 	void deselectAction();

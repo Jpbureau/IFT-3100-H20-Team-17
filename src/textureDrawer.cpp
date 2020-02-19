@@ -150,9 +150,19 @@ void TextureDrawer::selectRectangleType()
 	selectedType = VectorPrimitiveType::rectangle;
 }
 
+void TextureDrawer::selectSquareType()
+{
+	selectedType = VectorPrimitiveType::square;
+}
+
 void TextureDrawer::selectEllipseType()
 {
 	selectedType = VectorPrimitiveType::ellipse;
+}
+
+void TextureDrawer::selectCircleType()
+{
+	selectedType = VectorPrimitiveType::circle;
 }
 
 void TextureDrawer::selectSelectionType()
@@ -219,6 +229,9 @@ void TextureDrawer::selectShape(int x, int y)
 
 void TextureDrawer::add_vector_shape()
 {
+	int horizontalDistance = abs(mouse_current_posX - mouse_pressed_posX);
+	int verticalDistance = abs(mouse_current_posY - mouse_pressed_posY);
+
 	shapes[head].type = selectedType;
 
 	shapes[head].position1[0] = mouse_pressed_posX;
@@ -253,8 +266,53 @@ void TextureDrawer::add_vector_shape()
 	case VectorPrimitiveType::rectangle:
 		shapes[head].stroke_width = stroke_width;
 		break;
+	
+	case VectorPrimitiveType::square:
+		shapes[head].type = VectorPrimitiveType::rectangle;
+
+		if (horizontalDistance > verticalDistance) {
+			if (mouse_pressed_posY < mouse_current_posY) {
+				shapes[head].position2[1] = mouse_pressed_posY + horizontalDistance;
+			}
+			else {
+				shapes[head].position2[1] = mouse_pressed_posY - horizontalDistance;
+			}
+		}
+		else {
+			if (mouse_pressed_posX < mouse_current_posX) {
+				shapes[head].position2[0] = mouse_pressed_posX + verticalDistance;
+			}
+			else {
+				shapes[head].position2[0] = mouse_pressed_posX - verticalDistance;
+			}
+		}
+
+		shapes[head].stroke_width = stroke_width;
+		break;
 
 	case VectorPrimitiveType::ellipse:
+		shapes[head].stroke_width = stroke_width;
+		break;
+	
+	case VectorPrimitiveType::circle:
+		shapes[head].type = VectorPrimitiveType::ellipse;
+
+		if (horizontalDistance > verticalDistance) {
+			if (mouse_pressed_posY < mouse_current_posY) {
+				shapes[head].position2[1] = mouse_pressed_posY + horizontalDistance;
+			}
+			else {
+				shapes[head].position2[1] = mouse_pressed_posY - horizontalDistance;
+			}
+		}
+		else {
+			if (mouse_pressed_posX < mouse_current_posX) {
+				shapes[head].position2[0] = mouse_pressed_posX + verticalDistance;
+			}
+			else {
+				shapes[head].position2[0] = mouse_pressed_posX - verticalDistance;
+			}
+		}
 		shapes[head].stroke_width = stroke_width;
 		break;
 

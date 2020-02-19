@@ -39,7 +39,9 @@ void Renderer::setup()
 	drawingOptionsPanel.add(&optionsPoint);
 	drawingOptionsPanel.add(drawLineButton.setup("ligne"));
 	drawingOptionsPanel.add(drawRectangleButton.setup("rectangle"));
+	drawingOptionsPanel.add(drawSquareButton.setup("Carre"));
 	drawingOptionsPanel.add(drawEllipseButton.setup("ellipse"));
+	drawingOptionsPanel.add(drawCircleButton.setup("Cercle"));
 	drawingOptionsPanel.add(selectButton.setup("Selectionner"));
 	drawingOptionsPanel.add(deselectButton.setup("Deselectionner"));
 	drawingOptionsPanel.add(deleteButton.setup("Supprimer"));
@@ -47,7 +49,9 @@ void Renderer::setup()
 	drawPointButton.addListener(this, &Renderer::selectPointType);
 	drawLineButton.addListener(this, &Renderer::selectLineType);
 	drawRectangleButton.addListener(this, &Renderer::selectRectangleType);
+	drawSquareButton.addListener(this, &Renderer::selectSquareType);
 	drawEllipseButton.addListener(this, &Renderer::selectEllipseType);
+	drawCircleButton.addListener(this, &Renderer::selectCircleType);
 	selectButton.addListener(this, &Renderer::selectAction);
 	deselectButton.addListener(this, &Renderer::deselectAction);
 	deleteButton.addListener(this, &Renderer::deleteAction);
@@ -106,9 +110,18 @@ void Renderer::selectRectangleType()
 {
 	textureDrawer.selectRectangleType();
 }
+void Renderer::selectSquareType()
+{
+	textureDrawer.selectSquareType();
+}
 void Renderer::selectEllipseType()
 {
 	textureDrawer.selectEllipseType();
+}
+
+void Renderer::selectCircleType()
+{
+	textureDrawer.selectCircleType();
 }
 
 void Renderer::selectAction()

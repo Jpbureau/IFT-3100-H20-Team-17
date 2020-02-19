@@ -5,7 +5,7 @@
 // code utilisé pour le dessin des primitives vectorielles:
 // https://github.com/philvoyer/IFT3100H19/blob/master/module02/EX04/IFT3100H19_DrawVectorPrimitive
 
-enum class VectorPrimitiveType { none, selection, point, line, rectangle, ellipse };
+enum class VectorPrimitiveType { none, selection, point, line, rectangle, ellipse, circle, square };
 
 struct VectorPrimitive
 {
@@ -34,7 +34,9 @@ public:
 	void selectPointType();
 	void selectLineType();
 	void selectRectangleType();
+	void selectSquareType();
 	void selectEllipseType();
+	void selectCircleType();
 	void selectSelectionType();
 	void deleteSelectedShapes();
 
