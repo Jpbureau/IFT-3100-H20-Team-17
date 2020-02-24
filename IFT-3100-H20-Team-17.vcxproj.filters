@@ -55,19 +55,19 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp">
       <Filter>addons\ofxGui\src</Filter>
     </ClCompile>
-    <ClCompile Include="src\cursor.cpp">
-      <Filter>src\FileManager</Filter>
-    </ClCompile>
-    <ClCompile Include="src\textureDrawer.cpp">
-      <Filter>src\FileManager</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderer.cpp">
-      <Filter>src\FileManager</Filter>
-    </ClCompile>
     <ClCompile Include="src\fileManager.cpp">
-      <Filter>src\MainRenderer</Filter>
+      <Filter>src\FileManager</Filter>
     </ClCompile>
     <ClCompile Include="src\recorder.cpp">
+      <Filter>src\FileManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cursor.cpp">
+      <Filter>src\MainRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer.cpp">
+      <Filter>src\MainRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\textureDrawer.cpp">
       <Filter>src\MainRenderer</Filter>
     </ClCompile>
   </ItemGroup>
@@ -299,19 +299,19 @@
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h">
       <Filter>addons\ofxGui\src</Filter>
     </ClInclude>
-    <ClInclude Include="src\cursor.h">
-      <Filter>src\FileManager</Filter>
-    </ClInclude>
-    <ClInclude Include="src\textureDrawer.h">
-      <Filter>src\FileManager</Filter>
-    </ClInclude>
-    <ClInclude Include="src\renderer.h">
-      <Filter>src\FileManager</Filter>
-    </ClInclude>
     <ClInclude Include="src\fileManager.h">
-      <Filter>src\MainRenderer</Filter>
+      <Filter>src\FileManager</Filter>
     </ClInclude>
     <ClInclude Include="src\recorder.h">
+      <Filter>src\FileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cursor.h">
+      <Filter>src\MainRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer.h">
+      <Filter>src\MainRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\textureDrawer.h">
       <Filter>src\MainRenderer</Filter>
     </ClInclude>
   </ItemGroup>
