@@ -11,16 +11,24 @@ enum CursorTypes
 class Cursor
 {
 public:
-	void setup();
+	void setup(int drawingCanvasX, int drawingCanvasY, int drawingCanvasSize);
 	void setCursorImage(CursorTypes type);
 	void draw();
+	void update();
 	void setPosition(int x, int y);
 
 private:
 	int x;
 	int y;
+
+	int drawingCanvasSize;
+	int drawingCanvasX;
+	int drawingCanvasY;
+
 	ofImage pencilImage;
 	ofImage handImage;
 	CursorTypes type;
+
+	bool isCursorInDrawingCanvas();
 };
 

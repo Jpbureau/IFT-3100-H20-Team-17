@@ -5,7 +5,7 @@
 // code utilisé pour le dessin des primitives vectorielles:
 // https://github.com/philvoyer/IFT3100H19/blob/master/module02/EX04/IFT3100H19_DrawVectorPrimitive
 
-enum class VectorPrimitiveType { none, selection, point, line, rectangle, ellipse };
+enum class VectorPrimitiveType { none, selection, point, line, rectangle, ellipse, circle, square };
 
 struct VectorPrimitive
 {
@@ -22,8 +22,9 @@ struct VectorPrimitive
 class TextureDrawer
 {
 public:
-	void setup();
+	void setup(int drawingCanvasX, int drawingCanvasY, int drawingCanvasSize);
 	void draw();
+	void update();
 
 	int mouse_pressed_posX;
 	int mouse_pressed_posY;
@@ -33,9 +34,21 @@ public:
 	void selectPointType();
 	void selectLineType();
 	void selectRectangleType();
+	void selectSquareType();
 	void selectEllipseType();
+	void selectCircleType();
+	void selectSelectionType();
+	void deleteSelectedShapes();
+
+	void selectShape(int x, int y);
 
 	void add_vector_shape();
+
+	void updateColors(ofColor stroke, ofColor fill);
+	void updateStrokeWeight(float newWeight);
+	void updateRadius(float newRadius); 
+
+	void resetSelection();
 
 private:
 	int count;
@@ -43,7 +56,11 @@ private:
 	int stride;
 	int size;
 
-	float stroke_width_default;
+	int drawingCanvasSize;
+	int drawingCanvasX;
+	int drawingCanvasY;
+
+	float stroke_width;
 	float radius;
 
 	unsigned char stroke_color_r;
@@ -57,11 +74,19 @@ private:
 	unsigned char fill_color_a;
 
 	VectorPrimitive* shapes;
+	VectorPrimitive* selectedShapes;
 	VectorPrimitiveType selectedType;
+
+	void setStrokeColor(ofColor color);
+	void setFillColor(ofColor color);
 
 	void draw_point(float x, float y, float radius) const;
 	void draw_line(float x1, float y1, float x2, float y2) const;
 	void draw_rectangle(float x1, float y1, float x2, float y2) const;
 	void draw_ellipse(float x1, float y1, float x2, float y2) const;
+	void drawSelectionRectangles();
+
+	bool isMouseOutsideCanvas();
+	bool isShapeOutsideCanvas(int x1, int x2, int y1, int y2);
 };
 

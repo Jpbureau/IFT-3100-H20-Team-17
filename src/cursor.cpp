@@ -1,7 +1,10 @@
 #include "cursor.h"
 
-void Cursor::setup()
+void Cursor::setup(int drawingCanvasX, int drawingCanvasY, int drawingCanvasSize)
 {
+	this->drawingCanvasX = drawingCanvasX;
+	this->drawingCanvasY = drawingCanvasY;
+	this->drawingCanvasSize = drawingCanvasSize;
 	pencilImage.load("cursor/pencil.png");
 	handImage.load("cursor/hand.png");
 }
@@ -31,15 +34,25 @@ void Cursor::draw()
 	}
 }
 
-void Cursor::setPosition(int x, int y)
+void Cursor::update()
 {
-	//temporaire afin de naviguer avec la flèche sur le menu de formes
-	if (x > 9 && y > 199 && x < 200 && y < 300) {
-		this->type = none;
+	if (isCursorInDrawingCanvas()) {
+		setCursorImage(pencil);
 	}
 	else {
-		this->type = pencil;
+		setCursorImage(none);
 	}
+}
+
+bool Cursor::isCursorInDrawingCanvas()
+{
+	return x >= drawingCanvasX && x <= (drawingCanvasX + drawingCanvasSize) &&
+		y >= drawingCanvasY && y <= (drawingCanvasY + drawingCanvasSize);
+}
+
+
+void Cursor::setPosition(int x, int y)
+{
 	this->x = x;
 	this->y = y;
 }

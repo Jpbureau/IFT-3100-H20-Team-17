@@ -3,17 +3,7 @@
 
 //========================================================================
 int main( ){
-	// paramètres du contexte de rendu OpenGL
-  ofGLFWWindowSettings windowSettings;
-
-  // option de redimentionnement de la fenêtre d'affichage
-  windowSettings.resizable = true;
-
-  // sélection de la version de OpenGL
-  windowSettings.setGLVersion(3, 3);
-
-  // création de la fenêtre
-  ofCreateWindow(windowSettings);
+	ofSetupOpenGL(1080, 720, OF_WINDOW);
 
   // démarrer l'exécution de l'application
   ofRunApp(new ofApp());

@@ -4,23 +4,32 @@
 void ofApp::setup(){
 	ofSetFrameRate(60);
 	ofSetBackgroundColor(31);
+	ofSetWindowPosition(0, 30);
+	ofSetWindowShape(ofGetScreenWidth(), ofGetScreenHeight() - 30);
 	renderer.setup();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+	renderer.update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 	renderer.draw();
 	pannelPrimitive.draw();
+	recorder.listen();
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+	switch (key)
+	{
+	case 'r':
+		recorder.toggleRecording();
+	default:
+		break;
+	}
 }
 
 //--------------------------------------------------------------

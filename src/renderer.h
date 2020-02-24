@@ -13,15 +13,16 @@ public:
 	void update();
 	void draw();
 
-	int canvasSize;
-	int canvasPositionX;
-	int canvasPositionY;
+	const int drawingCanvasSize = 600;
+	int drawingCanvasX = 225;
+	int drawingCanvasY = ofGetHeight() / 3.5;
+
+	ofFbo fboTexture;
 
 	int mousePosX;
 	int mousePosY;
 	Cursor cursor;
 	TextureDrawer textureDrawer;
-	void drawCursor();
 
 	void mousePressed(int x, int y);
 	void mouseReleased(int x, int y);
@@ -30,17 +31,28 @@ private:
 	ofImage image;
 
 	ofParameter<ofColor> backGroundColor;
+	ofParameter<ofColor> strokeColorPicker;
+	ofParameter<ofColor> fillColorPicker;
+	ofParameter<float> strokeWeightSlider;
+	ofParameter<float> radiusSlider;
+	ofParameter<string> selectedType;
 
 	FileManager fileManager;
 
 	ofxPanel menuPanel;
-	ofxGuiGroup coloringGroup;
 	ofxPanel drawingOptionsPanel;
+	ofxGuiGroup optionsPoint;
 
 	ofxButton drawLineButton;
 	ofxButton drawPointButton;
 	ofxButton drawRectangleButton;
+	ofxButton drawSquareButton;
 	ofxButton drawEllipseButton;
+	ofxButton drawCircleButton;
+	ofxButton selectButton;
+	ofxButton deselectButton;
+	ofxButton deleteButton;
+
 
 	ofxButton importButton;
 	void importButton_pressed();
@@ -51,5 +63,10 @@ private:
 	void selectPointType();
 	void selectLineType();
 	void selectRectangleType();
+	void selectSquareType();
 	void selectEllipseType();
+	void selectCircleType();
+	void selectAction();
+	void deleteAction();
+	void deselectAction();
 };
