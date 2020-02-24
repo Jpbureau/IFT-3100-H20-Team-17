@@ -198,6 +198,7 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSlider.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
+    <ClCompile Include="src\recorder.cpp" />
     <ClCompile Include="src\renderer.cpp" />
     <ClCompile Include="src\textureDrawer.cpp" />
   </ItemGroup>
@@ -263,6 +264,7 @@
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxSlider.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h" />
+    <ClInclude Include="src\recorder.h" />
     <ClInclude Include="src\renderer.h" />
     <ClInclude Include="src\textureDrawer.h" />
   </ItemGroup>
