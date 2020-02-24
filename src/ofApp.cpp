@@ -18,11 +18,18 @@ void ofApp::update(){
 void ofApp::draw(){
 	renderer.draw();
 	pannelPrimitive.draw();
+	recorder.listen();
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+	switch (key)
+	{
+	case 'r':
+		recorder.toggleRecording();
+	default:
+		break;
+	}
 }
 
 //--------------------------------------------------------------
