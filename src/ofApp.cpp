@@ -17,7 +17,6 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	renderer.draw();
-	pannelPrimitive.draw();
 	recorder.listen();
 }
 
@@ -75,48 +74,6 @@ void ofApp::windowResized(int w, int h){
 }
 
 //--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
-
-}
-
-//--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
-}
-
-void ofApp::paramX1Changed(int &p_x1) {
-	//ofSetCircleResolution(p_x1);
-	cout << this->x1 << endl;
-	//cout << p_x1 << endl;
-}
-
-void ofApp::paramY1Changed(int &p_y1) {
-	//ofSetCircleResolution(p_x1);
-	//cout << this->x1 << endl;
-	//cout << p_x1 << endl;
-}
-
-void ofApp::paramX2Changed(int &p_x2) {
-	//ofSetCircleResolution(p_x1);
-	//cout << this->x1 << endl;
-	//cout << p_x1 << endl;
-}
-
-void ofApp::paramY2Changed(int &p_y2) {
-	//ofSetCircleResolution(p_x1);
-	//cout << this->x1 << endl;
-	//cout << p_x1 << endl;
-}
-
-void ofApp::boutonDessinerPressed() {
-	ofDrawLine(x1, y1, x2, y2);
-	//renderer.draw();
-	if (typePrimitive.compare("Ligne") == 0)
-	{
-		ofDrawLine(x1, y1, x2, y2);
-	}
-
-	//ofSetCircleResolution(p_x1);
-	//cout << this->x1 << endl;
-	//cout << p_x1 << endl;
 }
