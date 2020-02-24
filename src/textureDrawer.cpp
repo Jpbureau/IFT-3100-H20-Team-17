@@ -1,7 +1,11 @@
 #include "textureDrawer.h"
 
-void TextureDrawer::setup()
+void TextureDrawer::setup(int drawingCanvasX, int drawingCanvasY, int drawingCanvasSize)
 {
+	this->drawingCanvasX = drawingCanvasX;
+	this->drawingCanvasY = drawingCanvasY;
+	this->drawingCanvasSize = drawingCanvasSize;
+
 	//Un peu comme on fait dans le cours, on pourrait éventuellement penser à une meilleure structure de données
 	count = 100;
 
@@ -229,6 +233,10 @@ void TextureDrawer::selectShape(int x, int y)
 
 void TextureDrawer::add_vector_shape()
 {
+	if (isMouseOutsideCanvas()) {
+		return;
+	}
+
 	int horizontalDistance = abs(mouse_current_posX - mouse_pressed_posX);
 	int verticalDistance = abs(mouse_current_posY - mouse_pressed_posY);
 
@@ -268,7 +276,7 @@ void TextureDrawer::add_vector_shape()
 		break;
 	
 	case VectorPrimitiveType::square:
-		shapes[head].type = VectorPrimitiveType::rectangle;
+		
 
 		if (horizontalDistance > verticalDistance) {
 			if (mouse_pressed_posY < mouse_current_posY) {
@@ -287,6 +295,12 @@ void TextureDrawer::add_vector_shape()
 			}
 		}
 
+		if (isShapeOutsideCanvas(shapes[head].position1[0], shapes[head].position2[0], shapes[head].position1[1], shapes[head].position2[1])) {
+			cout << "should return" << endl;
+			return;
+		}
+
+		shapes[head].type = VectorPrimitiveType::rectangle;
 		shapes[head].stroke_width = stroke_width;
 		break;
 
@@ -295,7 +309,6 @@ void TextureDrawer::add_vector_shape()
 		break;
 	
 	case VectorPrimitiveType::circle:
-		shapes[head].type = VectorPrimitiveType::ellipse;
 
 		if (horizontalDistance > verticalDistance) {
 			if (mouse_pressed_posY < mouse_current_posY) {
@@ -313,6 +326,13 @@ void TextureDrawer::add_vector_shape()
 				shapes[head].position2[0] = mouse_pressed_posX - verticalDistance;
 			}
 		}
+
+		if (isShapeOutsideCanvas(shapes[head].position1[0], shapes[head].position2[0], shapes[head].position1[1], shapes[head].position2[1])) {
+			cout << "should return" << endl;
+			return;
+		}
+
+		shapes[head].type = VectorPrimitiveType::ellipse;
 		shapes[head].stroke_width = stroke_width;
 		break;
 
@@ -447,6 +467,28 @@ void TextureDrawer::drawSelectionRectangles()
 			}
 		}
 	}
+}
+
+bool TextureDrawer::isMouseOutsideCanvas()
+{
+	int maxValidX = drawingCanvasX + drawingCanvasSize;
+	int maxValidY = drawingCanvasY + drawingCanvasSize;
+
+	return mouse_pressed_posX < drawingCanvasX || mouse_pressed_posX > maxValidX ||
+		mouse_current_posX < drawingCanvasX || mouse_current_posX > maxValidX ||
+		mouse_pressed_posY < drawingCanvasY || mouse_pressed_posY > maxValidY ||
+		mouse_current_posY < drawingCanvasY || mouse_current_posY > maxValidY;
+}
+
+bool TextureDrawer::isShapeOutsideCanvas(int x1, int x2, int y1, int y2)
+{
+	int maxValidX = drawingCanvasX + drawingCanvasSize;
+	int maxValidY = drawingCanvasY + drawingCanvasSize;
+
+	return x1 < drawingCanvasX || x1 > maxValidX ||
+		x2 < drawingCanvasX || x2 > maxValidX ||
+		y1 < drawingCanvasY || y1 > maxValidY ||
+		y2 < drawingCanvasY || y2 > maxValidY;
 }
 
 void TextureDrawer::resetSelection()

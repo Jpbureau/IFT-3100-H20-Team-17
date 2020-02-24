@@ -5,7 +5,7 @@ void Renderer::setup()
 	cursor.setup(drawingCanvasX, drawingCanvasY, drawingCanvasSize);
 	cursor.setCursorImage(none);
 
-	textureDrawer.setup();
+	textureDrawer.setup(drawingCanvasX, drawingCanvasY, drawingCanvasSize);
 	fboTexture.allocate(drawingCanvasSize, drawingCanvasSize, GL_RGBA);
 	fboTexture.begin();
 	ofClear(255, 255);
@@ -21,6 +21,7 @@ void Renderer::setup()
 
 	drawingOptionsPanel.setup("Outils de dessin");
 	drawingOptionsPanel.setPosition(10, drawingCanvasY);
+	selectedType.setName("Type choisi:");
 
 	backGroundColor.set("Couleur du fond", ofColor::burlyWood, ofColor(0, 0), ofColor(255, 255));
 	strokeColorPicker.set("Couleur du contour/trait", ofColor::darkCyan, ofColor(0, 0), ofColor(255, 255));
@@ -36,6 +37,7 @@ void Renderer::setup()
 	drawingOptionsPanel.add(strokeColorPicker);
 	drawingOptionsPanel.add(fillColorPicker);
 	drawingOptionsPanel.add(strokeWeightSlider);
+	drawingOptionsPanel.add(selectedType);
 	drawingOptionsPanel.add(&optionsPoint);
 	drawingOptionsPanel.add(drawLineButton.setup("ligne"));
 	drawingOptionsPanel.add(drawRectangleButton.setup("rectangle"));
@@ -101,32 +103,39 @@ void Renderer::exportButtonPressed()
 void Renderer::selectPointType()
 {
 	textureDrawer.selectPointType();
+	selectedType.set("Point");
 }
 void Renderer::selectLineType()
 {
 	textureDrawer.selectLineType();
+	selectedType.set("Ligne");
 }
 void Renderer::selectRectangleType()
 {
 	textureDrawer.selectRectangleType();
+	selectedType.set("Rectangle");
 }
 void Renderer::selectSquareType()
 {
 	textureDrawer.selectSquareType();
+	selectedType.set("Carre");
 }
 void Renderer::selectEllipseType()
 {
 	textureDrawer.selectEllipseType();
+	selectedType.set("Ellipse");
 }
 
 void Renderer::selectCircleType()
 {
 	textureDrawer.selectCircleType();
+	selectedType.set("Cercle");
 }
 
 void Renderer::selectAction()
 {
 	textureDrawer.selectSelectionType();
+	selectedType.set("Selection");
 }
 
 void Renderer::deleteAction()

@@ -22,7 +22,7 @@ struct VectorPrimitive
 class TextureDrawer
 {
 public:
-	void setup();
+	void setup(int drawingCanvasX, int drawingCanvasY, int drawingCanvasSize);
 	void draw();
 	void update();
 
@@ -56,6 +56,10 @@ private:
 	int stride;
 	int size;
 
+	int drawingCanvasSize;
+	int drawingCanvasX;
+	int drawingCanvasY;
+
 	float stroke_width;
 	float radius;
 
@@ -81,5 +85,8 @@ private:
 	void draw_rectangle(float x1, float y1, float x2, float y2) const;
 	void draw_ellipse(float x1, float y1, float x2, float y2) const;
 	void drawSelectionRectangles();
+
+	bool isMouseOutsideCanvas();
+	bool isShapeOutsideCanvas(int x1, int x2, int y1, int y2);
 };
 

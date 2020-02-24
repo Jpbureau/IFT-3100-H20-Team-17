@@ -35,6 +35,7 @@ private:
 	ofParameter<ofColor> fillColorPicker;
 	ofParameter<float> strokeWeightSlider;
 	ofParameter<float> radiusSlider;
+	ofParameter<string> selectedType;
 
 	FileManager fileManager;
 
@@ -51,6 +52,7 @@ private:
 	ofxButton selectButton;
 	ofxButton deselectButton;
 	ofxButton deleteButton;
+
 
 	ofxButton importButton;
 	void importButton_pressed();
