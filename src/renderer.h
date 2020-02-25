@@ -5,6 +5,7 @@
 #include "fileManager.h"
 #include "cursor.h"
 #include "textureDrawer.h"
+#include "canvasGui.h"
 
 class Renderer
 {
@@ -22,7 +23,7 @@ public:
 	int mousePosX;
 	int mousePosY;
 	Cursor cursor;
-	TextureDrawer textureDrawer;
+	
 
 	void mousePressed(int x, int y);
 	void mouseReleased(int x, int y);
@@ -30,43 +31,16 @@ public:
 private:
 	ofImage image;
 
-	ofParameter<ofColor> backGroundColor;
-	ofParameter<ofColor> strokeColorPicker;
-	ofParameter<ofColor> fillColorPicker;
-	ofParameter<float> strokeWeightSlider;
-	ofParameter<float> radiusSlider;
-	ofParameter<string> selectedType;
-
 	FileManager fileManager;
 
+	TextureDrawer textureDrawer;
+	CanvasGui canvas2dGui = CanvasGui(textureDrawer);
+
 	ofxPanel menuPanel;
-	ofxPanel drawingOptionsPanel;
-	ofxGuiGroup optionsPoint;
-
-	ofxButton drawLineButton;
-	ofxButton drawPointButton;
-	ofxButton drawRectangleButton;
-	ofxButton drawSquareButton;
-	ofxButton drawEllipseButton;
-	ofxButton drawCircleButton;
-	ofxButton selectButton;
-	ofxButton deselectButton;
-	ofxButton deleteButton;
-
 
 	ofxButton importButton;
 	void importButton_pressed();
 
 	ofxButton exportButton;
 	void exportButtonPressed();
-
-	void selectPointType();
-	void selectLineType();
-	void selectRectangleType();
-	void selectSquareType();
-	void selectEllipseType();
-	void selectCircleType();
-	void selectAction();
-	void deleteAction();
-	void deselectAction();
 };

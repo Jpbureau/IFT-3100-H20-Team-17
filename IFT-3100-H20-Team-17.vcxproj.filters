@@ -68,7 +68,10 @@
       <Filter>src\MainRenderer</Filter>
     </ClCompile>
     <ClCompile Include="src\textureDrawer.cpp">
-      <Filter>src\MainRenderer</Filter>
+      <Filter>src\Canvas2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\canvasGui.cpp">
+      <Filter>src\Canvas2D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +119,9 @@
     </Filter>
     <Filter Include="src\FileManager">
       <UniqueIdentifier>{2e133265-40aa-4fba-960d-739666e45cae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Canvas2D">
+      <UniqueIdentifier>{a0b952f4-6262-47b3-9cfd-35d34d6af3a5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -312,7 +318,10 @@
       <Filter>src\MainRenderer</Filter>
     </ClInclude>
     <ClInclude Include="src\textureDrawer.h">
-      <Filter>src\MainRenderer</Filter>
+      <Filter>src\Canvas2D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\canvasGui.h">
+      <Filter>src\Canvas2D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
