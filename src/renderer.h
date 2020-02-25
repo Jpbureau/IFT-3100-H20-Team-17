@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxGui.h"
-#include "fileManager.h"
+#include "fileManagerGui.h"
 #include "cursor.h"
 #include "textureDrawer.h"
 #include "canvasGui.h"
@@ -31,16 +31,8 @@ public:
 private:
 	ofImage image;
 
-	FileManager fileManager;
+	FileManagerGui fileManagerGui;
 
 	TextureDrawer textureDrawer;
 	CanvasGui canvas2dGui = CanvasGui(textureDrawer);
-
-	ofxPanel menuPanel;
-
-	ofxButton importButton;
-	void importButton_pressed();
-
-	ofxButton exportButton;
-	void exportButtonPressed();
 };

@@ -73,6 +73,9 @@
     <ClCompile Include="src\canvasGui.cpp">
       <Filter>src\Canvas2D</Filter>
     </ClCompile>
+    <ClCompile Include="src\fileManagerGui.cpp">
+      <Filter>src\FileManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -322,6 +325,9 @@
     </ClInclude>
     <ClInclude Include="src\canvasGui.h">
       <Filter>src\Canvas2D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fileManagerGui.h">
+      <Filter>src\FileManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -181,6 +181,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\canvasGui.cpp" />
+    <ClCompile Include="src\fileManagerGui.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\cursor.cpp" />
@@ -205,6 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\canvasGui.h" />
+    <ClInclude Include="src\fileManagerGui.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\cursor.h" />
     <ClInclude Include="src\fileManager.h" />

@@ -12,13 +12,7 @@ void Renderer::setup()
 	ofSetColor(255);
 	fboTexture.end();
 
-	exportButton.addListener(this, &Renderer::exportButtonPressed);
-	importButton.addListener(this, &Renderer::importButton_pressed);
-
-	menuPanel.setup("Menu");
-	menuPanel.add(importButton.setup("Import Image"));
-	menuPanel.add(exportButton.setup("Export Image"));
-
+	fileManagerGui.setup();
 	canvas2dGui.setup(drawingCanvasY);
 }
 
@@ -45,19 +39,8 @@ void Renderer::draw()
 	}*/
 	textureDrawer.draw();
 	cursor.draw();
-	menuPanel.draw();
+	fileManagerGui.draw();
 	canvas2dGui.draw();
-}
-
-void Renderer::importButton_pressed()
-{
-	image = fileManager.image_import();
-	ofLog() << "<Importation button pressed>";
-}
-
-void Renderer::exportButtonPressed()
-{
-	fileManager.saveImage();
 }
 
 void Renderer::mousePressed(int x, int y)
