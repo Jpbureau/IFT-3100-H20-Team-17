@@ -25,6 +25,7 @@ void ofApp::keyPressed(int key){
 	{
 	case 'r':
 		recorder.toggleRecording();
+		break;
 	default:
 		break;
 	}
