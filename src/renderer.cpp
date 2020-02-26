@@ -26,6 +26,8 @@ void Renderer::update()
 	canvas2dGui.update();
 	textureDrawer.update();
 	cursor.update();
+
+	//À implémenter plus tard: Faire l'update automatique seulement lorsqu'il y a un changement, ou une fois à toutes les x frames
 	if (colorHistogramGui.getUpdateHistogram())
 	{
 		//Vérifier les dimensions...

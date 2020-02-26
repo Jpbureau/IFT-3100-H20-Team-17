@@ -29,7 +29,12 @@ void ColorHistogramGui::setup(int positionXInitiale, int positionYInitiale)
 
 bool ColorHistogramGui::getUpdateHistogram()
 {
-	return (histogramShown && updateOnceBool);
+	
+	return (histogramShown && (updateOnceBool || automaticUpdate));
+	
+	//return (histogramShown && updateOnceBool);
+
+	
 }
 
 bool ColorHistogramGui::getHistogramShown()
@@ -37,7 +42,7 @@ bool ColorHistogramGui::getHistogramShown()
 	return (histogramShown);
 }
 
-void ColorHistogramGui::update(ofPixels p_pixels)
+void ColorHistogramGui::update(ofPixels& p_pixels)
 {
 	colorHistogram.showHistogram(p_pixels, histogramBinSizeSlider);
 	updateOnceBool = false;

@@ -10,7 +10,7 @@ public:
 	ColorHistogramGui(ColorHistogram& histogram);
 
 	void setup(int positionXInitiale, int positionYInitiale);
-	void update(ofPixels p_pixels);
+	void update(ofPixels& p_pixels);
 	void updateOnce();
 	void draw();
 

@@ -17,10 +17,15 @@ public:
 	void update();
 	void draw();
 
-	void showHistogram(ofPixels p_pixels, int binSize);
+	void showHistogram(ofPixels& p_pixels, int binSize);
 
 private:
 	unsigned int histogram[8][8][8];
+	unsigned int histogramBlack;
+	unsigned int histogramWhite;
+
+	int positionX = 825;
+	int positionY = 800;
 
 	int count;
 	int head;
