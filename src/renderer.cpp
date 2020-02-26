@@ -14,6 +14,11 @@ void Renderer::setup()
 
 	fileManagerGui.setup();
 	canvas2dGui.setup(drawingCanvasY);
+	
+	//Il faudra ajuster la position de départ exacte plus tard
+	colorHistogram.setup();
+	colorHistogramGui.setup(10, 560);
+	
 }
 
 void Renderer::update()
@@ -21,6 +26,14 @@ void Renderer::update()
 	canvas2dGui.update();
 	textureDrawer.update();
 	cursor.update();
+	if (colorHistogramGui.getUpdateHistogram())
+	{
+		//Vérifier les dimensions...
+		image.grabScreen(drawingCanvasX, drawingCanvasY, drawingCanvasSize, drawingCanvasSize);
+		ofPixels pixels = image.getPixels();
+		colorHistogramGui.update(pixels);
+	}
+	
 }
 
 void Renderer::draw()
@@ -41,6 +54,12 @@ void Renderer::draw()
 	cursor.draw();
 	fileManagerGui.draw();
 	canvas2dGui.draw();
+	
+	if (colorHistogramGui.getHistogramShown())
+	{
+		colorHistogram.draw();
+	}
+	colorHistogramGui.draw();
 }
 
 void Renderer::mousePressed(int x, int y)
