@@ -3,12 +3,10 @@
 #include "ofxGui.h"
 #include "colorHistogram.h"
 
-
 class ColorHistogramGui
 {
 public:
 
-	//ColorHistogramGui(Renderer* renderer);
 	ColorHistogramGui(ColorHistogram& histogram);
 
 	void setup(int positionXInitiale, int positionYInitiale);
@@ -17,10 +15,10 @@ public:
 	void draw();
 
 	bool getUpdateHistogram();
+	bool getAutomaticUpdate();
 	bool getHistogramShown();
 
 private:
-
 	ColorHistogram& colorHistogram;
 	ofParameter<string> histogramCurrentStatus;
 	ofxPanel histogramPanel;

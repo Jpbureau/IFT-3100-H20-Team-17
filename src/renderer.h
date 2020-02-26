@@ -39,5 +39,5 @@ private:
 	CanvasGui canvas2dGui = CanvasGui(textureDrawer);
 
 	ColorHistogram colorHistogram;
-	ColorHistogramGui colorHistogramGui = ColorHistogram(colorHistogram);
+	ColorHistogramGui colorHistogramGui = ColorHistogramGui(colorHistogram);
 };

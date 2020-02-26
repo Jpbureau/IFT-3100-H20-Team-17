@@ -20,7 +20,7 @@ public:
 	void showHistogram(ofPixels p_pixels, int binSize);
 
 private:
-	unsigned int histogram[32][32][32];
+	unsigned int histogram[8][8][8];
 
 	int count;
 	int head;

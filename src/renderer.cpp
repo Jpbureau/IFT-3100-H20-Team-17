@@ -32,6 +32,7 @@ void Renderer::update()
 		image.grabScreen(drawingCanvasX, drawingCanvasY, drawingCanvasSize, drawingCanvasSize);
 		ofPixels pixels = image.getPixels();
 		colorHistogramGui.update(pixels);
+		//colorHistogram.update();
 	}
 	
 }

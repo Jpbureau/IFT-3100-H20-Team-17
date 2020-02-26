@@ -11,7 +11,7 @@ void ColorHistogramGui::setup(int positionXInitiale, int positionYInitiale)
 {
 	histogramPanel.setup("Histogramme de couleurs");
 	histogramPanel.setPosition(positionXInitiale, positionYInitiale);
-	histogramBinSizeSlider.set("Couleurs par groupe", 64, 16, 128);
+	histogramBinSizeSlider.set("Couleurs par groupe", 64, 32, 128);
 	histogramCurrentStatus.setName("MAJ auto.: ");
 	histogramCurrentStatus.set("Non");
 
@@ -29,7 +29,7 @@ void ColorHistogramGui::setup(int positionXInitiale, int positionYInitiale)
 
 bool ColorHistogramGui::getUpdateHistogram()
 {
-	return (histogramShown && (automaticUpdate || updateOnceBool));
+	return (histogramShown && updateOnceBool);
 }
 
 bool ColorHistogramGui::getHistogramShown()
@@ -42,6 +42,11 @@ void ColorHistogramGui::update(ofPixels p_pixels)
 	colorHistogram.showHistogram(p_pixels, histogramBinSizeSlider);
 	updateOnceBool = false;
 	
+}
+
+bool ColorHistogramGui::getAutomaticUpdate()
+{
+	return automaticUpdate;
 }
 
 void ColorHistogramGui::updateOnce()
@@ -74,4 +79,8 @@ void ColorHistogramGui::toggleAutomaticHistogramUpdate()
 void ColorHistogramGui::showHistogram()
 {
 	histogramShown = !histogramShown;
+	if (histogramShown)
+	{
+		updateOnceBool = true;
+	}
 }

@@ -4,7 +4,7 @@
 void ColorHistogram::setup()
 {
 	//Un peu comme on fait dans le cours, on pourrait éventuellement penser à une meilleure structure de données
-	count = 48;
+	count = 512;
 
 	head = 0;
 
@@ -23,29 +23,29 @@ void ColorHistogram::update()
 
 void ColorHistogram::draw()
 {
-	cout << "What?" << endl;
-
+	
 	for (int index = 0; index < head; index++)
 	{
 		ofFill();
 		ofSetLineWidth(1);
 		ofSetColor(
-			shapes[head].fill_color[0],
-			shapes[head].fill_color[1],
-			shapes[head].fill_color[2],
-			shapes[head].fill_color[3]);
+			shapes[index].fill_color[0],
+			shapes[index].fill_color[1],
+			shapes[index].fill_color[2],
+			shapes[index].fill_color[3]);
 		draw_rectangle(
-			shapes[head].position1[0],
-			shapes[head].position1[1],
-			shapes[head].position2[0],
-			shapes[head].position2[1]);
+			shapes[index].position1[0],
+			shapes[index].position1[1],
+			shapes[index].position2[0],
+			shapes[index].position2[1]);
 		ofNoFill();
 		ofSetColor(0);
 		draw_rectangle(
-			shapes[head].position1[0],
-			shapes[head].position1[1],
-			shapes[head].position2[0],
-			shapes[head].position2[1]);
+			shapes[index].position1[0],
+			shapes[index].position1[1],
+			shapes[index].position2[0],
+			shapes[index].position2[1]);
+		
 	}
 }
 
@@ -55,7 +55,7 @@ void ColorHistogram::showHistogram(ofPixels p_pixels, int binSize)
 	head = 0;
 
 	const int maxColors = 256; //0 - 255
-	const int nbBins = maxColors / binSize;
+	const int nbBins = ((maxColors - 1) / binSize) + 1;
 
 	const int width = p_pixels.getWidth();
 	const int height = p_pixels.getHeight();
@@ -81,8 +81,9 @@ void ColorHistogram::showHistogram(ofPixels p_pixels, int binSize)
 	ofColor color;
 
 	unsigned int maxBin = 0;
+	int imageSize = p_pixels.size();
 
-	while (i < p_pixels.size())
+	while (i < imageSize)
 	{
 		color = p_pixels.getColor(i);
 		
@@ -96,31 +97,44 @@ void ColorHistogram::showHistogram(ofPixels p_pixels, int binSize)
 		}
 		i++;
 	}
-
-	unsigned char averageRedColor;
-	unsigned char averageGreenColor;
-	unsigned char averageBlueColor;
-	int binWidth = 200 / nbBins;
-	int binHeight;
-	int positionX = 825;
-	int positionY = ofGetHeight() / 3.5 + 600;
-
-	//Affichage Histogramme ici
+	
+	
+	//Test
+	/*
+	maxBin = 512;
 	for (int r = 0; r < nbBins; r++)
 	{
 		for (int g = 0; g < nbBins; g++)
 		{
 			for (int b = 0; b < nbBins; b++)
 			{
-				averageRedColor = (r * binSize + (r + 1) * binSize - 1) / 2;
-				averageGreenColor = (g * binSize + (g + 1) * binSize - 1) / 2;
-				averageBlueColor = (b * binSize + (b + 1) * binSize - 1) / 2;
+				histogram[r][g][b] = 512; // Réinitialisation de l'histogramme
+			}
+		}
+	}
+	*/
+
+	unsigned char averageRedColor;
+	unsigned char averageGreenColor;
+	unsigned char averageBlueColor;
+	int binWidth = 600 / (nbBins * nbBins * nbBins);
+	int binHeight;
+	int positionX = 825;
+	int positionY = ofGetHeight() / 3.5 + 600;
+
+
+	int total = 0;
+	
+	for (int r = 0; r < nbBins; r++)
+	{
+		for (int g = 0; g < nbBins; g++)
+		{
+			for (int b = 0; b < nbBins; b++)
+			{
+				averageRedColor = (r * binSize + min(maxColors - 1, (r + 1) * binSize - 1)) / 2;
+				averageGreenColor = (g * binSize + min(maxColors - 1, (g + 1) * binSize - 1)) / 2;
+				averageBlueColor = (b * binSize + min(maxColors - 1, (b + 1) * binSize - 1)) / 2;
 				binHeight = (histogram[r][g][b] * 600) / maxBin;
-
-				//int horizontalDistance = abs(mouse_current_posX - mouse_pressed_posX);
-				//int verticalDistance = abs(mouse_current_posY - mouse_pressed_posY);
-
-				//shapes[head].type = selectedType;
 
 				shapes[head].fill_color[0] = averageRedColor;
 				shapes[head].fill_color[1] = averageGreenColor;
@@ -132,27 +146,9 @@ void ColorHistogram::showHistogram(ofPixels p_pixels, int binSize)
 				shapes[head].position2[0] = positionX + binWidth * (head + 1);
 				shapes[head].position2[1] = positionY - binHeight;
 
-				ofFill();
-				ofSetLineWidth(1);
-				ofSetColor(
-					shapes[head].fill_color[0],
-					shapes[head].fill_color[1],
-					shapes[head].fill_color[2],
-					shapes[head].fill_color[3]);
-				draw_rectangle(
-					shapes[head].position1[0],
-					shapes[head].position1[1],
-					shapes[head].position2[0],
-					shapes[head].position2[1]);
-				ofNoFill();
-				ofSetColor(0);
-				draw_rectangle(
-					shapes[head].position1[0],
-					shapes[head].position1[1],
-					shapes[head].position2[0],
-					shapes[head].position2[1]);
-
 				head++;
+
+				total += histogram[r][g][b];
 
 				//cout << "Rouge (" << r * binSize << "-" << (r + 1) * binSize - 1 << ") ";
 				//cout << "Vert(" << g * binSize << "-" << (g + 1) * binSize - 1 << ") ";
@@ -161,7 +157,8 @@ void ColorHistogram::showHistogram(ofPixels p_pixels, int binSize)
 			}
 		}
 	}
-	
+	cout << "Total: " << total << endl;
+	cout << "Image Size: " << imageSize << endl;
 }
 
 void ColorHistogram::draw_rectangle(float x1, float y1, float x2, float y2) const
