@@ -6,6 +6,8 @@
 #include "cursor.h"
 #include "textureDrawer.h"
 #include "canvasGui.h"
+#include "colorHistogramGui.h"
+#include "colorHistogram.h"
 
 class Renderer
 {
@@ -35,4 +37,7 @@ private:
 
 	TextureDrawer textureDrawer;
 	CanvasGui canvas2dGui = CanvasGui(textureDrawer);
+
+	ColorHistogram colorHistogram;
+	ColorHistogramGui colorHistogramGui = ColorHistogramGui(colorHistogram);
 };

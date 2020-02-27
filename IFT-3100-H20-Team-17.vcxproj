@@ -180,12 +180,14 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\canvasGui.cpp" />
-    <ClCompile Include="src\fileManagerGui.cpp" />
+    <ClCompile Include="src\colorHistogram.cpp" />
+    <ClCompile Include="src\colorHistogramGui.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\canvasGui.cpp" />
     <ClCompile Include="src\cursor.cpp" />
     <ClCompile Include="src\fileManager.cpp" />
+    <ClCompile Include="src\fileManagerGui.cpp" />
     <ClCompile Include="src\recorder.cpp" />
     <ClCompile Include="src\renderer.cpp" />
     <ClCompile Include="src\textureDrawer.cpp" />
@@ -205,11 +207,13 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\canvasGui.h" />
-    <ClInclude Include="src\fileManagerGui.h" />
+    <ClInclude Include="src\colorHistogram.h" />
+    <ClInclude Include="src\colorHistogramGui.h" />
     <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="src\canvasGui.h" />
     <ClInclude Include="src\cursor.h" />
     <ClInclude Include="src\fileManager.h" />
+    <ClInclude Include="src\fileManagerGui.h" />
     <ClInclude Include="src\recorder.h" />
     <ClInclude Include="src\renderer.h" />
     <ClInclude Include="src\textureDrawer.h" />
