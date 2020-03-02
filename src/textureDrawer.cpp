@@ -22,6 +22,10 @@ void TextureDrawer::setup(int drawingCanvasX, int drawingCanvasY, int drawingCan
 
 void TextureDrawer::draw()
 {
+	ofFill();
+	ofSetColor(255);
+	ofDrawRectangle(drawingCanvasX, drawingCanvasY, drawingCanvasSize, drawingCanvasSize);
+
 	for (int index = 0; index < count; index++)
 	{
 		switch (shapes[index].type)
@@ -469,6 +473,12 @@ void TextureDrawer::drawSelectionRectangles()
 	}
 }
 
+bool TextureDrawer::isMouseInsideCanvas(int x, int y)
+{
+	return x >= drawingCanvasX && x <= (drawingCanvasX + drawingCanvasSize) &&
+		y >= drawingCanvasY && y <= (drawingCanvasY + drawingCanvasSize);
+}
+
 bool TextureDrawer::isMouseOutsideCanvas()
 {
 	int maxValidX = drawingCanvasX + drawingCanvasSize;
@@ -496,6 +506,13 @@ void TextureDrawer::resetSelection()
 	for (int i = 0; i < head; ++i) {
 		shapes[i].selected = false;
 	}
+}
+
+ofImage TextureDrawer::grabCanvasScreen()
+{
+	ofImage image;
+	image.grabScreen(drawingCanvasX, drawingCanvasY, drawingCanvasSize, drawingCanvasSize);
+	return image;
 }
 
 void TextureDrawer::deleteSelectedShapes()

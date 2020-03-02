@@ -31,6 +31,8 @@ public:
 	int mouse_current_posX;
 	int mouse_current_posY;
 
+	bool isMouseInsideCanvas(int x, int y);
+
 	void selectPointType();
 	void selectLineType();
 	void selectRectangleType();
@@ -49,6 +51,8 @@ public:
 	void updateRadius(float newRadius); 
 
 	void resetSelection();
+
+	ofImage grabCanvasScreen();
 
 private:
 	int count;

@@ -38,23 +38,19 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-	renderer.cursor.setPosition(x, y);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-	renderer.cursor.setPosition(x, y);
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-	renderer.cursor.setPosition(x, y);
 	renderer.mousePressed(x, y);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-	renderer.cursor.setPosition(x, y);
 	renderer.mouseReleased(x, y);
 }
 
