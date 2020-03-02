@@ -182,6 +182,7 @@
   <ItemGroup>
     <ClCompile Include="src\colorHistogram.cpp" />
     <ClCompile Include="src\colorHistogramGui.cpp" />
+    <ClCompile Include="src\graphNode.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\canvasGui.cpp" />
@@ -209,6 +210,7 @@
   <ItemGroup>
     <ClInclude Include="src\colorHistogram.h" />
     <ClInclude Include="src\colorHistogramGui.h" />
+    <ClInclude Include="src\graphNode.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\canvasGui.h" />
     <ClInclude Include="src\cursor.h" />
