@@ -2,6 +2,9 @@
 
 void TextureDrawer::setup(int drawingCanvasX, int drawingCanvasY, int drawingCanvasSize)
 {
+	ofAddListener(ofEvents().mousePressed, this, &TextureDrawer::mousePressed);
+	ofAddListener(ofEvents().mouseReleased, this, &TextureDrawer::mouseReleased);
+
 	this->drawingCanvasX = drawingCanvasX;
 	this->drawingCanvasY = drawingCanvasY;
 	this->drawingCanvasSize = drawingCanvasSize;
@@ -522,4 +525,18 @@ void TextureDrawer::deleteSelectedShapes()
 			shapes[i].type = VectorPrimitiveType::none;
 		}
 	}
+}
+
+void TextureDrawer::mousePressed(ofMouseEventArgs & mouse)
+{
+	mouse_pressed_posX = mouse.x;
+	mouse_pressed_posY = mouse.y;
+	selectShape(mouse.x, mouse.y);
+}
+
+void TextureDrawer::mouseReleased(ofMouseEventArgs & mouse)
+{
+	mouse_current_posX = mouse.x;
+	mouse_current_posY = mouse.y;
+	add_vector_shape();
 }

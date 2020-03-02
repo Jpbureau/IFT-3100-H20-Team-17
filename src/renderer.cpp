@@ -34,19 +34,3 @@ void Renderer::draw()
 	canvas2dGui.draw();
 	colorHistogramGui.draw();
 }
-
-void Renderer::mousePressed(int x, int y)
-{
-	textureDrawer.mouse_pressed_posX = x;
-	textureDrawer.mouse_pressed_posY = y;
-	textureDrawer.selectShape(x, y);
-}
-
-void Renderer::mouseReleased(int x, int y)
-{
-	textureDrawer.mouse_current_posX = x;
-	textureDrawer.mouse_current_posY = y;
-	textureDrawer.add_vector_shape();
-}
-
-
