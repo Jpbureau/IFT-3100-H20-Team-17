@@ -22,6 +22,10 @@ void TextureDrawer::setup(int drawingCanvasX, int drawingCanvasY, int drawingCan
 
 void TextureDrawer::draw()
 {
+	ofFill();
+	ofSetColor(255);
+	ofDrawRectangle(drawingCanvasX, drawingCanvasY, drawingCanvasSize, drawingCanvasSize);
+
 	for (int index = 0; index < count; index++)
 	{
 		switch (shapes[index].type)

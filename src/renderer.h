@@ -18,12 +18,7 @@ public:
 
 	const int drawingCanvasSize = 600;
 	int drawingCanvasX = 225;
-	int drawingCanvasY = ofGetHeight() / 3.5;
-
-	ofFbo fboTexture;
-
-	int mousePosX;
-	int mousePosY;	
+	int drawingCanvasY = ofGetHeight() / 3.5;	
 
 	void mousePressed(int x, int y);
 	void mouseReleased(int x, int y);

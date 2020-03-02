@@ -6,12 +6,6 @@ void Renderer::setup()
 	cursor.setCursorImage(none);
 
 	textureDrawer.setup(drawingCanvasX, drawingCanvasY, drawingCanvasSize);
-	fboTexture.allocate(drawingCanvasSize, drawingCanvasSize, GL_RGBA);
-	fboTexture.begin();
-	ofClear(255, 255);
-	ofSetColor(255);
-	fboTexture.end();
-
 	fileManagerGui.setup();
 	canvas2dGui.setup(drawingCanvasY);
 	
@@ -42,17 +36,6 @@ void Renderer::update()
 void Renderer::draw()
 {
 	ofSetBackgroundColor(canvas2dGui.backGroundColor);
-
-	ofSetColor(255);
-	fboTexture.draw(drawingCanvasX, drawingCanvasY);
-	/*ofBackgroundGradient(ofColor::white, ofColor::gray);
-	ofSetColor(255, 130, 0);
-	ofDrawCircle(ofGetWidth() / 2, ofGetHeight() / 2, 50);*/
-
-	/*if (image.isAllocated()) {
-		ofSetColor(255);
-		image.draw(0, 0, ofGetWidth(), ofGetHeight());
-	}*/
 	textureDrawer.draw();
 	cursor.draw();
 	fileManagerGui.draw();
