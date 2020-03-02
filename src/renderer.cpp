@@ -2,8 +2,7 @@
 
 void Renderer::setup()
 {
-	cursor.setup(drawingCanvasX, drawingCanvasY, drawingCanvasSize);
-	cursor.setCursorImage(none);
+	cursor.setup();
 
 	textureDrawer.setup(drawingCanvasX, drawingCanvasY, drawingCanvasSize);
 	fileManagerGui.setup();

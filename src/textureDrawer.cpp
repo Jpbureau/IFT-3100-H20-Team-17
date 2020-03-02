@@ -473,6 +473,12 @@ void TextureDrawer::drawSelectionRectangles()
 	}
 }
 
+bool TextureDrawer::isMouseInsideCanvas(int x, int y)
+{
+	return x >= drawingCanvasX && x <= (drawingCanvasX + drawingCanvasSize) &&
+		y >= drawingCanvasY && y <= (drawingCanvasY + drawingCanvasSize);
+}
+
 bool TextureDrawer::isMouseOutsideCanvas()
 {
 	int maxValidX = drawingCanvasX + drawingCanvasSize;

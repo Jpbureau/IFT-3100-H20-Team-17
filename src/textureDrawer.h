@@ -31,6 +31,8 @@ public:
 	int mouse_current_posX;
 	int mouse_current_posY;
 
+	bool isMouseInsideCanvas(int x, int y);
+
 	void selectPointType();
 	void selectLineType();
 	void selectRectangleType();

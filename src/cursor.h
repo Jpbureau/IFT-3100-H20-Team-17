@@ -1,17 +1,20 @@
 #pragma once
 #include "ofMain.h"
+#include "textureDrawer.h"
 
 enum CursorTypes
 {
+	none,
 	pencil,
-	hand,
-	none
+	hand
 };
 
 class Cursor
 {
 public:
-	void setup(int drawingCanvasX, int drawingCanvasY, int drawingCanvasSize);
+	Cursor(TextureDrawer& textureDrawer);
+
+	void setup();
 	void setCursorImage(CursorTypes type);
 	void draw();
 	void update();
@@ -22,14 +25,10 @@ private:
 
 	void mouseMoved(ofMouseEventArgs & mouse);
 
-	int drawingCanvasSize;
-	int drawingCanvasX;
-	int drawingCanvasY;
-
 	ofImage pencilImage;
 	ofImage handImage;
 	CursorTypes type;
 
-	bool isCursorInDrawingCanvas();
+	TextureDrawer& textureDrawer;
 };
 

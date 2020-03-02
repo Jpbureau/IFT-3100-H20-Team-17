@@ -24,7 +24,6 @@ public:
 	void mouseReleased(int x, int y);
 
 private:
-	Cursor cursor;
 
 	ofImage image;
 
@@ -35,4 +34,6 @@ private:
 
 	ColorHistogram colorHistogram;
 	ColorHistogramGui colorHistogramGui = ColorHistogramGui(colorHistogram);
+
+	Cursor cursor = Cursor(textureDrawer);
 };
