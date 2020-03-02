@@ -2,15 +2,16 @@
 
 #include "ofxGui.h"
 #include "colorHistogram.h"
+#include "textureDrawer.h"
 
 class ColorHistogramGui
 {
 public:
 
-	ColorHistogramGui(ColorHistogram& histogram);
+	ColorHistogramGui(ColorHistogram& histogram, TextureDrawer& textureDrawer);
 
 	void setup(int positionXInitiale, int positionYInitiale);
-	void update(ofPixels& p_pixels);
+	void update();
 	void updateOnce();
 	void draw();
 
@@ -20,6 +21,8 @@ public:
 
 private:
 	ColorHistogram& colorHistogram;
+	TextureDrawer& textureDrawer;
+
 	ofParameter<string> histogramCurrentStatus;
 	ofxPanel histogramPanel;
 	ofxButton histogramUpdate;

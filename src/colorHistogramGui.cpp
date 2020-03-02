@@ -1,8 +1,8 @@
 #include "colorHistogramGui.h"
 
 //ColorHistogramGui::ColorHistogramGui(Renderer* renderer) : ptrRenderer(renderer)
-ColorHistogramGui::ColorHistogramGui(ColorHistogram& histogram) 
-	: colorHistogram(histogram)
+ColorHistogramGui::ColorHistogramGui(ColorHistogram& histogram, TextureDrawer& textureDrawer) 
+	: colorHistogram(histogram), textureDrawer(textureDrawer)
 {
 
 }
@@ -42,11 +42,14 @@ bool ColorHistogramGui::getHistogramShown()
 	return (histogramShown);
 }
 
-void ColorHistogramGui::update(ofPixels& p_pixels)
+void ColorHistogramGui::update()
 {
-	colorHistogram.showHistogram(p_pixels, histogramBinSizeSlider);
-	updateOnceBool = false;
-	
+	if (getUpdateHistogram())
+	{
+		ofPixels pixels = textureDrawer.grabCanvasScreen().getPixels();
+		colorHistogram.showHistogram(pixels, histogramBinSizeSlider);
+		updateOnceBool = false;
+	}
 }
 
 bool ColorHistogramGui::getAutomaticUpdate()
@@ -61,11 +64,11 @@ void ColorHistogramGui::updateOnce()
 
 void ColorHistogramGui::draw()
 {
-	histogramPanel.draw();
 	if (histogramShown)
 	{
-		//colorHistogram.draw();
+		colorHistogram.draw();
 	}
+	histogramPanel.draw();
 }
 
 void ColorHistogramGui::toggleAutomaticHistogramUpdate()

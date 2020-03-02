@@ -16,10 +16,6 @@ public:
 	void update();
 	void draw();
 
-	const int drawingCanvasSize = 600;
-	int drawingCanvasX = 225;
-	int drawingCanvasY = ofGetHeight() / 3.5;	
-
 	void mousePressed(int x, int y);
 	void mouseReleased(int x, int y);
 
@@ -33,7 +29,7 @@ private:
 	CanvasGui canvas2dGui = CanvasGui(textureDrawer);
 
 	ColorHistogram colorHistogram;
-	ColorHistogramGui colorHistogramGui = ColorHistogramGui(colorHistogram);
+	ColorHistogramGui colorHistogramGui = ColorHistogramGui(colorHistogram, textureDrawer);
 
 	Cursor cursor = Cursor(textureDrawer);
 };

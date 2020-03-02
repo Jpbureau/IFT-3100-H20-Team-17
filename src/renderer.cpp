@@ -2,11 +2,14 @@
 
 void Renderer::setup()
 {
+	glm::vec2 initialCanvas2dPosition(225, ofGetHeight() / 3.5);
+	int initialCanvas2dSize = 600;
+
 	cursor.setup();
 
-	textureDrawer.setup(drawingCanvasX, drawingCanvasY, drawingCanvasSize);
+	textureDrawer.setup(initialCanvas2dPosition.x, initialCanvas2dPosition.y, initialCanvas2dSize);
 	fileManagerGui.setup();
-	canvas2dGui.setup(drawingCanvasY);
+	canvas2dGui.setup(initialCanvas2dPosition.y);
 	
 	//Il faudra ajuster la position de départ exacte plus tard
 	colorHistogram.setup();
@@ -19,17 +22,7 @@ void Renderer::update()
 	canvas2dGui.update();
 	textureDrawer.update();
 	cursor.update();
-
-	//À implémenter plus tard: Faire l'update automatique seulement lorsqu'il y a un changement, ou une fois à toutes les x frames
-	if (colorHistogramGui.getUpdateHistogram())
-	{
-		//Vérifier les dimensions...
-		image.grabScreen(drawingCanvasX, drawingCanvasY, drawingCanvasSize, drawingCanvasSize);
-		ofPixels pixels = image.getPixels();
-		colorHistogramGui.update(pixels);
-		//colorHistogram.update();
-	}
-	
+	colorHistogramGui.update();	
 }
 
 void Renderer::draw()
@@ -39,11 +32,6 @@ void Renderer::draw()
 	cursor.draw();
 	fileManagerGui.draw();
 	canvas2dGui.draw();
-	
-	if (colorHistogramGui.getHistogramShown())
-	{
-		colorHistogram.draw();
-	}
 	colorHistogramGui.draw();
 }
 

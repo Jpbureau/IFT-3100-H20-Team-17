@@ -508,6 +508,13 @@ void TextureDrawer::resetSelection()
 	}
 }
 
+ofImage TextureDrawer::grabCanvasScreen()
+{
+	ofImage image;
+	image.grabScreen(drawingCanvasX, drawingCanvasY, drawingCanvasSize, drawingCanvasSize);
+	return image;
+}
+
 void TextureDrawer::deleteSelectedShapes()
 {
 	for (int i = 0; i < head; ++i) {

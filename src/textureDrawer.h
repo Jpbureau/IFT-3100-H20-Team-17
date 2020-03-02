@@ -52,6 +52,8 @@ public:
 
 	void resetSelection();
 
+	ofImage grabCanvasScreen();
+
 private:
 	int count;
 	int head;
