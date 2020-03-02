@@ -23,14 +23,14 @@ public:
 	ofFbo fboTexture;
 
 	int mousePosX;
-	int mousePosY;
-	Cursor cursor;
-	
+	int mousePosY;	
 
 	void mousePressed(int x, int y);
 	void mouseReleased(int x, int y);
 
 private:
+	Cursor cursor;
+
 	ofImage image;
 
 	FileManagerGui fileManagerGui;

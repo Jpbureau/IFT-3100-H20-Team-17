@@ -15,11 +15,12 @@ public:
 	void setCursorImage(CursorTypes type);
 	void draw();
 	void update();
-	void setPosition(int x, int y);
 
 private:
 	int x;
 	int y;
+
+	void mouseMoved(ofMouseEventArgs & mouse);
 
 	int drawingCanvasSize;
 	int drawingCanvasX;

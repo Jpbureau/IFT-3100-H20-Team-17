@@ -2,6 +2,11 @@
 
 void Cursor::setup(int drawingCanvasX, int drawingCanvasY, int drawingCanvasSize)
 {
+	ofAddListener(ofEvents().mouseMoved, this, &Cursor::mouseMoved);
+	ofAddListener(ofEvents().mouseDragged, this, &Cursor::mouseMoved);
+	//ofAddListener(ofEvents().mousePressed, this, &Cursor::mouseMoved);
+	//ofAddListener(ofEvents().mouseReleased, this, &Cursor::mouseMoved);
+
 	this->drawingCanvasX = drawingCanvasX;
 	this->drawingCanvasY = drawingCanvasY;
 	this->drawingCanvasSize = drawingCanvasSize;
@@ -50,9 +55,8 @@ bool Cursor::isCursorInDrawingCanvas()
 		y >= drawingCanvasY && y <= (drawingCanvasY + drawingCanvasSize);
 }
 
-
-void Cursor::setPosition(int x, int y)
+void Cursor::mouseMoved(ofMouseEventArgs & mouse)
 {
-	this->x = x;
-	this->y = y;
+	x = mouse.x;
+	y = mouse.y;
 }
