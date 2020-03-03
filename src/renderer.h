@@ -8,6 +8,7 @@
 #include "canvasGui.h"
 #include "colorHistogramGui.h"
 #include "colorHistogram.h"
+#include "primitivesGeometriquesGui.h"
 
 class Renderer
 {
@@ -40,4 +41,5 @@ private:
 
 	ColorHistogram colorHistogram;
 	ColorHistogramGui colorHistogramGui = ColorHistogramGui(colorHistogram);
+	PrimitivesGeometriquesGui primitivesGeometriquesGui = PrimitivesGeometriquesGui();
 };

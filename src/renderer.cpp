@@ -16,9 +16,16 @@ void Renderer::setup()
 	canvas2dGui.setup(drawingCanvasY);
 	
 	//Il faudra ajuster la position de départ exacte plus tard
-	colorHistogram.setup();
+	const int HISTOGRAM_WIDTH = 600;
+	const int HISTOGRAM_HEIGHT = 200;
+	const int HISTOGRAM_X_POSITION = drawingCanvasX;
+	const int HISTOGRAM_Y_POSITION = drawingCanvasY + drawingCanvasSize + HISTOGRAM_HEIGHT + 1;
+	colorHistogram.setup(HISTOGRAM_WIDTH, HISTOGRAM_HEIGHT, HISTOGRAM_X_POSITION, HISTOGRAM_Y_POSITION);
 	colorHistogramGui.setup(10, 560);
-	
+
+	const int PRIMITIVES_GEOMETRIQUES_GUI_POSITION_X = ofGetWidth() - 210;
+	const int PRIMITIVES_GEOMETRIQUES_GUI_POSITION_Y = 100;
+	primitivesGeometriquesGui.setup(PRIMITIVES_GEOMETRIQUES_GUI_POSITION_X, PRIMITIVES_GEOMETRIQUES_GUI_POSITION_Y);
 }
 
 void Renderer::update()
@@ -36,7 +43,7 @@ void Renderer::update()
 		colorHistogramGui.update(pixels);
 		//colorHistogram.update();
 	}
-	
+	primitivesGeometriquesGui.update();
 }
 
 void Renderer::draw()
@@ -58,11 +65,8 @@ void Renderer::draw()
 	fileManagerGui.draw();
 	canvas2dGui.draw();
 	
-	if (colorHistogramGui.getHistogramShown())
-	{
-		colorHistogram.draw();
-	}
 	colorHistogramGui.draw();
+	primitivesGeometriquesGui.draw();
 }
 
 void Renderer::mousePressed(int x, int y)

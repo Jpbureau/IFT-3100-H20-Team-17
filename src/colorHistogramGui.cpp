@@ -64,7 +64,7 @@ void ColorHistogramGui::draw()
 	histogramPanel.draw();
 	if (histogramShown)
 	{
-		//colorHistogram.draw();
+		colorHistogram.draw();
 	}
 }
 
