@@ -85,6 +85,12 @@
     <ClCompile Include="src\graphNode.cpp">
       <Filter>src\SceneGraph</Filter>
     </ClCompile>
+    <ClCompile Include="src\Shapes2D\point.cpp">
+      <Filter>src\Canvas2D\Shapes2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Shapes2D\shapeFactory.cpp">
+      <Filter>src\Canvas2D\Shapes2D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -140,6 +146,9 @@
     </Filter>
     <Filter Include="src\SceneGraph">
       <UniqueIdentifier>{639426f3-fa03-4d16-8fbe-8da393049108}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Canvas2D\Shapes2D">
+      <UniqueIdentifier>{1313727b-b606-4d34-8126-f5ed670ca683}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -352,6 +361,15 @@
     </ClInclude>
     <ClInclude Include="src\graphNode.h">
       <Filter>src\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphPrimitive.h">
+      <Filter>src\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Shapes2D\point.h">
+      <Filter>src\Canvas2D\Shapes2D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Shapes2D\shapeFactory.h">
+      <Filter>src\Canvas2D\Shapes2D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

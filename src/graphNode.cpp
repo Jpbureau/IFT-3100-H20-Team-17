@@ -14,7 +14,7 @@ void GraphNode::draw()
 	}
 }
 
-void GraphNode::addChild(std::unique_ptr<GraphNode> child)
+void GraphNode::addChild(GraphPrimitive* child)
 {
-	children.push_back(child);
+	children.push_back(std::unique_ptr<GraphPrimitive>(child));
 }

@@ -191,6 +191,8 @@
     <ClCompile Include="src\fileManagerGui.cpp" />
     <ClCompile Include="src\recorder.cpp" />
     <ClCompile Include="src\renderer.cpp" />
+    <ClCompile Include="src\Shapes2D\point.cpp" />
+    <ClCompile Include="src\Shapes2D\shapeFactory.cpp" />
     <ClCompile Include="src\textureDrawer.cpp" />
     <ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.cpp" />
     <ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.cpp" />
@@ -211,6 +213,7 @@
     <ClInclude Include="src\colorHistogram.h" />
     <ClInclude Include="src\colorHistogramGui.h" />
     <ClInclude Include="src\graphNode.h" />
+    <ClInclude Include="src\graphPrimitive.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\canvasGui.h" />
     <ClInclude Include="src\cursor.h" />
@@ -218,6 +221,8 @@
     <ClInclude Include="src\fileManagerGui.h" />
     <ClInclude Include="src\recorder.h" />
     <ClInclude Include="src\renderer.h" />
+    <ClInclude Include="src\Shapes2D\point.h" />
+    <ClInclude Include="src\Shapes2D\shapeFactory.h" />
     <ClInclude Include="src\textureDrawer.h" />
     <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.h" />
     <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.h" />

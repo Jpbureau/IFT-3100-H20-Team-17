@@ -3,13 +3,15 @@
 #include <memory>
 #include <list>
 
-class GraphNode {
+#include "graphPrimitive.h"
+
+class GraphNode: public GraphPrimitive {
 public:
 	virtual void update();
 	virtual void draw();
 
-	void addChild(std::unique_ptr<GraphNode> child);
+	void addChild(GraphPrimitive* child);
 
 protected:
-	std::list<std::unique_ptr<GraphNode>> children;
+	std::list<std::unique_ptr<GraphPrimitive>> children;
 };
