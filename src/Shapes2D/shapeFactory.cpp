@@ -13,7 +13,9 @@ GraphPrimitive * ShapeFactory::createShape(ShapeType type, glm::vec2 p1, glm::ve
 	case ShapeType::rectangle:
 		return new Rectangle2D(p1, p2, strokeWidth, fillColor, strokeColor);
 
-	//case ShapeType::square:
+	case ShapeType::square:
+		p2 = squaricize(p1, p2);
+		return new Rectangle2D(p1, p2, strokeWidth, fillColor, strokeColor);
 
 
 	//	if (horizontalDistance > verticalDistance) {
@@ -78,3 +80,12 @@ GraphPrimitive * ShapeFactory::createShape(ShapeType type, glm::vec2 p1, glm::ve
 		return nullptr;
 	}	
 }
+
+glm::vec2 ShapeFactory::squaricize(glm::vec2 p1, glm::vec2 p2)
+{
+	glm::vec2 diago = p2 - p1;
+	glm::vec2 direction(diago.x / abs(diago.x), diago.y / abs(diago.y));
+	int maxLength = max(abs(diago.x), abs(diago.y));
+	return p1 + maxLength * direction;
+}
+
