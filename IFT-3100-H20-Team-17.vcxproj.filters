@@ -97,6 +97,9 @@
     <ClCompile Include="src\Shapes2D\rectangle.cpp">
       <Filter>src\Canvas2D\Shapes2D</Filter>
     </ClCompile>
+    <ClCompile Include="src\Shapes2D\ellipse.cpp">
+      <Filter>src\Canvas2D\Shapes2D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -381,6 +384,9 @@
       <Filter>src\Canvas2D\Shapes2D</Filter>
     </ClInclude>
     <ClInclude Include="src\Shapes2D\rectangle.h">
+      <Filter>src\Canvas2D\Shapes2D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Shapes2D\ellipse.h">
       <Filter>src\Canvas2D\Shapes2D</Filter>
     </ClInclude>
   </ItemGroup>
