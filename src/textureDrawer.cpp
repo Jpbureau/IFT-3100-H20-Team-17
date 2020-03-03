@@ -252,6 +252,13 @@ void TextureDrawer::add_vector_shape()
 	ofColor stroke(stroke_color_r, stroke_color_g, stroke_color_b, stroke_color_a);
 
 
+	if (selectedType == ShapeType::square || selectedType == ShapeType::circle) {
+		glm::vec2 outerCorner = shapeFactory.squaricize(p1, p2);
+		if (!isMouseInsideCanvas(outerCorner.x, outerCorner.y)) {
+			return;
+		}
+	}
+
 	root.addChild(shapeFactory.createShape(selectedType, p1, p2, fill, stroke, stroke_width, radius));
 
 	/*int horizontalDistance = abs(mouse_current_posX - mouse_pressed_posX);

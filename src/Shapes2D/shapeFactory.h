@@ -11,7 +11,5 @@ enum class ShapeType { none, selection, point, line, rectangle, ellipse, circle,
 class ShapeFactory {
 public:
 	GraphPrimitive* createShape(ShapeType type, glm::vec2 p1, glm::vec2 p2, ofColor fillColor, ofColor strokeColor, float strokeWidth, float radius);
-
-private:
 	glm::vec2 squaricize(glm::vec2 p1, glm::vec2 p2);
 };
