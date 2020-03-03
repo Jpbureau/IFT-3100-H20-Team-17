@@ -10,17 +10,17 @@ void TextureDrawer::setup(int drawingCanvasX, int drawingCanvasY, int drawingCan
 	this->drawingCanvasSize = drawingCanvasSize;
 
 	//Un peu comme on fait dans le cours, on pourrait éventuellement penser à une meilleure structure de données
-	count = 100;
+	//count = 100;
 
-	head = 0;
+	//head = 0;
 
-	stride = sizeof(VectorPrimitive);
+	//stride = sizeof(VectorPrimitive);
 
-	size = count * stride;
+	//size = count * stride;
 
-	shapes = (VectorPrimitive*)std::malloc(size);
+	//shapes = (VectorPrimitive*)std::malloc(size);
 
-	selectedType = VectorPrimitiveType::line;
+	//selectedType = VectorPrimitiveType::line;
 }
 
 void TextureDrawer::draw()
@@ -29,7 +29,9 @@ void TextureDrawer::draw()
 	ofSetColor(255);
 	ofDrawRectangle(drawingCanvasX, drawingCanvasY, drawingCanvasSize, drawingCanvasSize);
 
-	for (int index = 0; index < count; index++)
+	root.draw();
+
+	/*for (int index = 0; index < count; index++)
 	{
 		switch (shapes[index].type)
 		{
@@ -122,13 +124,15 @@ void TextureDrawer::draw()
 	}
 
 
-	drawSelectionRectangles();
+	drawSelectionRectangles();*/
 }
 
 void TextureDrawer::update()
 {
+	root.update();
+
 	//On pourrait aussi potentiellement l'activer seulement au clique d'un bouton
-	for (int i = 0; i < head; i++) {
+	/*for (int i = 0; i < head; i++) {
 		if (shapes[i].selected) {
 			shapes[i].stroke_width = stroke_width;
 			shapes[i].radius = radius;
@@ -143,98 +147,98 @@ void TextureDrawer::update()
 			shapes[i].stroke_color[2] = stroke_color_b;
 			shapes[i].stroke_color[3] = stroke_color_a;
 		}
-	}
+	}*/
 }
 
 void TextureDrawer::selectPointType()
 {
-	selectedType = VectorPrimitiveType::point;
+	selectedType = ShapeType::point;
 }
 
 void TextureDrawer::selectLineType()
 {
-	selectedType = VectorPrimitiveType::line;
+	selectedType = ShapeType::line;
 }
 
 void TextureDrawer::selectRectangleType()
 {
-	selectedType = VectorPrimitiveType::rectangle;
+	selectedType = ShapeType::rectangle;
 }
 
 void TextureDrawer::selectSquareType()
 {
-	selectedType = VectorPrimitiveType::square;
+	selectedType = ShapeType::square;
 }
 
 void TextureDrawer::selectEllipseType()
 {
-	selectedType = VectorPrimitiveType::ellipse;
+	selectedType = ShapeType::ellipse;
 }
 
 void TextureDrawer::selectCircleType()
 {
-	selectedType = VectorPrimitiveType::circle;
+	selectedType = ShapeType::circle;
 }
 
 void TextureDrawer::selectSelectionType()
 {
-	selectedType = VectorPrimitiveType::selection;
+	selectedType = ShapeType::selection;
 }
 
 void TextureDrawer::selectShape(int x, int y)
 {
-	int pressedX;
-	int releasedX;
-	int pressedY;
-	int releasedY;
-	int temp;
-	bool isAnyShapeSelected = false;
+	//int pressedX;
+	//int releasedX;
+	//int pressedY;
+	//int releasedY;
+	//int temp;
+	//bool isAnyShapeSelected = false;
 
-	if (selectedType == VectorPrimitiveType::selection) {
-		for (int index = 0; index < count; index++)
-		{
-			pressedX = shapes[index].position1[0];
-			pressedY = shapes[index].position1[1];
-			releasedX = shapes[index].position2[0];
-			releasedY = shapes[index].position2[1];
+	//if (selectedType == ShapeType::selection) {
+	//	for (int index = 0; index < count; index++)
+	//	{
+	//		pressedX = shapes[index].position1[0];
+	//		pressedY = shapes[index].position1[1];
+	//		releasedX = shapes[index].position2[0];
+	//		releasedY = shapes[index].position2[1];
 
-			switch (shapes[index].type)
-			{
-			case VectorPrimitiveType::point:
+	//		switch (shapes[index].type)
+	//		{
+	//		case ShapeType::point:
 
-				if (sqrt((x - releasedX)*(x - releasedX) + (y - releasedY)*(y - releasedY)) < shapes[index].radius) {
-					shapes[index].selected = true;
-					isAnyShapeSelected = true;
-				}
+	//			if (sqrt((x - releasedX)*(x - releasedX) + (y - releasedY)*(y - releasedY)) < shapes[index].radius) {
+	//				shapes[index].selected = true;
+	//				isAnyShapeSelected = true;
+	//			}
 
-				break;
+	//			break;
 
-			default: 
-				//on doit inverser les coordonnées si le clique est plus grand que le release afin d'uniformiser la comparaison plus bas
-				if (releasedX < pressedX) {
-					temp = releasedX;
-					releasedX = pressedX;
-					pressedX = temp;
-				}
+	//		default: 
+	//			//on doit inverser les coordonnées si le clique est plus grand que le release afin d'uniformiser la comparaison plus bas
+	//			if (releasedX < pressedX) {
+	//				temp = releasedX;
+	//				releasedX = pressedX;
+	//				pressedX = temp;
+	//			}
 
-				if (releasedY < pressedY) {
-					temp = releasedY;
-					releasedY = pressedY;
-					pressedY = temp;
-				}
+	//			if (releasedY < pressedY) {
+	//				temp = releasedY;
+	//				releasedY = pressedY;
+	//				pressedY = temp;
+	//			}
 
-				if (x > pressedX && x < releasedX && y > pressedY && y < releasedY) {
-					shapes[index].selected = true;
-					isAnyShapeSelected = true;
-				}
-				break;
-			}
-		}
+	//			if (x > pressedX && x < releasedX && y > pressedY && y < releasedY) {
+	//				shapes[index].selected = true;
+	//				isAnyShapeSelected = true;
+	//			}
+	//			break;
+	//		}
+	//	}
 
-		if (!isAnyShapeSelected) {
-			resetSelection();
-		}
-	}
+	//	if (!isAnyShapeSelected) {
+	//		resetSelection();
+	//	}
+	//}
 }
 
 
@@ -244,7 +248,15 @@ void TextureDrawer::add_vector_shape()
 		return;
 	}
 
-	int horizontalDistance = abs(mouse_current_posX - mouse_pressed_posX);
+	glm::vec2 p1(mouse_pressed_posX, mouse_pressed_posY);
+	glm::vec2 p2(mouse_current_posX, mouse_current_posY);
+	ofColor fill(fill_color_r, fill_color_g, fill_color_b, fill_color_a);
+	ofColor stroke(stroke_color_r, stroke_color_g, stroke_color_b, stroke_color_a);
+
+
+	root.addChild(shapeFactory.createShape(selectedType, p1, p2, fill, stroke, stroke_width, radius));
+
+	/*int horizontalDistance = abs(mouse_current_posX - mouse_pressed_posX);
 	int verticalDistance = abs(mouse_current_posY - mouse_pressed_posY);
 
 	shapes[head].type = selectedType;
@@ -269,20 +281,20 @@ void TextureDrawer::add_vector_shape()
 
 	switch (shapes[head].type)
 	{
-	case VectorPrimitiveType::point:
+	case ShapeType::point:
 		shapes[head].radius = radius;
 		shapes[head].stroke_width = stroke_width;
 		break;
 
-	case VectorPrimitiveType::line:
+	case ShapeType::line:
 		shapes[head].stroke_width = stroke_width;
 		break;
 
-	case VectorPrimitiveType::rectangle:
+	case ShapeType::rectangle:
 		shapes[head].stroke_width = stroke_width;
 		break;
 	
-	case VectorPrimitiveType::square:
+	case ShapeType::square:
 		
 
 		if (horizontalDistance > verticalDistance) {
@@ -307,15 +319,15 @@ void TextureDrawer::add_vector_shape()
 			return;
 		}
 
-		shapes[head].type = VectorPrimitiveType::rectangle;
+		shapes[head].type = ShapeType::rectangle;
 		shapes[head].stroke_width = stroke_width;
 		break;
 
-	case VectorPrimitiveType::ellipse:
+	case ShapeType::ellipse:
 		shapes[head].stroke_width = stroke_width;
 		break;
 	
-	case VectorPrimitiveType::circle:
+	case ShapeType::circle:
 
 		if (horizontalDistance > verticalDistance) {
 			if (mouse_pressed_posY < mouse_current_posY) {
@@ -339,7 +351,7 @@ void TextureDrawer::add_vector_shape()
 			return;
 		}
 
-		shapes[head].type = VectorPrimitiveType::ellipse;
+		shapes[head].type = ShapeType::ellipse;
 		shapes[head].stroke_width = stroke_width;
 		break;
 
@@ -348,7 +360,7 @@ void TextureDrawer::add_vector_shape()
 		break;
 	}
 
-	head = ++head >= count ? 0 : head;
+	head = ++head >= count ? 0 : head;*/
 }
 
 void TextureDrawer::updateColors(ofColor stroke, ofColor fill)
@@ -520,11 +532,11 @@ ofImage TextureDrawer::grabCanvasScreen()
 
 void TextureDrawer::deleteSelectedShapes()
 {
-	for (int i = 0; i < head; ++i) {
+	/*for (int i = 0; i < head; ++i) {
 		if (shapes[i].selected) {
 			shapes[i].type = VectorPrimitiveType::none;
 		}
-	}
+	}*/
 }
 
 void TextureDrawer::mousePressed(ofMouseEventArgs & mouse)

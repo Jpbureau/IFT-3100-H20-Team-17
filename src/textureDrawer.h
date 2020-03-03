@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ofMain.h"
+#include "graphNode.h"
+#include "Shapes2D/shapeFactory.h"
 
 // code utilisé pour le dessin des primitives vectorielles:
 // https://github.com/philvoyer/IFT3100H19/blob/master/module02/EX04/IFT3100H19_DrawVectorPrimitive
@@ -55,6 +57,9 @@ public:
 	ofImage grabCanvasScreen();
 
 private:
+	GraphNode root;
+	ShapeFactory shapeFactory;
+
 	int count;
 	int head;
 	int stride;
@@ -79,7 +84,7 @@ private:
 
 	VectorPrimitive* shapes;
 	VectorPrimitive* selectedShapes;
-	VectorPrimitiveType selectedType;
+	ShapeType selectedType;
 
 	void setStrokeColor(ofColor color);
 	void setFillColor(ofColor color);
