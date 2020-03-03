@@ -19,8 +19,6 @@ void TextureDrawer::setup(int drawingCanvasX, int drawingCanvasY, int drawingCan
 	//size = count * stride;
 
 	//shapes = (VectorPrimitive*)std::malloc(size);
-
-	//selectedType = VectorPrimitiveType::line;
 }
 
 void TextureDrawer::draw()

@@ -4,6 +4,7 @@
 #include "graphPrimitive.h"
 #include "point.h"
 #include "line.h"
+#include "rectangle.h"
 
 enum class ShapeType { none, selection, point, line, rectangle, ellipse, circle, square };
 

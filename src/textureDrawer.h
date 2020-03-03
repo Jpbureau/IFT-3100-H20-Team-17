@@ -84,7 +84,7 @@ private:
 
 	VectorPrimitive* shapes;
 	VectorPrimitive* selectedShapes;
-	ShapeType selectedType;
+	ShapeType selectedType = ShapeType::rectangle;
 
 	void setStrokeColor(ofColor color);
 	void setFillColor(ofColor color);
