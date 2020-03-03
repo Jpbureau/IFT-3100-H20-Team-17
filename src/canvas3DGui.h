@@ -15,5 +15,7 @@ private:
 	ofxPanel optionsPanel;
 	ofxButton boiteDelimButton;
 
+	void boiteDelimButtonClicked();
+
 };
 

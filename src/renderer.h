@@ -10,6 +10,7 @@
 #include "colorHistogram.h"
 #include "ofxAssimpModelLoader.h"
 #include "ofPoint.h"
+#include "canvas3DGui.h"
 
 enum class MeshRenderMode { fill, wireframe, vertex };
 
@@ -44,6 +45,8 @@ private:
 
 	TextureDrawer textureDrawer;
 	CanvasGui canvas2dGui = CanvasGui(textureDrawer);
+
+	Canvas3DGui canvas3DGui = Canvas3DGui();
 
 	ColorHistogram colorHistogram;
 	ColorHistogramGui colorHistogramGui = ColorHistogramGui(colorHistogram);

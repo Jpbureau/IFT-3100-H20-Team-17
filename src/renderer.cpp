@@ -19,6 +19,8 @@ void Renderer::setup()
 
 	fileManagerGui.setup();
 	canvas2dGui.setup(drawingCanvasY);
+
+	canvas3DGui.setup();
 	
 	//Il faudra ajuster la position de départ exacte plus tard
 	colorHistogram.setup();
@@ -77,6 +79,7 @@ void Renderer::draw()
 	cursor.draw();
 	fileManagerGui.draw();
 	canvas2dGui.draw();
+	canvas3DGui.draw();
 	
 	if (colorHistogramGui.getHistogramShown())
 	{
@@ -85,6 +88,10 @@ void Renderer::draw()
 	colorHistogramGui.draw();
 
 	//J'ajoute mon code ici
+	fboTexture3D.begin();
+	drawBoiteDelimitation(ofPoint(64, 64, 0), 64, 64, 64);
+	fboTexture3D.end();
+
 	// dessiner une instance du teapot
 	/*switch (mesh_render_mode)
 	{
