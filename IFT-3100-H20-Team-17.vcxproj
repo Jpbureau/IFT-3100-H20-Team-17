@@ -180,6 +180,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\canvas3DGui.cpp" />
     <ClCompile Include="src\colorHistogram.cpp" />
     <ClCompile Include="src\colorHistogramGui.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -207,6 +208,7 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\canvas3DGui.h" />
     <ClInclude Include="src\colorHistogram.h" />
     <ClInclude Include="src\colorHistogramGui.h" />
     <ClInclude Include="src\ofApp.h" />

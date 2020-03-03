@@ -12,12 +12,31 @@ void Renderer::setup()
 	ofSetColor(255);
 	fboTexture.end();
 
+	fboTexture3D.allocate(drawingCanvasSize, drawingCanvasSize, GL_RGBA);
+	fboTexture3D.begin();
+	ofClear(255, 255);
+	fboTexture3D.end();
+
 	fileManagerGui.setup();
 	canvas2dGui.setup(drawingCanvasY);
 	
 	//Il faudra ajuster la position de départ exacte plus tard
 	colorHistogram.setup();
 	colorHistogramGui.setup(10, 560);
+
+	//ofSetFrameRate(60);
+	//ofEnableDepthTest();
+	ofEnableLighting();
+
+	mesh_render_mode = MeshRenderMode::fill;
+
+	light.setAmbientColor(ofColor(0, 255, 0));
+	light.setDiffuseColor(ofColor(255, 255, 255));
+	light.setPosition(0.0f, 0.0f, 1000.0f);
+	light.enable();
+
+	teapot.loadModel("teapot.obj");
+	
 	
 }
 
@@ -45,6 +64,7 @@ void Renderer::draw()
 
 	ofSetColor(255);
 	fboTexture.draw(drawingCanvasX, drawingCanvasY);
+	fboTexture3D.draw(drawingCanvasX + drawingCanvasSize + 10, drawingCanvasY);
 	/*ofBackgroundGradient(ofColor::white, ofColor::gray);
 	ofSetColor(255, 130, 0);
 	ofDrawCircle(ofGetWidth() / 2, ofGetHeight() / 2, 50);*/
@@ -63,6 +83,23 @@ void Renderer::draw()
 		colorHistogram.draw();
 	}
 	colorHistogramGui.draw();
+
+	//J'ajoute mon code ici
+	// dessiner une instance du teapot
+	/*switch (mesh_render_mode)
+	{
+	case MeshRenderMode::fill:
+		teapot.draw(OF_MESH_FILL);
+		break;
+
+	case MeshRenderMode::wireframe:
+		teapot.draw(OF_MESH_WIREFRAME);
+		break;
+
+	case MeshRenderMode::vertex:
+		teapot.draw(OF_MESH_POINTS);
+		break;
+	}*/
 }
 
 void Renderer::mousePressed(int x, int y)
@@ -79,4 +116,10 @@ void Renderer::mouseReleased(int x, int y)
 	textureDrawer.add_vector_shape();
 }
 
+void Renderer::drawBoiteDelimitation(ofPoint point, float width, float height, float depth)
+{
+	ofSetLineWidth(5);
+	ofSetColor(51);
+	ofDrawBox(point.x, point.y, point.z, width, height, depth);
+}
 
