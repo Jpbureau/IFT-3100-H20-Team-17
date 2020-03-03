@@ -7,9 +7,8 @@ GraphPrimitive * ShapeFactory::createShape(ShapeType type, glm::vec2 p1, glm::ve
 	case ShapeType::point:
 		return new Point(p2, radius, strokeColor);
 
-	//case ShapeType::line:
-	//	shapes[head].stroke_width = stroke_width;
-	//	break;
+	case ShapeType::line:
+		return new Line(p1, p2, strokeWidth, strokeColor);
 
 	//case ShapeType::rectangle:
 	//	shapes[head].stroke_width = stroke_width;
