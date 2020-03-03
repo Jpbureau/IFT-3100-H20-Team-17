@@ -1,10 +1,17 @@
 #include "cursor.h"
 
-void Cursor::setup(int drawingCanvasX, int drawingCanvasY, int drawingCanvasSize)
+Cursor::Cursor(TextureDrawer & textureDrawer):
+	textureDrawer(textureDrawer)
 {
-	this->drawingCanvasX = drawingCanvasX;
-	this->drawingCanvasY = drawingCanvasY;
-	this->drawingCanvasSize = drawingCanvasSize;
+}
+
+void Cursor::setup()
+{
+	ofAddListener(ofEvents().mouseMoved, this, &Cursor::mouseMoved);
+	ofAddListener(ofEvents().mouseDragged, this, &Cursor::mouseMoved);
+	//ofAddListener(ofEvents().mousePressed, this, &Cursor::mouseMoved);
+	//ofAddListener(ofEvents().mouseReleased, this, &Cursor::mouseMoved);
+
 	pencilImage.load("cursor/pencil.png");
 	handImage.load("cursor/hand.png");
 }
@@ -36,7 +43,7 @@ void Cursor::draw()
 
 void Cursor::update()
 {
-	if (isCursorInDrawingCanvas()) {
+	if (textureDrawer.isMouseInsideCanvas(x, y)) {
 		setCursorImage(pencil);
 	}
 	else {
@@ -44,15 +51,8 @@ void Cursor::update()
 	}
 }
 
-bool Cursor::isCursorInDrawingCanvas()
+void Cursor::mouseMoved(ofMouseEventArgs & mouse)
 {
-	return x >= drawingCanvasX && x <= (drawingCanvasX + drawingCanvasSize) &&
-		y >= drawingCanvasY && y <= (drawingCanvasY + drawingCanvasSize);
-}
-
-
-void Cursor::setPosition(int x, int y)
-{
-	this->x = x;
-	this->y = y;
+	x = mouse.x;
+	y = mouse.y;
 }

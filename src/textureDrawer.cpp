@@ -2,6 +2,9 @@
 
 void TextureDrawer::setup(int drawingCanvasX, int drawingCanvasY, int drawingCanvasSize)
 {
+	ofAddListener(ofEvents().mousePressed, this, &TextureDrawer::mousePressed);
+	ofAddListener(ofEvents().mouseReleased, this, &TextureDrawer::mouseReleased);
+
 	this->drawingCanvasX = drawingCanvasX;
 	this->drawingCanvasY = drawingCanvasY;
 	this->drawingCanvasSize = drawingCanvasSize;
@@ -22,6 +25,10 @@ void TextureDrawer::setup(int drawingCanvasX, int drawingCanvasY, int drawingCan
 
 void TextureDrawer::draw()
 {
+	ofFill();
+	ofSetColor(255);
+	ofDrawRectangle(drawingCanvasX, drawingCanvasY, drawingCanvasSize, drawingCanvasSize);
+
 	for (int index = 0; index < count; index++)
 	{
 		switch (shapes[index].type)
@@ -469,6 +476,12 @@ void TextureDrawer::drawSelectionRectangles()
 	}
 }
 
+bool TextureDrawer::isMouseInsideCanvas(int x, int y)
+{
+	return x >= drawingCanvasX && x <= (drawingCanvasX + drawingCanvasSize) &&
+		y >= drawingCanvasY && y <= (drawingCanvasY + drawingCanvasSize);
+}
+
 bool TextureDrawer::isMouseOutsideCanvas()
 {
 	int maxValidX = drawingCanvasX + drawingCanvasSize;
@@ -498,6 +511,13 @@ void TextureDrawer::resetSelection()
 	}
 }
 
+ofImage TextureDrawer::grabCanvasScreen()
+{
+	ofImage image;
+	image.grabScreen(drawingCanvasX, drawingCanvasY, drawingCanvasSize, drawingCanvasSize);
+	return image;
+}
+
 void TextureDrawer::deleteSelectedShapes()
 {
 	for (int i = 0; i < head; ++i) {
@@ -505,4 +525,18 @@ void TextureDrawer::deleteSelectedShapes()
 			shapes[i].type = VectorPrimitiveType::none;
 		}
 	}
+}
+
+void TextureDrawer::mousePressed(ofMouseEventArgs & mouse)
+{
+	mouse_pressed_posX = mouse.x;
+	mouse_pressed_posY = mouse.y;
+	selectShape(mouse.x, mouse.y);
+}
+
+void TextureDrawer::mouseReleased(ofMouseEventArgs & mouse)
+{
+	mouse_current_posX = mouse.x;
+	mouse_current_posY = mouse.y;
+	add_vector_shape();
 }

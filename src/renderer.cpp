@@ -2,18 +2,14 @@
 
 void Renderer::setup()
 {
-	cursor.setup(drawingCanvasX, drawingCanvasY, drawingCanvasSize);
-	cursor.setCursorImage(none);
+	glm::vec2 initialCanvas2dPosition(225, ofGetHeight() / 3.5);
+	int initialCanvas2dSize = 600;
 
-	textureDrawer.setup(drawingCanvasX, drawingCanvasY, drawingCanvasSize);
-	fboTexture.allocate(drawingCanvasSize, drawingCanvasSize, GL_RGBA);
-	fboTexture.begin();
-	ofClear(255, 255);
-	ofSetColor(255);
-	fboTexture.end();
+	cursor.setup();
 
+	textureDrawer.setup(initialCanvas2dPosition.x, initialCanvas2dPosition.y, initialCanvas2dSize);
 	fileManagerGui.setup();
-	canvas2dGui.setup(drawingCanvasY);
+	canvas2dGui.setup(initialCanvas2dPosition.y);
 	
 	//Il faudra ajuster la position de départ exacte plus tard
 	colorHistogram.setup();
@@ -26,57 +22,15 @@ void Renderer::update()
 	canvas2dGui.update();
 	textureDrawer.update();
 	cursor.update();
-
-	//À implémenter plus tard: Faire l'update automatique seulement lorsqu'il y a un changement, ou une fois à toutes les x frames
-	if (colorHistogramGui.getUpdateHistogram())
-	{
-		//Vérifier les dimensions...
-		image.grabScreen(drawingCanvasX, drawingCanvasY, drawingCanvasSize, drawingCanvasSize);
-		ofPixels pixels = image.getPixels();
-		colorHistogramGui.update(pixels);
-		//colorHistogram.update();
-	}
-	
+	colorHistogramGui.update();	
 }
 
 void Renderer::draw()
 {
 	ofSetBackgroundColor(canvas2dGui.backGroundColor);
-
-	ofSetColor(255);
-	fboTexture.draw(drawingCanvasX, drawingCanvasY);
-	/*ofBackgroundGradient(ofColor::white, ofColor::gray);
-	ofSetColor(255, 130, 0);
-	ofDrawCircle(ofGetWidth() / 2, ofGetHeight() / 2, 50);*/
-
-	/*if (image.isAllocated()) {
-		ofSetColor(255);
-		image.draw(0, 0, ofGetWidth(), ofGetHeight());
-	}*/
 	textureDrawer.draw();
 	cursor.draw();
 	fileManagerGui.draw();
 	canvas2dGui.draw();
-	
-	if (colorHistogramGui.getHistogramShown())
-	{
-		colorHistogram.draw();
-	}
 	colorHistogramGui.draw();
 }
-
-void Renderer::mousePressed(int x, int y)
-{
-	textureDrawer.mouse_pressed_posX = x;
-	textureDrawer.mouse_pressed_posY = y;
-	textureDrawer.selectShape(x, y);
-}
-
-void Renderer::mouseReleased(int x, int y)
-{
-	textureDrawer.mouse_current_posX = x;
-	textureDrawer.mouse_current_posY = y;
-	textureDrawer.add_vector_shape();
-}
-
-
