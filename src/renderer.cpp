@@ -12,8 +12,20 @@ void Renderer::setup()
 	canvas2dGui.setup(initialCanvas2dPosition.y);
 	
 	//Il faudra ajuster la position de départ exacte plus tard
-	colorHistogram.setup();
+	const int HISTOGRAM_WIDTH = 600;
+	const int HISTOGRAM_HEIGHT = 200;
+	const int HISTOGRAM_X_POSITION = initialCanvas2dPosition.x;
+	const int HISTOGRAM_Y_POSITION = initialCanvas2dPosition.y + initialCanvas2dSize + HISTOGRAM_HEIGHT + 1;
+	colorHistogram.setup(HISTOGRAM_WIDTH, HISTOGRAM_HEIGHT, HISTOGRAM_X_POSITION, HISTOGRAM_Y_POSITION);
 	colorHistogramGui.setup(10, 560);
+
+	const int PRIMITIVES_GEOMETRIQUES_GUI_POSITION_X = ofGetWidth() - 210;
+	const int PRIMITIVES_GEOMETRIQUES_GUI_POSITION_Y = 100;
+	primitivesGeometriquesGui.setup(PRIMITIVES_GEOMETRIQUES_GUI_POSITION_X, PRIMITIVES_GEOMETRIQUES_GUI_POSITION_Y);
+
+	const int CAMERA_GUI_POSITION_X = ofGetWidth() - 210;
+	const int CAMERA_GUI_POSITION_Y = 500;
+	cameraGui.setup(CAMERA_GUI_POSITION_X, CAMERA_GUI_POSITION_Y);
 
 	textureDrawer3D.setup();
 	canvas3DGui.setup();
@@ -28,6 +40,8 @@ void Renderer::update()
 	colorHistogramGui.update();	
 	canvas3DGui.update();
 	textureDrawer3D.update();
+	primitivesGeometriquesGui.update();
+	cameraGui.update();
 }
 
 void Renderer::draw()
@@ -40,4 +54,6 @@ void Renderer::draw()
 	colorHistogramGui.draw();
 	canvas3DGui.draw();
 	textureDrawer3D.draw();
+	primitivesGeometriquesGui.draw();
+	cameraGui.draw();
 }

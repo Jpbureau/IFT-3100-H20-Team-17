@@ -180,18 +180,21 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\canvas3DGui.cpp" />
-    <ClCompile Include="src\colorHistogram.cpp" />
-    <ClCompile Include="src\colorHistogramGui.cpp" />
+    <ClCompile Include="src\cameraGui.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\canvas3dGui.cpp" />
     <ClCompile Include="src\canvasGui.cpp" />
+    <ClCompile Include="src\colorHistogram.cpp" />
+    <ClCompile Include="src\colorHistogramGui.cpp" />
     <ClCompile Include="src\cursor.cpp" />
     <ClCompile Include="src\fileManager.cpp" />
     <ClCompile Include="src\fileManagerGui.cpp" />
+    <ClCompile Include="src\primitivesGeometriquesGui.cpp" />
     <ClCompile Include="src\recorder.cpp" />
     <ClCompile Include="src\renderer.cpp" />
     <ClCompile Include="src\textureDrawer.cpp" />
+    <ClCompile Include="src\textureDrawer3D.cpp" />
     <ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.cpp" />
     <ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.cpp" />
     <ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpModelLoader.cpp" />
@@ -206,20 +209,22 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSlider.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
-    <ClCompile Include="src\textureDrawer3D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\canvas3DGui.h" />
+    <ClInclude Include="src\cameraGui.h" />
+    <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="src\canvas3dGui.h" />
+    <ClInclude Include="src\canvasGui.h" />
     <ClInclude Include="src\colorHistogram.h" />
     <ClInclude Include="src\colorHistogramGui.h" />
-    <ClInclude Include="src\ofApp.h" />
-    <ClInclude Include="src\canvasGui.h" />
     <ClInclude Include="src\cursor.h" />
     <ClInclude Include="src\fileManager.h" />
     <ClInclude Include="src\fileManagerGui.h" />
+    <ClInclude Include="src\primitivesGeometriquesGui.h" />
     <ClInclude Include="src\recorder.h" />
     <ClInclude Include="src\renderer.h" />
     <ClInclude Include="src\textureDrawer.h" />
+    <ClInclude Include="src\textureDrawer3D.h" />
     <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.h" />
     <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.h" />
     <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpModelLoader.h" />
@@ -278,7 +283,6 @@
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxSlider.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h" />
-    <ClInclude Include="src\textureDrawer3D.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

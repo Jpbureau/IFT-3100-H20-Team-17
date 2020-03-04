@@ -10,6 +10,8 @@
 #include "colorHistogram.h"
 #include "textureDrawer3D.h"
 #include "canvas3DGui.h"
+#include "primitivesGeometriquesGui.h"
+#include "cameraGui.h"
 
 class Renderer
 {
@@ -32,6 +34,8 @@ private:
 
 	ColorHistogram colorHistogram;
 	ColorHistogramGui colorHistogramGui = ColorHistogramGui(colorHistogram, textureDrawer);
+	PrimitivesGeometriquesGui primitivesGeometriquesGui = PrimitivesGeometriquesGui();
+	CameraGui cameraGui = CameraGui();
 
 	Cursor cursor = Cursor(textureDrawer);
 };
