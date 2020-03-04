@@ -45,9 +45,16 @@ void GraphNode::addChild(GraphPrimitive* child)
 
 void GraphNode::selectChildsAtPoint(int x, int y)
 {
+	bool isAnyShapeSelected = false;
+
 	for (auto& child : children) {
 		if (child->isPointInside(x, y)) {
 			child->select();
+			isAnyShapeSelected = true;
 		}
+	}
+
+	if (!isAnyShapeSelected) {
+		unselect();
 	}
 }

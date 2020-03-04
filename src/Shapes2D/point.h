@@ -19,4 +19,7 @@ private:
 	glm::vec2 position;
 	float radius;
 	ofColor color;
+
+	bool isSelected;
+	void drawSelectionRectangle();
 };

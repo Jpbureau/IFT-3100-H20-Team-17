@@ -301,12 +301,14 @@ void TextureDrawer::mousePressed(ofMouseEventArgs & mouse)
 {
 	mouse_pressed_posX = mouse.x;
 	mouse_pressed_posY = mouse.y;
-	selectShape(mouse.x, mouse.y);
+
+	if (isSelectionActive) root.selectChildsAtPoint(mouse.x, mouse.y);
 }
 
 void TextureDrawer::mouseReleased(ofMouseEventArgs & mouse)
 {
 	mouse_current_posX = mouse.x;
 	mouse_current_posY = mouse.y;
-	add_vector_shape();
+	
+	if (!isSelectionActive) add_vector_shape();
 }
