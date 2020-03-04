@@ -14,6 +14,9 @@ void Renderer::setup()
 	//Il faudra ajuster la position de départ exacte plus tard
 	colorHistogram.setup();
 	colorHistogramGui.setup(10, 560);
+
+	textureDrawer3D.setup();
+	canvas3DGui.setup();
 	
 }
 
@@ -23,6 +26,8 @@ void Renderer::update()
 	textureDrawer.update();
 	cursor.update();
 	colorHistogramGui.update();	
+	canvas3DGui.update();
+	textureDrawer3D.update();
 }
 
 void Renderer::draw()
@@ -33,4 +38,6 @@ void Renderer::draw()
 	fileManagerGui.draw();
 	canvas2dGui.draw();
 	colorHistogramGui.draw();
+	canvas3DGui.draw();
+	textureDrawer3D.draw();
 }

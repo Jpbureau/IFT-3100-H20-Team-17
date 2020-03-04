@@ -30,3 +30,5 @@ private:
 	int hauteurModel3D;
 	int profondeurModel3D;
 };
+
+
