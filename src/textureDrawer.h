@@ -50,17 +50,11 @@ private:
 	float stroke_width;
 	float radius;
 
-	unsigned char stroke_color_r;
-	unsigned char stroke_color_g;
-	unsigned char stroke_color_b;
-	unsigned char stroke_color_a;
+	ofColor fillColor;
+	ofColor strokeColor;
 
-	unsigned char fill_color_r;
-	unsigned char fill_color_g;
-	unsigned char fill_color_b;
-	unsigned char fill_color_a;
-
-	ShapeType selectedType = ShapeType::rectangle;
+	ShapeType selectedType;
+	bool isSelectionActive = false;
 
 	void setStrokeColor(ofColor color);
 	void setFillColor(ofColor color);

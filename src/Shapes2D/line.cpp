@@ -16,3 +16,16 @@ void Line::draw()
 void Line::update()
 {
 }
+
+bool Line::isPointInside(int x, int y)
+{
+	return false;
+}
+
+void Line::select()
+{
+}
+
+void Line::unselect()
+{
+}

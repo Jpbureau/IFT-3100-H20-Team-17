@@ -47,36 +47,42 @@ void TextureDrawer::update()
 void TextureDrawer::selectPointType()
 {
 	selectedType = ShapeType::point;
+	isSelectionActive = false;
 }
 
 void TextureDrawer::selectLineType()
 {
 	selectedType = ShapeType::line;
+	isSelectionActive = false;
 }
 
 void TextureDrawer::selectRectangleType()
 {
 	selectedType = ShapeType::rectangle;
+	isSelectionActive = false;
 }
 
 void TextureDrawer::selectSquareType()
 {
 	selectedType = ShapeType::square;
+	isSelectionActive = false;
 }
 
 void TextureDrawer::selectEllipseType()
 {
 	selectedType = ShapeType::ellipse;
+	isSelectionActive = false;
 }
 
 void TextureDrawer::selectCircleType()
 {
 	selectedType = ShapeType::circle;
+	isSelectionActive = false;
 }
 
 void TextureDrawer::selectSelectionType()
 {
-	//selectedType = ShapeType::selection;
+	isSelectionActive = true;
 }
 
 void TextureDrawer::selectShape(int x, int y)
@@ -144,9 +150,6 @@ void TextureDrawer::add_vector_shape()
 
 	glm::vec2 p1(mouse_pressed_posX, mouse_pressed_posY);
 	glm::vec2 p2(mouse_current_posX, mouse_current_posY);
-	ofColor fill(fill_color_r, fill_color_g, fill_color_b, fill_color_a);
-	ofColor stroke(stroke_color_r, stroke_color_g, stroke_color_b, stroke_color_a);
-
 
 	if (selectedType == ShapeType::square || selectedType == ShapeType::circle) {
 		glm::vec2 outerCorner = shapeFactory.squaricize(p1, p2);
@@ -155,7 +158,7 @@ void TextureDrawer::add_vector_shape()
 		}
 	}
 
-	root.addChild(shapeFactory.createShape(selectedType, p1, p2, fill, stroke, stroke_width, radius));
+	root.addChild(shapeFactory.createShape(selectedType, p1, p2, fillColor, strokeColor, stroke_width, radius));
 }
 
 void TextureDrawer::updateColors(ofColor stroke, ofColor fill)
@@ -176,18 +179,12 @@ void TextureDrawer::updateRadius(float newRadius)
 
 void TextureDrawer::setStrokeColor(ofColor color)
 {
-	stroke_color_r = color.r;
-	stroke_color_g = color.g;
-	stroke_color_b = color.b;
-	stroke_color_a = color.a;
+	strokeColor = color;
 }
 
 void TextureDrawer::setFillColor(ofColor color)
 {
-	fill_color_r = color.r;
-	fill_color_g = color.g;
-	fill_color_b = color.b;
-	fill_color_a = color.a;
+	fillColor = color;
 }
 
 void TextureDrawer::drawSelectionRectangles()

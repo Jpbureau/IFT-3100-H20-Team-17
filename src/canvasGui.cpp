@@ -45,6 +45,8 @@ void CanvasGui::setup(int drawingCanvasY)
 	selectButton.addListener(this, &CanvasGui::selectAction);
 	deselectButton.addListener(this, &CanvasGui::deselectAction);
 	deleteButton.addListener(this, &CanvasGui::deleteAction);
+
+	selectRectangleType();
 }
 
 void CanvasGui::update()

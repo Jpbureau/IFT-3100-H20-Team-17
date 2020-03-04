@@ -19,3 +19,16 @@ void Rectangle2D::draw()
 void Rectangle2D::update()
 {
 }
+
+bool Rectangle2D::isPointInside(int x, int y)
+{
+	return false;
+}
+
+void Rectangle2D::select()
+{
+}
+
+void Rectangle2D::unselect()
+{
+}

@@ -26,3 +26,16 @@ void Ellipse2D::draw()
 void Ellipse2D::update()
 {
 }
+
+bool Ellipse2D::isPointInside(int x, int y)
+{
+	return false;
+}
+
+void Ellipse2D::select()
+{
+}
+
+void Ellipse2D::unselect()
+{
+}

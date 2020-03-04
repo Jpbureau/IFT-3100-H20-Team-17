@@ -16,3 +16,16 @@ void Point::draw()
 void Point::update()
 {
 }
+
+bool Point::isPointInside(int x, int y)
+{
+	return false;
+}
+
+void Point::select()
+{
+}
+
+void Point::unselect()
+{
+}
