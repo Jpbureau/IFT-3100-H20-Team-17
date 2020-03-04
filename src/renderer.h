@@ -11,6 +11,8 @@
 #include "ofxAssimpModelLoader.h"
 #include "ofPoint.h"
 #include "canvas3DGui.h"
+#include "ofVbo.h"
+//#include <vector>
 
 enum class MeshRenderMode { fill, wireframe, vertex };
 
@@ -52,6 +54,8 @@ private:
 	ColorHistogramGui colorHistogramGui = ColorHistogramGui(colorHistogram);
 
 	ofxAssimpModelLoader teapot;
+	ofxAssimpMeshHelper & meshHelper = teapot.getMeshHelper(0);
+	ofVbo vbo;
 
 	MeshRenderMode mesh_render_mode;
 
@@ -59,4 +63,10 @@ private:
 
 	ofMesh mesh;
 
+	void calculerBoiteDelimitation();
+
+	ofPoint pointSupGaucheBoite;
+	int largeurModel3D;
+	int hauteurModel3D;
+	int profondeurModel3D;
 };
