@@ -21,4 +21,7 @@ private:
 	float strokeWidth;
 	ofColor fillColor;
 	ofColor strokeColor;
+
+	bool isSelected;
+	void drawSelectionRectangle();
 };

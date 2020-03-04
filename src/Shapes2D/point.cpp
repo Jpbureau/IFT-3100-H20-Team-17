@@ -12,9 +12,7 @@ void Point::draw()
 	ofSetColor(color);
 	ofDrawEllipse(position.x, position.y, radius, radius);
 
-	if (isSelected) {
-		drawSelectionRectangle();
-	}
+	if (isSelected) drawSelectionRectangle();
 }
 
 void Point::update()
