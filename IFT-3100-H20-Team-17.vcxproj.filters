@@ -7,43 +7,10 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\canvas3dGui.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\canvasGui.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\colorHistogram.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\colorHistogramGui.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cursor.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\fileManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\fileManagerGui.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ofApp.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\recorder.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\textureDrawer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\textureDrawer3D.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.cpp">
@@ -87,6 +54,39 @@
     </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp">
       <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+        <ClCompile Include="src\canvasGui.cpp">
+      <Filter>src\Canvas2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\textureDrawer.cpp">
+      <Filter>src\Canvas2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cursor.cpp">
+      <Filter>src\MainRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer.cpp">
+      <Filter>src\MainRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fileManager.cpp">
+      <Filter>src\FileManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fileManagerGui.cpp">
+      <Filter>src\FileManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\recorder.cpp">
+      <Filter>src\FileManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\colorHistogram.cpp">
+      <Filter>src\ColorHistogram</Filter>
+    </ClCompile>
+    <ClCompile Include="src\colorHistogramGui.cpp">
+      <Filter>src\ColorHistogram</Filter>
+    </ClCompile>
+    <ClCompile Include="src\canvas3DGui.cpp">
+      <Filter>src\Canvas3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\textureDrawer3D.cpp">
+      <Filter>src\Canvas3D</Filter>
     </ClCompile>
     <ClCompile Include="src\cameraGui.cpp">
       <Filter>src</Filter>
@@ -135,45 +135,27 @@
     <Filter Include="addons\ofxGui\src">
       <UniqueIdentifier>{645E9533-4DCD-6179-1CDF-CB65}</UniqueIdentifier>
     </Filter>
+        <Filter Include="src\Canvas2D">
+      <UniqueIdentifier>{b5690d6c-f3f3-4ee5-8daa-29a20eb4dae7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\MainRenderer">
+      <UniqueIdentifier>{2ad358a5-3519-4dba-a235-a291ca7fbcab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FileManager">
+      <UniqueIdentifier>{3e69b027-ff97-4097-be3f-9dfeff1e85e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ColorHistogram">
+      <UniqueIdentifier>{c7522143-1c83-4a9b-8281-d7cf3585668f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Canvas3D">
+      <UniqueIdentifier>{3c70a0e4-84aa-4abd-a38d-042a4862f517}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\canvas3dGui.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\canvasGui.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\colorHistogram.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\colorHistogramGui.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cursor.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\fileManager.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\fileManagerGui.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\ofApp.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\recorder.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\renderer.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\textureDrawer.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\textureDrawer3D.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.h">
@@ -349,6 +331,39 @@
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h">
       <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\canvasGui.h">
+      <Filter>src\Canvas2D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\textureDrawer.h">
+      <Filter>src\Canvas2D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cursor.h">
+      <Filter>src\MainRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer.h">
+      <Filter>src\MainRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fileManager.h">
+      <Filter>src\FileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fileManagerGui.h">
+      <Filter>src\FileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\recorder.h">
+      <Filter>src\FileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\colorHistogram.h">
+      <Filter>src\ColorHistogram</Filter>
+    </ClInclude>
+    <ClInclude Include="src\colorHistogramGui.h">
+      <Filter>src\ColorHistogram</Filter>
+    </ClInclude>
+    <ClInclude Include="src\canvas3DGui.h">
+      <Filter>src\Canvas3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\textureDrawer3D.h">
+      <Filter>src\Canvas3D</Filter>
     </ClInclude>
     <ClInclude Include="src\cameraGui.h">
       <Filter>src</Filter>
