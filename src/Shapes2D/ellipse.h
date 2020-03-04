@@ -14,6 +14,7 @@ public:
 
 	virtual void select();
 	virtual void unselect();
+	virtual bool isSelected();
 
 private:
 	glm::vec2 p1;
@@ -22,6 +23,6 @@ private:
 	ofColor fillColor;
 	ofColor strokeColor;
 
-	bool isSelected;
+	bool selected;
 	void drawSelectionRectangle();
 };

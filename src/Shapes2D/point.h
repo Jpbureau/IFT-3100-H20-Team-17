@@ -14,12 +14,13 @@ public:
 
 	virtual void select();
 	virtual void unselect();
+	virtual bool isSelected();
 
 private:
 	glm::vec2 position;
 	float radius;
 	ofColor color;
 
-	bool isSelected;
+	bool selected;
 	void drawSelectionRectangle();
 };

@@ -1,7 +1,7 @@
 #include "point.h"
 
 Point::Point(glm::vec2 position, float radius, ofColor color) :
-	position(position), radius(radius), color(color), isSelected(false)
+	position(position), radius(radius), color(color), selected(false)
 {
 }
 
@@ -12,7 +12,7 @@ void Point::draw()
 	ofSetColor(color);
 	ofDrawEllipse(position.x, position.y, radius, radius);
 
-	if (isSelected) drawSelectionRectangle();
+	if (selected) drawSelectionRectangle();
 }
 
 void Point::update()
@@ -31,12 +31,17 @@ bool Point::isPointInside(int x, int y)
 
 void Point::select()
 {
-	isSelected = true;
+	selected = true;
 }
 
 void Point::unselect()
 {
-	isSelected = false;
+	selected = false;
+}
+
+bool Point::isSelected()
+{
+	return selected;
 }
 
 void Point::drawSelectionRectangle()

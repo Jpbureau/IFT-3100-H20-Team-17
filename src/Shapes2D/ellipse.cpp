@@ -1,7 +1,7 @@
 #include "ellipse.h"
 
 Ellipse2D::Ellipse2D(glm::vec2 p1, glm::vec2 p2, float strokeWidth, ofColor fillColor, ofColor strokeColor):
-	p1(p1), p2(p2), strokeWidth(strokeWidth), fillColor(fillColor), strokeColor(strokeColor), isSelected(false)
+	p1(p1), p2(p2), strokeWidth(strokeWidth), fillColor(fillColor), strokeColor(strokeColor), selected(false)
 {
 }
 
@@ -22,7 +22,7 @@ void Ellipse2D::draw()
 	ofSetColor(strokeColor);
 	ofDrawEllipse(center, diameter_x, diameter_y);
 
-	if (isSelected) drawSelectionRectangle();
+	if (selected) drawSelectionRectangle();
 }
 
 void Ellipse2D::update()
@@ -54,12 +54,17 @@ bool Ellipse2D::isPointInside(int x, int y)
 
 void Ellipse2D::select()
 {
-	isSelected = true;
+	selected = true;
 }
 
 void Ellipse2D::unselect()
 {
-	isSelected = false;
+	selected = false;
+}
+
+bool Ellipse2D::isSelected()
+{
+	return selected;
 }
 
 void Ellipse2D::drawSelectionRectangle()

@@ -38,6 +38,17 @@ void GraphNode::unselect()
 	}
 }
 
+bool GraphNode::isSelected()
+{
+	bool selected = true;
+
+	for (auto& child : children) {
+		selected = selected && child->isSelected();
+	}
+	
+	return selected;
+}
+
 void GraphNode::addChild(GraphPrimitive* child)
 {
 	children.push_back(std::unique_ptr<GraphPrimitive>(child));
@@ -57,4 +68,9 @@ void GraphNode::selectChildsAtPoint(int x, int y)
 	if (!isAnyShapeSelected) {
 		unselect();
 	}
+}
+
+void GraphNode::deleteSelectedPrimitives()
+{
+	children.remove_if([](std::unique_ptr<GraphPrimitive>& child) { return child->isSelected(); });
 }

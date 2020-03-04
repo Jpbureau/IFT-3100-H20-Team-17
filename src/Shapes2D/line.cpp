@@ -1,7 +1,7 @@
 #include "line.h"
 
 Line::Line(glm::vec2 p1, glm::vec2 p2, float lineWidth, ofColor color):
-	p1(p1), p2(p2), lineWidth(lineWidth), color(color), isSelected(false)
+	p1(p1), p2(p2), lineWidth(lineWidth), color(color), selected(false)
 {
 }
 
@@ -12,7 +12,7 @@ void Line::draw()
 	ofSetColor(color);
 	ofDrawLine(p1, p2);
 
-	if (isSelected) drawSelectionRectangle();
+	if (selected) drawSelectionRectangle();
 }
 
 void Line::update()
@@ -44,12 +44,17 @@ bool Line::isPointInside(int x, int y)
 
 void Line::select()
 {
-	isSelected = true;
+	selected = true;
 }
 
 void Line::unselect()
 {
-	isSelected = false;
+	selected = false;
+}
+
+bool Line::isSelected()
+{
+	return selected;
 }
 
 void Line::drawSelectionRectangle()

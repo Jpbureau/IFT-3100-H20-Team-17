@@ -141,11 +141,7 @@ ofImage TextureDrawer::grabCanvasScreen()
 
 void TextureDrawer::deleteSelectedShapes()
 {
-	/*for (int i = 0; i < head; ++i) {
-		if (shapes[i].selected) {
-			shapes[i].type = VectorPrimitiveType::none;
-		}
-	}*/
+	root.deleteSelectedPrimitives();
 }
 
 void TextureDrawer::mousePressed(ofMouseEventArgs & mouse)

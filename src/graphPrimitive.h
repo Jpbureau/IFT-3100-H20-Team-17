@@ -9,4 +9,5 @@ public:
 
 	virtual void select() = 0;
 	virtual void unselect() = 0;
+	virtual bool isSelected() = 0;
 };
