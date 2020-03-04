@@ -11,6 +11,7 @@
 #include "ofxAssimpModelLoader.h"
 #include "ofPoint.h"
 #include "canvas3DGui.h"
+#include "textureDrawer3D.h"
 #include "ofVbo.h"
 #include <vector>
 
@@ -38,8 +39,6 @@ public:
 	void mousePressed(int x, int y);
 	void mouseReleased(int x, int y);
 
-	void drawBoiteDelimitation(ofPoint point, float width, float height, float depth);
-
 private:
 	ofImage image;
 
@@ -48,25 +47,15 @@ private:
 	TextureDrawer textureDrawer;
 	CanvasGui canvas2dGui = CanvasGui(textureDrawer);
 
+	TextureDrawer3D textureDrawer3D;
 	Canvas3DGui canvas3DGui = Canvas3DGui();
 
 	ColorHistogram colorHistogram;
 	ColorHistogramGui colorHistogramGui = ColorHistogramGui(colorHistogram);
 
-	ofxAssimpModelLoader teapot;
-	//ofxAssimpMeshHelper & meshHelper = teapot.getMeshHelper(0);
 	ofVbo vbo;
 
 	MeshRenderMode mesh_render_mode;
 
 	ofLight light;
-
-	ofMesh mesh;
-
-	void calculerBoiteDelimitation();
-
-	ofPoint pointSupGaucheBoite;
-	int largeurModel3D;
-	int hauteurModel3D;
-	int profondeurModel3D;
 };

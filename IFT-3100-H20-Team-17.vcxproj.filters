@@ -85,6 +85,9 @@
     <ClCompile Include="src\canvas3DGui.cpp">
       <Filter>src\Canvas3D</Filter>
     </ClCompile>
+    <ClCompile Include="src\textureDrawer3D.cpp">
+      <Filter>src\Canvas3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -351,6 +354,9 @@
       <Filter>src\ColorHistogram</Filter>
     </ClInclude>
     <ClInclude Include="src\canvas3DGui.h">
+      <Filter>src\Canvas3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\textureDrawer3D.h">
       <Filter>src\Canvas3D</Filter>
     </ClInclude>
   </ItemGroup>
