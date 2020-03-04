@@ -23,38 +23,9 @@ GraphPrimitive * ShapeFactory::createShape(ShapeType type, glm::vec2 p1, glm::ve
 	case ShapeType::circle:
 		p2 = squaricize(p1, p2);
 		return new Ellipse2D(p1, p2, strokeWidth, fillColor, strokeColor);
-
-	//case ShapeType::circle:
-
-	//	if (horizontalDistance > verticalDistance) {
-	//		if (mouse_pressed_posY < mouse_current_posY) {
-	//			shapes[head].position2[1] = mouse_pressed_posY + horizontalDistance;
-	//		}
-	//		else {
-	//			shapes[head].position2[1] = mouse_pressed_posY - horizontalDistance;
-	//		}
-	//	}
-	//	else {
-	//		if (mouse_pressed_posX < mouse_current_posX) {
-	//			shapes[head].position2[0] = mouse_pressed_posX + verticalDistance;
-	//		}
-	//		else {
-	//			shapes[head].position2[0] = mouse_pressed_posX - verticalDistance;
-	//		}
-	//	}
-
-	//	if (isShapeOutsideCanvas(shapes[head].position1[0], shapes[head].position2[0], shapes[head].position1[1], shapes[head].position2[1])) {
-	//		cout << "should return" << endl;
-	//		return;
-	//	}
-
-	//	shapes[head].type = ShapeType::ellipse;
-	//	shapes[head].stroke_width = stroke_width;
-	//	break;
-
 	default:
-		return nullptr;
-	}	
+		throw exception("Illegal Shape Type");
+	}
 }
 
 glm::vec2 ShapeFactory::squaricize(const glm::vec2& p1, const glm::vec2& p2)

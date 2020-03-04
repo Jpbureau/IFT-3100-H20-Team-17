@@ -4,23 +4,6 @@
 #include "graphNode.h"
 #include "Shapes2D/shapeFactory.h"
 
-// code utilisé pour le dessin des primitives vectorielles:
-// https://github.com/philvoyer/IFT3100H19/blob/master/module02/EX04/IFT3100H19_DrawVectorPrimitive
-
-enum class VectorPrimitiveType { none, selection, point, line, rectangle, ellipse, circle, square };
-
-struct VectorPrimitive
-{
-	VectorPrimitiveType type;
-	float                  position1[2];
-	float                  position2[2];
-	float                  stroke_width;
-	unsigned char          stroke_color[4];
-	unsigned char          fill_color[4];
-	float				   radius;
-	bool				   selected;
-};
-
 class TextureDrawer
 {
 public:
@@ -60,11 +43,6 @@ private:
 	GraphNode root;
 	ShapeFactory shapeFactory;
 
-	int count;
-	int head;
-	int stride;
-	int size;
-
 	int drawingCanvasSize;
 	int drawingCanvasX;
 	int drawingCanvasY;
@@ -82,21 +60,14 @@ private:
 	unsigned char fill_color_b;
 	unsigned char fill_color_a;
 
-	VectorPrimitive* shapes;
-	VectorPrimitive* selectedShapes;
 	ShapeType selectedType = ShapeType::rectangle;
 
 	void setStrokeColor(ofColor color);
 	void setFillColor(ofColor color);
 
-	void draw_point(float x, float y, float radius) const;
-	void draw_line(float x1, float y1, float x2, float y2) const;
-	void draw_rectangle(float x1, float y1, float x2, float y2) const;
-	void draw_ellipse(float x1, float y1, float x2, float y2) const;
 	void drawSelectionRectangles();
 
 	bool isMouseOutsideCanvas();
-	bool isShapeOutsideCanvas(int x1, int x2, int y1, int y2);
 
 	void mousePressed(ofMouseEventArgs & mouse);
 	void mouseReleased(ofMouseEventArgs & mouse);

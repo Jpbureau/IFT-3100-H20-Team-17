@@ -7,7 +7,7 @@
 #include "rectangle.h"
 #include "ellipse.h"
 
-enum class ShapeType { none, selection, point, line, rectangle, ellipse, circle, square };
+enum class ShapeType { point, line, rectangle, square, ellipse, circle };
 
 class ShapeFactory {
 public:
