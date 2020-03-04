@@ -19,4 +19,7 @@ private:
 	glm::vec2 p2;
 	float lineWidth;
 	ofColor color;
+
+	bool isSelected;
+	void drawSelectionRectangle();
 };
