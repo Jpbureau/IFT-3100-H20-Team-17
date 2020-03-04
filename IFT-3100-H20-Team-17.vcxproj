@@ -180,6 +180,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\cameraGui.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\canvasGui.cpp" />
@@ -208,6 +209,7 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\cameraGui.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\canvasGui.h" />
     <ClInclude Include="src\colorHistogram.h" />

@@ -9,6 +9,7 @@
 #include "colorHistogramGui.h"
 #include "colorHistogram.h"
 #include "primitivesGeometriquesGui.h"
+#include "cameraGui.h"
 
 class Renderer
 {
@@ -42,4 +43,5 @@ private:
 	ColorHistogram colorHistogram;
 	ColorHistogramGui colorHistogramGui = ColorHistogramGui(colorHistogram);
 	PrimitivesGeometriquesGui primitivesGeometriquesGui = PrimitivesGeometriquesGui();
+	CameraGui cameraGui = CameraGui();
 };

@@ -85,6 +85,9 @@
     <ClCompile Include="src\primitivesGeometriquesGui.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\cameraGui.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -336,6 +339,9 @@
       <Filter>addons\ofxGui\src</Filter>
     </ClInclude>
     <ClInclude Include="src\primitivesGeometriquesGui.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cameraGui.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

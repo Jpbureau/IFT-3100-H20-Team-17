@@ -19,7 +19,6 @@ void PrimitivesGeometriquesGui::setup(int positionX, int positionY)
 	yCoordinateSlider.set("Coordonnees Y ", 0.0f, -500.0f, 500.0f);
 	zCoordinateSlider.set("Coordonnees Z", 0.0f, -500.0f, 500.0f);
 
-	otherShapesRadiusSlider.set("Rayon", 10.0f, 1.0f, 500.0f);
 	heightSlider.set("Hauteur Y", 10.0f, 1.0f, 500.0f);
 	widthSlider.set("Largeur X ", 10.0f, 1.0f, 500.0f);
 	depthSlider.set("Profondeur Z", 10.0f, 1.0f, 500.0f);
@@ -42,14 +41,13 @@ void PrimitivesGeometriquesGui::setup(int positionX, int positionY)
 	optionsPlatonSolid.add(drawHexahedronType.setup("Hexahedron"));
 	optionsPlatonSolid.add(drawOctahedronType.setup("Octahedron"));
 	optionsPlatonSolid.add(drawDodecahedronType.setup("Dodecahedron"));
-	optionsPlatonSolid.add(drawIsocahedronType.setup("Isocahedron"));
+	optionsPlatonSolid.add(drawIcosahedronType.setup("Icosahedron"));
 	optionsPlatonSolid.add(drawSphereType.setup("Sphere"));
 
 	optionsOtherShapes.setup("Autres formes");
 	optionsOtherShapes.add(widthSlider);
 	optionsOtherShapes.add(heightSlider);
 	optionsOtherShapes.add(depthSlider);
-	optionsOtherShapes.add(otherShapesRadiusSlider);
 	optionsOtherShapes.add(nbSidesSlider);
 	optionsOtherShapes.add(drawPolygonType.setup("Polygone"));
 	optionsOtherShapes.add(drawCylinderType.setup("Cylindre"));
@@ -75,7 +73,7 @@ void PrimitivesGeometriquesGui::setup(int positionX, int positionY)
 	drawHexahedronType.addListener(this, &PrimitivesGeometriquesGui::selectHexahedronType);
 	drawOctahedronType.addListener(this, &PrimitivesGeometriquesGui::selectOctahedronType);
 	drawDodecahedronType.addListener(this, &PrimitivesGeometriquesGui::selectDodecahedronType);
-	drawIsocahedronType.addListener(this, &PrimitivesGeometriquesGui::selectIsocahedronType);
+	drawIcosahedronType.addListener(this, &PrimitivesGeometriquesGui::selectIcosahedronType);
 	drawSphereType.addListener(this, &PrimitivesGeometriquesGui::selectSphereType);
 
 	drawPolygonType.addListener(this, &PrimitivesGeometriquesGui::selectPolygonType);
@@ -124,10 +122,10 @@ void PrimitivesGeometriquesGui::selectDodecahedronType()
 	selectedType.set("Dodecahedron");
 }
 
-void PrimitivesGeometriquesGui::selectIsocahedronType()
+void PrimitivesGeometriquesGui::selectIcosahedronType()
 {
-	//textureDrawer.selectIsocahedronType();
-	selectedType.set("Isocahedron");
+	//textureDrawer.selectIcosahedronType();
+	selectedType.set("Icosahedron");
 }
 
 void PrimitivesGeometriquesGui::selectSphereType()

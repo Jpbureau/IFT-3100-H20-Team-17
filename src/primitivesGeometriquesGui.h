@@ -33,7 +33,7 @@ private:
 	ofxButton drawHexahedronType;
 	ofxButton drawOctahedronType;
 	ofxButton drawDodecahedronType;
-	ofxButton drawIsocahedronType;
+	ofxButton drawIcosahedronType;
 	ofxButton drawSphereType;
 	
 	ofxButton drawEllipseType;
@@ -43,7 +43,6 @@ private:
 	ofxButton drawConeType;
 
 	ofParameter<float> platonSolidRadiusSlider;
-	ofParameter<float> otherShapesRadiusSlider;
 	ofParameter<float> heightSlider;
 	ofParameter<float> widthSlider;
 	ofParameter<float> depthSlider;
@@ -58,7 +57,7 @@ private:
 	void selectHexahedronType();
 	void selectOctahedronType();
 	void selectDodecahedronType();
-	void selectIsocahedronType();
+	void selectIcosahedronType();
 	void selectSphereType();
 
 	void selectEllipseType();

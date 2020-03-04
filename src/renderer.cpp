@@ -26,6 +26,10 @@ void Renderer::setup()
 	const int PRIMITIVES_GEOMETRIQUES_GUI_POSITION_X = ofGetWidth() - 210;
 	const int PRIMITIVES_GEOMETRIQUES_GUI_POSITION_Y = 100;
 	primitivesGeometriquesGui.setup(PRIMITIVES_GEOMETRIQUES_GUI_POSITION_X, PRIMITIVES_GEOMETRIQUES_GUI_POSITION_Y);
+
+	const int CAMERA_GUI_POSITION_X = ofGetWidth() - 210;
+	const int CAMERA_GUI_POSITION_Y = 500;
+	cameraGui.setup(CAMERA_GUI_POSITION_X, CAMERA_GUI_POSITION_Y);
 }
 
 void Renderer::update()
@@ -44,6 +48,7 @@ void Renderer::update()
 		//colorHistogram.update();
 	}
 	primitivesGeometriquesGui.update();
+	cameraGui.update();
 }
 
 void Renderer::draw()
@@ -67,6 +72,7 @@ void Renderer::draw()
 	
 	colorHistogramGui.draw();
 	primitivesGeometriquesGui.draw();
+	cameraGui.draw();
 }
 
 void Renderer::mousePressed(int x, int y)
