@@ -88,10 +88,10 @@ void Renderer::draw()
 	colorHistogramGui.draw();
 
 	//J'ajoute mon code ici
-	//fboTexture3D.begin();
+	fboTexture3D.begin();
 	//drawBoiteDelimitation(ofPoint(64, 64, 0), 64, 64, 64);
-
-	//fboTexture3D.end();
+	teapot.draw(OF_MESH_FILL);
+	fboTexture3D.end();
 
 	// dessiner une instance du teapot
 	/*switch (mesh_render_mode)
