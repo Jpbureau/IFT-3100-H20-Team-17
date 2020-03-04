@@ -27,8 +27,6 @@ public:
 	void selectSelectionType();
 	void deleteSelectedShapes();
 
-	void selectShape(int x, int y);
-
 	void add_vector_shape();
 
 	void updateColors(ofColor stroke, ofColor fill);
@@ -58,8 +56,6 @@ private:
 
 	void setStrokeColor(ofColor color);
 	void setFillColor(ofColor color);
-
-	void drawSelectionRectangles();
 
 	bool isMouseOutsideCanvas();
 
