@@ -11,11 +11,20 @@ public:
 	void setup();
 	void draw();
 	void update();
+	void importModel(ofxAssimpModelLoader& model);
+
+	void updateColors(ofColor color);
 
 private:
 	const int drawingCanvasSize = 600;
-	int drawingCanvasX = 225;
+	int drawingCanvasX = 235 + drawingCanvasSize;
 	int drawingCanvasY = ofGetHeight() / 3.5;
+	int centerX = drawingCanvasX + drawingCanvasSize / 2;
+	int centerY = drawingCanvasY + drawingCanvasSize / 2;
+
+	float modelScale = 1.5f;
+
+	bool use_rotation = false;
 
 	ofFbo fboTexture3D;
 
@@ -24,6 +33,9 @@ private:
 
 	ofxAssimpModelLoader model;
 	ofMesh mesh;
+	ofShader shader;
+	ofLight light;
+	ofColor modelColor;
 
 	ofPoint pointSupGaucheBoite;
 	int largeurModel3D;

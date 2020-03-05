@@ -3,6 +3,7 @@
 #include "ofxGui.h"
 #include "textureDrawer3D.h"
 #include "fileManagerGui.h"
+#include "ofxAssimpModelLoader.h"
 
 class Canvas3DGui
 {
@@ -16,12 +17,13 @@ public:
 private:
 	ofxPanel optionsPanel;
 	ofxButton boiteDelimButton;
-	ofxButton importModel;
+	ofxButton importModelButton;
 
 	TextureDrawer3D& textureDrawer3D;
 	FileManager& fileManager;
 
+	ofParameter<ofColor> modelColorPicker;
 
 	void boiteDelimButtonClicked();
-
+	void importModelClicked();
 };
