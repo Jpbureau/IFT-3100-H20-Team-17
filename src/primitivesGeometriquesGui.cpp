@@ -91,6 +91,11 @@ void PrimitivesGeometriquesGui::setup(int positionX, int positionY)
 
 void PrimitivesGeometriquesGui::update()
 {
+	textureDrawer3D.updateColors(strokeColorPicker, fillColorPicker);
+	textureDrawer3D.updateCoordinates(xCoordinateSlider, yCoordinateSlider, zCoordinateSlider);
+	textureDrawer3D.updateRadius(platonSolidRadiusSlider);
+	textureDrawer3D.updateDimensions(widthSlider, heightSlider, depthSlider);
+	textureDrawer3D.updateNbSides(nbSidesSlider);
 
 }
 
@@ -101,84 +106,93 @@ void PrimitivesGeometriquesGui::draw()
 
 void PrimitivesGeometriquesGui::selectTetrahedronType()
 {
-	//textureDrawer.selectTetrahedronType();
 	selectedType.set("Tetrahedron");
+	textureDrawer3D.selectTetrahedronType();
 }
 
 void PrimitivesGeometriquesGui::selectHexahedronType()
 {
-	//textureDrawer.selectHexahedronType();
+	
 	selectedType.set("Hexahedron");
+	textureDrawer3D.selectHexahedronType();
 }
 
 void PrimitivesGeometriquesGui::selectOctahedronType()
 {
-	//textureDrawer.selectOctahedronType();
+	
 	selectedType.set("Octahedron");
+	textureDrawer3D.selectOctahedronType();
 }
 
 void PrimitivesGeometriquesGui::selectDodecahedronType()
 {
-	//textureDrawer.selectDodecahedronType();
+	
 	selectedType.set("Dodecahedron");
+	textureDrawer3D.selectDodecahedronType();
 }
 
 void PrimitivesGeometriquesGui::selectIcosahedronType()
 {
-	//textureDrawer.selectIcosahedronType();
+	
 	selectedType.set("Icosahedron");
+	textureDrawer3D.selectIcosahedronType();
 }
 
 void PrimitivesGeometriquesGui::selectSphereType()
 {
-	//textureDrawer.selectSphereType();
+	
 	selectedType.set("Sphere");
+	textureDrawer3D.selectSphereType();
 }
 
 void PrimitivesGeometriquesGui::selectEllipseType()
 {
-	//textureDrawer.selectEllipseType();
+	
 	selectedType.set("Ellipse");
+	textureDrawer3D.selectEllipseType();
 }
 
 void PrimitivesGeometriquesGui::selectPolygonType()
 {
-	//textureDrawer.selectPolygonType();
+	
 	selectedType.set("Polygone");
+	textureDrawer3D.selectPolygonType();
 }
 
 void PrimitivesGeometriquesGui::selectCylinderType()
 {
-	//textureDrawer.selectCylinderType();
+	
 	selectedType.set("Cylindre");
+	textureDrawer3D.selectCylinderType();
 }
 
 void PrimitivesGeometriquesGui::selectRectangleType()
 {
-	//textureDrawer.selectRectangleType();
+	
 	selectedType.set("Rectangle");
+	textureDrawer3D.selectRectangleType();
 }
 
 void PrimitivesGeometriquesGui::selectConeType()
 {
-	//textureDrawer.selectConeType();
+	
 	selectedType.set("Cone");
+	textureDrawer3D.selectConeType();
 }
 
 void PrimitivesGeometriquesGui::selectAction()
 {
-	//textureDrawer.selectSelectionType();
 	selectedType.set("Selection");
 }
 
 void PrimitivesGeometriquesGui::deleteAction()
 {
-	//textureDrawer.deleteSelectedShapes();
+	
 }
 
 void PrimitivesGeometriquesGui::deselectAction()
 {
-	//textureDrawer.resetSelection();
+	
 }
 
 void PrimitivesGeometriquesGui::placeObjectAction()

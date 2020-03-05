@@ -10,12 +10,71 @@ void TextureDrawer3D::setup()
 	teapot.loadModel("teapot.obj");
 	//vbo = meshHelper.vbo();
 	mesh = teapot.getMesh(0);
+
+	objet3dTest1.type = GeometricRegularPrimitiveType::none;
+	objet3dTest2.type = GeometricOtherPrimitiveType::none;
+	geometricOtherPrimitiveSelectedType = GeometricOtherPrimitiveType::none;
+	geometricRegularPrimitiveSelectedType = GeometricRegularPrimitiveType::none;
 }
 
 void TextureDrawer3D::update()
 {
+	//On pourrait aussi potentiellement l'activer seulement au clique d'un bouton
+	if (objet3dTest1.selected) 
+	{
+		objet3dTest1.radius = geometricPrimitiveRadius;
+
+		objet3dTest1.position[0] = geometricPrimitiveXCoordinate;
+		objet3dTest1.position[1] = geometricPrimitiveYCoordinate;
+		objet3dTest1.position[2] = geometricPrimitiveZCoordinate;
+
+		objet3dTest1.fill_color[0] = geometricPrimitiveFillColor_r;
+		objet3dTest1.fill_color[1] = geometricPrimitiveFillColor_g;
+		objet3dTest1.fill_color[2] = geometricPrimitiveFillColor_b;
+		objet3dTest1.fill_color[3] = geometricPrimitiveFillColor_a;
+
+		objet3dTest1.stroke_color[0] = geometricPrimitiveStrokeColor_r;
+		objet3dTest1.stroke_color[1] = geometricPrimitiveStrokeColor_g;
+		objet3dTest1.stroke_color[2] = geometricPrimitiveStrokeColor_b;
+		objet3dTest1.stroke_color[3] = geometricPrimitiveStrokeColor_a;
+	}
+
+	if (objet3dTest2.selected)
+	{
+		objet3dTest2.nbSides = geometricPrimitiveNbSides;
+
+		objet3dTest2.position[0] = geometricPrimitiveXCoordinate;
+		objet3dTest2.position[1] = geometricPrimitiveYCoordinate;
+		objet3dTest2.position[2] = geometricPrimitiveZCoordinate;
+
+		objet3dTest2.heigth = geometricPrimitiveHeight;
+		objet3dTest2.width = geometricPrimitiveWidth;
+		objet3dTest2.depth = geometricPrimitiveDepth;
+
+		objet3dTest2.fill_color[0] = geometricPrimitiveFillColor_r;
+		objet3dTest2.fill_color[1] = geometricPrimitiveFillColor_g;
+		objet3dTest2.fill_color[2] = geometricPrimitiveFillColor_b;
+		objet3dTest2.fill_color[3] = geometricPrimitiveFillColor_a;
+
+		objet3dTest2.stroke_color[0] = geometricPrimitiveStrokeColor_r;
+		objet3dTest2.stroke_color[1] = geometricPrimitiveStrokeColor_g;
+		objet3dTest2.stroke_color[2] = geometricPrimitiveStrokeColor_b;
+		objet3dTest2.stroke_color[3] = geometricPrimitiveStrokeColor_a;
+	}
 
 }
+
+void TextureDrawer3D::addGeometricRegularPrimitive()
+{
+	
+}
+
+void TextureDrawer3D::addGeometricOtherPrimitive()
+{
+
+}
+
+
 
 void TextureDrawer3D::draw()
 {
@@ -150,7 +209,7 @@ void TextureDrawer3D::calculerBoiteDelimitation()
 
 void TextureDrawer3D::draw_tetrahedron() const
 {
-
+	
 }
 
 void TextureDrawer3D::draw_hexahedron() const
@@ -201,4 +260,98 @@ void TextureDrawer3D::draw_rectangle() const
 void TextureDrawer3D::draw_cone() const
 {
 
+}
+
+
+void TextureDrawer3D::updateColors(ofColor stroke, ofColor fill)
+{
+	geometricPrimitiveStrokeColor_r = stroke.r;
+	geometricPrimitiveStrokeColor_g = stroke.g;
+	geometricPrimitiveStrokeColor_b = stroke.b;
+	geometricPrimitiveStrokeColor_a = stroke.a;
+
+	geometricPrimitiveStrokeColor_r = fill.r;
+	geometricPrimitiveStrokeColor_g = fill.g;
+	geometricPrimitiveStrokeColor_b = fill.b;
+	geometricPrimitiveStrokeColor_a = fill.a;
+}
+
+void TextureDrawer3D::updateCoordinates(GLfloat x, GLfloat y, GLfloat z)
+{
+	geometricPrimitiveXCoordinate = x;
+	geometricPrimitiveYCoordinate = y;
+	geometricPrimitiveZCoordinate = z;
+}
+
+void TextureDrawer3D::updateRadius(float newRadius)
+{
+	geometricPrimitiveRadius = newRadius;
+}
+
+void TextureDrawer3D::updateDimensions(GLfloat width, GLfloat height, GLfloat depth)
+{
+	geometricPrimitiveHeight = width;
+	geometricPrimitiveWidth = height;
+	geometricPrimitiveDepth = depth;
+}
+
+void TextureDrawer3D::updateNbSides(GLubyte nbSides)
+{
+	geometricPrimitiveNbSides = nbSides;
+}
+
+void TextureDrawer3D::selectTetrahedronType()
+{
+	geometricOtherPrimitiveSelectedType = GeometricOtherPrimitiveType::none;
+	geometricRegularPrimitiveSelectedType = GeometricRegularPrimitiveType::tetrahedron;
+}
+void TextureDrawer3D::selectHexahedronType()
+{
+	geometricOtherPrimitiveSelectedType = GeometricOtherPrimitiveType::none;
+	geometricRegularPrimitiveSelectedType = GeometricRegularPrimitiveType::hexahedron;
+}
+void TextureDrawer3D::selectOctahedronType()
+{
+	geometricOtherPrimitiveSelectedType = GeometricOtherPrimitiveType::none;
+	geometricRegularPrimitiveSelectedType = GeometricRegularPrimitiveType::octahedron;
+}
+void TextureDrawer3D::selectDodecahedronType()
+{
+	geometricOtherPrimitiveSelectedType = GeometricOtherPrimitiveType::none;
+	geometricRegularPrimitiveSelectedType = GeometricRegularPrimitiveType::dodecahedron;
+}
+void TextureDrawer3D::selectIcosahedronType()
+{
+	geometricOtherPrimitiveSelectedType = GeometricOtherPrimitiveType::none;
+	geometricRegularPrimitiveSelectedType = GeometricRegularPrimitiveType::icosahedron;
+}
+void TextureDrawer3D::selectSphereType()
+{
+	geometricOtherPrimitiveSelectedType = GeometricOtherPrimitiveType::none;
+	geometricRegularPrimitiveSelectedType = GeometricRegularPrimitiveType::sphere;
+}
+void TextureDrawer3D::selectEllipseType()
+{
+	geometricOtherPrimitiveSelectedType = GeometricOtherPrimitiveType::ellipse;
+	geometricRegularPrimitiveSelectedType = GeometricRegularPrimitiveType::none;
+}
+void TextureDrawer3D::selectPolygonType()
+{
+	geometricOtherPrimitiveSelectedType = GeometricOtherPrimitiveType::polygon;
+	geometricRegularPrimitiveSelectedType = GeometricRegularPrimitiveType::none;
+}
+void TextureDrawer3D::selectCylinderType()
+{
+	geometricOtherPrimitiveSelectedType = GeometricOtherPrimitiveType::cylinder;
+	geometricRegularPrimitiveSelectedType = GeometricRegularPrimitiveType::none;
+}
+void TextureDrawer3D::selectRectangleType()
+{
+	geometricOtherPrimitiveSelectedType = GeometricOtherPrimitiveType::rectangle;
+	geometricRegularPrimitiveSelectedType = GeometricRegularPrimitiveType::none;
+}
+void TextureDrawer3D::selectConeType()
+{
+	geometricOtherPrimitiveSelectedType = GeometricOtherPrimitiveType::cone;
+	geometricRegularPrimitiveSelectedType = GeometricRegularPrimitiveType::none;
 }

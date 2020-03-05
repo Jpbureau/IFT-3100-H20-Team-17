@@ -44,14 +44,14 @@ private:
 	ofxButton drawRectangleType;
 	ofxButton drawConeType;
 
-	ofParameter<float> platonSolidRadiusSlider;
-	ofParameter<float> heightSlider;
-	ofParameter<float> widthSlider;
-	ofParameter<float> depthSlider;
+	ofParameter<GLfloat> platonSolidRadiusSlider;
+	ofParameter<GLfloat> heightSlider;
+	ofParameter<GLfloat> widthSlider;
+	ofParameter<GLfloat> depthSlider;
 
-	ofParameter<float> xCoordinateSlider;
-	ofParameter<float> yCoordinateSlider;
-	ofParameter<float> zCoordinateSlider;
+	ofParameter<GLfloat> xCoordinateSlider;
+	ofParameter<GLfloat> yCoordinateSlider;
+	ofParameter<GLfloat> zCoordinateSlider;
 
 	ofParameter<int> nbSidesSlider;
 
