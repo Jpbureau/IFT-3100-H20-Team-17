@@ -20,6 +20,8 @@ public:
 	virtual void unselect();
 	virtual bool isSelected();
 
+	virtual ofxBaseGui* getGuiRepresentation();
+
 	void addChild(GraphPrimitive* child);
 	void selectChildsAtPoint(int x, int y);
 	void deleteSelectedPrimitives();
@@ -27,4 +29,9 @@ public:
 
 protected:
 	std::list<std::shared_ptr<GraphPrimitive>> children;
+
+private:
+	std::unique_ptr<ofxGuiGroup> representation = std::make_unique<ofxGuiGroup>();
+
+	void updateRepresentation();
 };

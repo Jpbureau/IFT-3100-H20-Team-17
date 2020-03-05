@@ -8,6 +8,8 @@ void TextureDrawer::setup(int drawingCanvasX, int drawingCanvasY, int drawingCan
 	this->drawingCanvasX = drawingCanvasX;
 	this->drawingCanvasY = drawingCanvasY;
 	this->drawingCanvasSize = drawingCanvasSize;
+
+	sceneGraph.setup();
 }
 
 void TextureDrawer::draw()
@@ -17,6 +19,7 @@ void TextureDrawer::draw()
 	ofDrawRectangle(drawingCanvasX, drawingCanvasY, drawingCanvasSize, drawingCanvasSize);
 
 	root.draw();
+	sceneGraph.draw();
 }
 
 void TextureDrawer::update()

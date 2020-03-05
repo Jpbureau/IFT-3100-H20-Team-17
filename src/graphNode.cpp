@@ -2,11 +2,14 @@
 
 GraphNode::GraphNode()
 {
+	representation->setup("Group");
 }
 
 GraphNode::GraphNode(std::list<std::shared_ptr<GraphPrimitive>> children):
 	children(children)
 {
+	representation->setup("Group");
+	updateRepresentation();
 }
 
 void GraphNode::update()
@@ -58,9 +61,15 @@ bool GraphNode::isSelected()
 	return selected;
 }
 
+ofxBaseGui* GraphNode::getGuiRepresentation()
+{
+	return representation.get();
+}
+
 void GraphNode::addChild(GraphPrimitive* child)
 {
 	children.push_back(std::shared_ptr<GraphPrimitive>(child));
+	representation->add((child->getGuiRepresentation()));
 }
 
 void GraphNode::selectChildsAtPoint(int x, int y)
@@ -82,6 +91,7 @@ void GraphNode::selectChildsAtPoint(int x, int y)
 void GraphNode::deleteSelectedPrimitives()
 {
 	children.remove_if([](std::shared_ptr<GraphPrimitive>& child) { return child->isSelected(); });
+	updateRepresentation();
 }
 
 void GraphNode::createGroupWithSelectedPrimitives()
@@ -97,4 +107,15 @@ void GraphNode::createGroupWithSelectedPrimitives()
 	children.remove_if([](std::shared_ptr<GraphPrimitive>& child) { return child->isSelected(); });
 
 	addChild(new GraphNode(selectedPrimitives));
+	
+	updateRepresentation();
+}
+
+void GraphNode::updateRepresentation()
+{
+	representation->clear();
+	
+	for (auto& child : children) {
+		representation->add(child->getGuiRepresentation());
+	}
 }

@@ -1,8 +1,9 @@
 #include "rectangle.h"
 
 Rectangle2D::Rectangle2D(glm::vec2 p1, glm::vec2 p2, float strokeWidth, ofColor fillColor, ofColor strokeColor):
-	p1(p1), p2(p2), strokeWidth(strokeWidth), fillColor(fillColor), strokeColor(strokeColor), selected(false)
+	p1(p1), p2(p2), strokeWidth(strokeWidth), fillColor(fillColor), strokeColor(strokeColor), selected("rectangle", false)
 {
+	representation->setup(selected);
 }
 
 void Rectangle2D::draw()
@@ -58,6 +59,11 @@ void Rectangle2D::unselect()
 bool Rectangle2D::isSelected()
 {
 	return selected;
+}
+
+ofxBaseGui* Rectangle2D::getGuiRepresentation()
+{
+	return representation.get();
 }
 
 void Rectangle2D::drawSelectionRectangle()

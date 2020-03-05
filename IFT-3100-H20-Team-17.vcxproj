@@ -194,6 +194,7 @@
     <ClCompile Include="src\primitivesGeometriquesGui.cpp" />
     <ClCompile Include="src\recorder.cpp" />
     <ClCompile Include="src\renderer.cpp" />
+    <ClCompile Include="src\sceneGraph2dGui.cpp" />
     <ClCompile Include="src\Shapes2D\ellipse.cpp" />
     <ClCompile Include="src\Shapes2D\line.cpp" />
     <ClCompile Include="src\Shapes2D\point.cpp" />
@@ -231,6 +232,7 @@
     <ClInclude Include="src\primitivesGeometriquesGui.h" />
     <ClInclude Include="src\recorder.h" />
     <ClInclude Include="src\renderer.h" />
+    <ClInclude Include="src\sceneGraph2dGui.h" />
     <ClInclude Include="src\Shapes2D\ellipse.h" />
     <ClInclude Include="src\Shapes2D\line.h" />
     <ClInclude Include="src\Shapes2D\point.h" />

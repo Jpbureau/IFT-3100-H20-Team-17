@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ofxGui.h"
+
 class GraphPrimitive {
 public:
 	virtual void update() = 0;
@@ -10,4 +12,6 @@ public:
 	virtual void select() = 0;
 	virtual void unselect() = 0;
 	virtual bool isSelected() = 0;
+
+	virtual ofxBaseGui* getGuiRepresentation() = 0;
 };

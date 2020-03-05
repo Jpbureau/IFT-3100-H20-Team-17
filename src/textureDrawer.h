@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "graphNode.h"
 #include "Shapes2D/shapeFactory.h"
+#include "sceneGraph2dGui.h"
 
 class TextureDrawer
 {
@@ -41,6 +42,7 @@ public:
 private:
 	GraphNode root;
 	ShapeFactory shapeFactory;
+	SceneGraph2dGui sceneGraph = SceneGraph2dGui(root);
 
 	int drawingCanvasSize;
 	int drawingCanvasX;

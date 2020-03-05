@@ -4,11 +4,11 @@ GraphPrimitive * ShapeFactory::createShape(ShapeType type, glm::vec2 p1, glm::ve
 {
 	switch (type)
 	{
-	case ShapeType::point:
-		return new Point(p2, radius, strokeColor);
+	//case ShapeType::point:
+	//	return new Point(p2, radius, strokeColor);
 
-	case ShapeType::line:
-		return new Line(p1, p2, strokeWidth, strokeColor);
+	//case ShapeType::line:
+	//	return new Line(p1, p2, strokeWidth, strokeColor);
 
 	case ShapeType::rectangle:
 		return new Rectangle2D(p1, p2, strokeWidth, fillColor, strokeColor);
@@ -17,12 +17,12 @@ GraphPrimitive * ShapeFactory::createShape(ShapeType type, glm::vec2 p1, glm::ve
 		p2 = squaricize(p1, p2);
 		return new Rectangle2D(p1, p2, strokeWidth, fillColor, strokeColor);
 
-	case ShapeType::ellipse:
-		return new Ellipse2D(p1, p2, strokeWidth, fillColor, strokeColor);
+	//case ShapeType::ellipse:
+	//	return new Ellipse2D(p1, p2, strokeWidth, fillColor, strokeColor);
 
-	case ShapeType::circle:
-		p2 = squaricize(p1, p2);
-		return new Ellipse2D(p1, p2, strokeWidth, fillColor, strokeColor);
+	//case ShapeType::circle:
+	//	p2 = squaricize(p1, p2);
+	//	return new Ellipse2D(p1, p2, strokeWidth, fillColor, strokeColor);
 	default:
 		throw exception("Illegal Shape Type");
 	}
