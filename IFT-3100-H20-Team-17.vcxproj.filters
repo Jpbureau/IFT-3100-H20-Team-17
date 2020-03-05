@@ -55,7 +55,7 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp">
       <Filter>addons\ofxGui\src</Filter>
     </ClCompile>
-    <ClCompile Include="src\canvasGui.cpp">
+        <ClCompile Include="src\canvasGui.cpp">
       <Filter>src\Canvas2D</Filter>
     </ClCompile>
     <ClCompile Include="src\textureDrawer.cpp">
@@ -100,6 +100,18 @@
     <ClCompile Include="src\Shapes2D\ellipse.cpp">
       <Filter>src\Canvas2D\Shapes2D</Filter>
     </ClCompile>
+    <ClCompile Include="src\canvas3DGui.cpp">
+      <Filter>src\Canvas3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\textureDrawer3D.cpp">
+      <Filter>src\Canvas3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cameraGui.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\primitivesGeometriquesGui.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -141,7 +153,7 @@
     <Filter Include="addons\ofxGui\src">
       <UniqueIdentifier>{645E9533-4DCD-6179-1CDF-CB65}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Canvas2D">
+        <Filter Include="src\Canvas2D">
       <UniqueIdentifier>{b5690d6c-f3f3-4ee5-8daa-29a20eb4dae7}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\MainRenderer">
@@ -158,6 +170,9 @@
     </Filter>
     <Filter Include="src\Canvas2D\Shapes2D">
       <UniqueIdentifier>{1313727b-b606-4d34-8126-f5ed670ca683}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Canvas3D">
+      <UniqueIdentifier>{3c70a0e4-84aa-4abd-a38d-042a4862f517}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -388,6 +403,18 @@
     </ClInclude>
     <ClInclude Include="src\Shapes2D\ellipse.h">
       <Filter>src\Canvas2D\Shapes2D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\canvas3DGui.h">
+      <Filter>src\Canvas3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\textureDrawer3D.h">
+      <Filter>src\Canvas3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cameraGui.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\primitivesGeometriquesGui.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
