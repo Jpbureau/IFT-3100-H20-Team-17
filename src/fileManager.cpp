@@ -30,3 +30,15 @@ void FileManager::saveImage() const
 		ofLog() << "<export image: " << path << ">";
 	}
 }
+
+ofxAssimpModelLoader FileManager::importModel() const
+{
+	ofxAssimpModelLoader model;
+	ofFileDialogResult result = ofSystemLoadDialog("Load file");
+	if (result.bSuccess) {
+		string path = result.getPath();
+		cout << path << endl;
+		model.loadModel(path);
+	}
+	return model;
+}

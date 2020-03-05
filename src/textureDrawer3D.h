@@ -22,7 +22,7 @@ private:
 	void calculerBoiteDelimitation();
 	void drawBoiteDelimitation(ofPoint point, float width, float height, float depth);
 
-	ofxAssimpModelLoader teapot;
+	ofxAssimpModelLoader model;
 	ofMesh mesh;
 
 	ofPoint pointSupGaucheBoite;

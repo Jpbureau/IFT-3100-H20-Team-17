@@ -7,9 +7,9 @@ void TextureDrawer3D::setup()
 	ofClear(255, 255);
 	fboTexture3D.end();
 
-	teapot.loadModel("teapot.obj");
+	model.loadModel("teapot.obj");
 	//vbo = meshHelper.vbo();
-	mesh = teapot.getMesh(0);
+	mesh = model.getMesh(0);
 }
 
 void TextureDrawer3D::update()

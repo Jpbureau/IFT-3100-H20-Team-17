@@ -24,13 +24,14 @@ private:
 
 	ofImage image;
 
-	FileManagerGui fileManagerGui;
+	FileManager fileManager;
+	FileManagerGui fileManagerGui= FileManagerGui(fileManager);
 
 	TextureDrawer textureDrawer;
 	CanvasGui canvas2dGui = CanvasGui(textureDrawer);
 
 	TextureDrawer3D textureDrawer3D;
-	Canvas3DGui canvas3DGui = Canvas3DGui();
+	Canvas3DGui canvas3DGui = Canvas3DGui(textureDrawer3D);
 
 	ColorHistogram colorHistogram;
 	ColorHistogramGui colorHistogramGui = ColorHistogramGui(colorHistogram, textureDrawer);
