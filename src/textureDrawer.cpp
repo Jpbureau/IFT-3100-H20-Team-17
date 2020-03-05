@@ -181,8 +181,39 @@ void TextureDrawer::selectSelectionType()
 	selectedType = VectorPrimitiveType::selection;
 }
 
-void TextureDrawer::selectShape(int x, int y)
+void TextureDrawer::selectShape(/*int x, int y*/)
 {
+	int pressedX;
+	int releasedX;
+	int pressedY;
+	int releasedY;
+	bool isAnyShapeSelected = false;
+
+	int start_selectX = min(mouse_pressed_posX, mouse_current_posX);
+	int start_selectY = min(mouse_pressed_posY, mouse_current_posY);
+
+	int stop_selectX = max(mouse_pressed_posX, mouse_current_posX);
+	int stop_selectY = max(mouse_pressed_posY, mouse_current_posY);
+
+	for (int index = 0; index < count; index++)
+	{
+		int shape_pos1X = shapes[index].position1[0];
+		int shape_pos1Y = shapes[index].position1[1];
+		int shape_pos2X = shapes[index].position2[0];
+		int shape_pos2Y = shapes[index].position2[1];
+
+		if (isShapeInSelection(start_selectX, start_selectY, stop_selectX, stop_selectY, shape_pos1X, shape_pos1Y, shape_pos2X, shape_pos2Y))
+		{
+			shapes[index].selected = true;
+			isAnyShapeSelected = true;
+		}
+		
+	}
+	if (!isAnyShapeSelected) {
+		resetSelection();
+	}
+
+	/*
 	int pressedX;
 	int releasedX;
 	int pressedY;
@@ -209,7 +240,7 @@ void TextureDrawer::selectShape(int x, int y)
 
 				break;
 
-			default: 
+			default:
 				//on doit inverser les coordonnées si le clique est plus grand que le release afin d'uniformiser la comparaison plus bas
 				if (releasedX < pressedX) {
 					temp = releasedX;
@@ -235,6 +266,7 @@ void TextureDrawer::selectShape(int x, int y)
 			resetSelection();
 		}
 	}
+	*/
 }
 
 
@@ -504,6 +536,14 @@ bool TextureDrawer::isShapeOutsideCanvas(int x1, int x2, int y1, int y2)
 		y2 < drawingCanvasY || y2 > maxValidY;
 }
 
+bool TextureDrawer::isShapeInSelection(int start_posX, int start_posY, int stop_posX, int stop_posY, int shape_pos1X, int shape_pos1Y, int shape_pos2X, int shape_pos2Y)
+{
+	if (shape_pos1X >= start_posX && shape_pos1X <= stop_posX && shape_pos2X >= start_posX && shape_pos2X <= stop_posX &&
+		shape_pos1Y >= start_posY && shape_pos1Y <= stop_posY && shape_pos2Y >= start_posY && shape_pos2Y <= stop_posY)
+		return true;
+	else return false;
+}
+
 void TextureDrawer::resetSelection()
 {
 	for (int i = 0; i < head; ++i) {
@@ -531,12 +571,17 @@ void TextureDrawer::mousePressed(ofMouseEventArgs & mouse)
 {
 	mouse_pressed_posX = mouse.x;
 	mouse_pressed_posY = mouse.y;
-	selectShape(mouse.x, mouse.y);
+	//selectShape(mouse.x, mouse.y);
 }
 
 void TextureDrawer::mouseReleased(ofMouseEventArgs & mouse)
 {
 	mouse_current_posX = mouse.x;
 	mouse_current_posY = mouse.y;
+
+	if (selectedType == VectorPrimitiveType::selection) {
+		selectShape();
+	}
+	
 	add_vector_shape();
 }

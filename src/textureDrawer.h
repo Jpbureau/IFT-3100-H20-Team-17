@@ -32,6 +32,7 @@ public:
 	int mouse_current_posY;
 
 	bool isMouseInsideCanvas(int x, int y);
+	bool isShapeInSelection(int start_posX, int start_posY, int stop_posX, int stop_posY, int shape_pos1X, int shape_pos1Y, int shape_pos2X, int shape_pos2Y);
 
 	void selectPointType();
 	void selectLineType();
@@ -42,7 +43,7 @@ public:
 	void selectSelectionType();
 	void deleteSelectedShapes();
 
-	void selectShape(int x, int y);
+	void selectShape(/*int x, int y*/);
 
 	void add_vector_shape();
 
