@@ -26,6 +26,7 @@ public:
 	void selectCircleType();
 	void selectSelectionType();
 	void deleteSelectedShapes();
+	void groupSelectedShapes();
 
 	void add_vector_shape();
 

@@ -144,6 +144,11 @@ void TextureDrawer::deleteSelectedShapes()
 	root.deleteSelectedPrimitives();
 }
 
+void TextureDrawer::groupSelectedShapes()
+{
+	root.createGroupWithSelectedPrimitives();
+}
+
 void TextureDrawer::mousePressed(ofMouseEventArgs & mouse)
 {
 	mouse_pressed_posX = mouse.x;
