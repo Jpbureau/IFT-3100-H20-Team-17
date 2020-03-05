@@ -1,17 +1,19 @@
 #pragma once
 
 #include "ofxGui.h"
-#include "textureDrawer.h"
+#include "textureDrawer3D.h"
 
 class PrimitivesGeometriquesGui
 {
 public:
-	PrimitivesGeometriquesGui();
+	PrimitivesGeometriquesGui(TextureDrawer3D& drawer);
 
 	void setup(int positionX, int positionY);
 	void update();
 	void draw();
 private:
+	TextureDrawer3D& textureDrawer3D;
+
 	ofxPanel primitivesGeometriquesPanel;
 
 	ofxGuiGroup optionsGeneral;

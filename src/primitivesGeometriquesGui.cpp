@@ -1,6 +1,7 @@
 #include "primitivesGeometriquesGui.h"
 
-PrimitivesGeometriquesGui::PrimitivesGeometriquesGui()
+PrimitivesGeometriquesGui::PrimitivesGeometriquesGui(TextureDrawer3D& drawer) :
+	textureDrawer3D(drawer)
 {
 
 }

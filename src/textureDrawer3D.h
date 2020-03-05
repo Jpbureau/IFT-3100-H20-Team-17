@@ -5,6 +5,34 @@
 #include "ofxAssimpModelLoader.h"
 #include <vector>
 
+enum class GeometricRegularPrimitiveType { none, tetrahedron, hexahedron, octahedron, dodecahedron, icosahedron, sphere };
+enum class GeometricOtherPrimitiveType { none, ellipse, polygon, cylinder, rectangle, cone};
+
+struct VectorRegularGeometricPrimitive
+{
+	GeometricRegularPrimitiveType type;
+	GLfloat                position[3];
+	float                  stroke_width;
+	GLubyte				   stroke_color[4];
+	GLubyte                fill_color[4];
+	float				   radius;
+	bool				   selected;
+};
+
+struct VectorOtherGeometricPrimitive
+{
+	GeometricOtherPrimitiveType type;
+	GLfloat                position[3];
+	float                  stroke_width;
+	GLubyte				   stroke_color[4];
+	GLubyte                fill_color[4];
+	GLfloat				   heigth;
+	GLfloat				   width;
+	GLfloat				   depth;
+	GLubyte                nbSides;
+	bool				   selected;
+};
+
 class TextureDrawer3D
 {
 public:
@@ -19,6 +47,12 @@ private:
 
 	ofFbo fboTexture3D;
 
+	VectorRegularGeometricPrimitive objet3dTest1;
+	GeometricRegularPrimitiveType selectedTypeTest1;
+
+	VectorOtherGeometricPrimitive objet3dTest2;
+	GeometricOtherPrimitiveType selectedTypeTest2;
+
 	void calculerBoiteDelimitation();
 	void drawBoiteDelimitation(ofPoint point, float width, float height, float depth);
 
@@ -29,4 +63,17 @@ private:
 	int largeurModel3D;
 	int hauteurModel3D;
 	int profondeurModel3D;
+
+	void draw_tetrahedron() const;
+	void draw_hexahedron() const;
+	void draw_octahedron() const;
+	void draw_dodecahedron() const;
+	void draw_icosahedron() const;
+	void draw_sphere() const;
+	void draw_ellipse() const;
+	void draw_polygon() const;
+	void draw_cylinder() const;
+	void draw_rectangle() const;
+	void draw_cone() const;
+
 };
