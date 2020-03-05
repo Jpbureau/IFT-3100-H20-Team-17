@@ -18,8 +18,8 @@ private:
 	ofxButton boiteDelimButton;
 	ofxButton importModel;
 
-	TextureDrawer3D textureDrawer3D;
-	FileManager fileManager;
+	TextureDrawer3D& textureDrawer3D;
+	FileManager& fileManager;
 
 
 	void boiteDelimButtonClicked();

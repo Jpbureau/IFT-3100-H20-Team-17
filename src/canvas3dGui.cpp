@@ -1,6 +1,6 @@
 #include "canvas3DGui.h"
 
-Canvas3DGui::Canvas3DGui(TextureDrawer3D & drawer, FileManager& manager) : textureDrawer3D(drawer), fileManager(manager)
+Canvas3DGui::Canvas3DGui(TextureDrawer3D& drawer, FileManager& manager) : textureDrawer3D(drawer), fileManager(manager)
 {
 }
 
