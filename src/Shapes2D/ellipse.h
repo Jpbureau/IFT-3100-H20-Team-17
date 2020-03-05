@@ -5,7 +5,7 @@
 
 class Ellipse2D : public GraphPrimitive {
 public:
-	Ellipse2D(glm::vec2 p1, glm::vec2 p2, float strokeWidth, ofColor fillColor, ofColor strokeColor);
+	Ellipse2D(glm::vec2 p1, glm::vec2 p2, float strokeWidth, ofColor fillColor, ofColor strokeColor, string name);
 
 	virtual void draw();
 	virtual void update();

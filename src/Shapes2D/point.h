@@ -5,7 +5,7 @@
 
 class Point : public GraphPrimitive {
 public:
-	Point(glm::vec2 position, float radius, ofColor color);
+	Point(glm::vec2 position, float radius, ofColor color, string name);
 
 	virtual void draw();
 	virtual void update();

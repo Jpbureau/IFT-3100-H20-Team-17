@@ -1,7 +1,7 @@
 #include "rectangle.h"
 
-Rectangle2D::Rectangle2D(glm::vec2 p1, glm::vec2 p2, float strokeWidth, ofColor fillColor, ofColor strokeColor):
-	p1(p1), p2(p2), strokeWidth(strokeWidth), fillColor(fillColor), strokeColor(strokeColor), selected("rectangle", false)
+Rectangle2D::Rectangle2D(glm::vec2 p1, glm::vec2 p2, float strokeWidth, ofColor fillColor, ofColor strokeColor, string name):
+	p1(p1), p2(p2), strokeWidth(strokeWidth), fillColor(fillColor), strokeColor(strokeColor), selected(name, false)
 {
 	representation->setup(selected);
 }

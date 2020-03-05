@@ -1,7 +1,7 @@
 #include "point.h"
 
-Point::Point(glm::vec2 position, float radius, ofColor color) :
-	position(position), radius(radius), color(color), selected("Point", false)
+Point::Point(glm::vec2 position, float radius, ofColor color, string name) :
+	position(position), radius(radius), color(color), selected(name, false)
 {
 	representation->setup(selected);
 }

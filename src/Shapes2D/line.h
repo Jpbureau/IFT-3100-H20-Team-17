@@ -5,7 +5,7 @@
 
 class Line : public GraphPrimitive {
 public:
-	Line(glm::vec2 p1, glm::vec2 p2, float lineWidth, ofColor color);
+	Line(glm::vec2 p1, glm::vec2 p2, float lineWidth, ofColor color, string name);
 
 	virtual void draw();
 	virtual void update();
