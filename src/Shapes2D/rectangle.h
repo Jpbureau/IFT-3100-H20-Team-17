@@ -26,6 +26,7 @@ private:
 	ofColor strokeColor;
 
 	ofParameter<bool> selected;
-	std::unique_ptr<ofxToggle> representation = std::make_unique<ofxToggle>();
 	void drawSelectionRectangle();
+
+	std::unique_ptr<ofxToggle> representation = std::make_unique<ofxToggle>();
 };

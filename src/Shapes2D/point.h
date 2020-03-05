@@ -16,11 +16,15 @@ public:
 	virtual void unselect();
 	virtual bool isSelected();
 
+	virtual ofxBaseGui* getGuiRepresentation();
+
 private:
 	glm::vec2 position;
 	float radius;
 	ofColor color;
 
-	bool selected;
+	ofParameter<bool> selected;
 	void drawSelectionRectangle();
+
+	std::unique_ptr<ofxToggle> representation = std::make_unique<ofxToggle>();
 };

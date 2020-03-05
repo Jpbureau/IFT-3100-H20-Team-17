@@ -1,8 +1,9 @@
 #include "ellipse.h"
 
 Ellipse2D::Ellipse2D(glm::vec2 p1, glm::vec2 p2, float strokeWidth, ofColor fillColor, ofColor strokeColor):
-	p1(p1), p2(p2), strokeWidth(strokeWidth), fillColor(fillColor), strokeColor(strokeColor), selected(false)
+	p1(p1), p2(p2), strokeWidth(strokeWidth), fillColor(fillColor), strokeColor(strokeColor), selected("Ellipse", false)
 {
+	representation->setup(selected);
 }
 
 void Ellipse2D::draw()
@@ -65,6 +66,11 @@ void Ellipse2D::unselect()
 bool Ellipse2D::isSelected()
 {
 	return selected;
+}
+
+ofxBaseGui * Ellipse2D::getGuiRepresentation()
+{
+	return representation.get();
 }
 
 void Ellipse2D::drawSelectionRectangle()

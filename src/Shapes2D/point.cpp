@@ -1,8 +1,9 @@
 #include "point.h"
 
 Point::Point(glm::vec2 position, float radius, ofColor color) :
-	position(position), radius(radius), color(color), selected(false)
+	position(position), radius(radius), color(color), selected("Point", false)
 {
+	representation->setup(selected);
 }
 
 void Point::draw()
@@ -42,6 +43,11 @@ void Point::unselect()
 bool Point::isSelected()
 {
 	return selected;
+}
+
+ofxBaseGui * Point::getGuiRepresentation()
+{
+	return representation.get();
 }
 
 void Point::drawSelectionRectangle()

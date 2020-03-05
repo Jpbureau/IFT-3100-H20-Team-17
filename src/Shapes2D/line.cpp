@@ -1,8 +1,9 @@
 #include "line.h"
 
 Line::Line(glm::vec2 p1, glm::vec2 p2, float lineWidth, ofColor color):
-	p1(p1), p2(p2), lineWidth(lineWidth), color(color), selected(false)
+	p1(p1), p2(p2), lineWidth(lineWidth), color(color), selected("Ligne", false)
 {
+	representation->setup(selected);
 }
 
 void Line::draw()
@@ -55,6 +56,11 @@ void Line::unselect()
 bool Line::isSelected()
 {
 	return selected;
+}
+
+ofxBaseGui * Line::getGuiRepresentation()
+{
+	return representation.get();
 }
 
 void Line::drawSelectionRectangle()
