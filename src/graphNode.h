@@ -2,14 +2,13 @@
 
 #include <memory>
 #include <list>
-#include <algorithm>
 
 #include "graphPrimitive.h"
 
 class GraphNode: public GraphPrimitive {
 public:
-	GraphNode();
-	GraphNode(std::list<std::shared_ptr<GraphPrimitive>> children);
+	GraphNode(std::string name);
+	GraphNode(std::list<std::shared_ptr<GraphPrimitive>> children, std::string name);
 
 	virtual void update();
 	virtual void draw();

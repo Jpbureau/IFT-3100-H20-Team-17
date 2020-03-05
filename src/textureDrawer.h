@@ -40,7 +40,7 @@ public:
 	ofImage grabCanvasScreen();
 
 private:
-	GraphNode root;
+	GraphNode root = GraphNode("Root");
 	ShapeFactory shapeFactory;
 	SceneGraph2dGui sceneGraph = SceneGraph2dGui(root);
 

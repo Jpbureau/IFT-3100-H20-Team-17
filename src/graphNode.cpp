@@ -1,14 +1,14 @@
 #include "graphNode.h"
 
-GraphNode::GraphNode()
+GraphNode::GraphNode(std::string name)
 {
-	representation->setup("Group");
+	representation->setup(name);
 }
 
-GraphNode::GraphNode(std::list<std::shared_ptr<GraphPrimitive>> children):
+GraphNode::GraphNode(std::list<std::shared_ptr<GraphPrimitive>> children, std::string name):
 	children(children)
 {
-	representation->setup("Group");
+	representation->setup(name);
 	updateRepresentation();
 }
 
@@ -106,7 +106,7 @@ void GraphNode::createGroupWithSelectedPrimitives()
 
 	children.remove_if([](std::shared_ptr<GraphPrimitive>& child) { return child->isSelected(); });
 
-	addChild(new GraphNode(selectedPrimitives));
+	addChild(new GraphNode(selectedPrimitives, "Group"));
 	
 	updateRepresentation();
 }
