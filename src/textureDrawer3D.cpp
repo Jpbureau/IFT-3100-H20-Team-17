@@ -4,11 +4,7 @@ void TextureDrawer3D::setup()
 {
 	ofSetLogLevel(OF_LOG_VERBOSE);
 
-	// chargement du modèle
 	model.loadModel("teapot.obj");
-
-	// désactiver le matériau par défaut du modèle
-	model.disableMaterials();
 
 	// chargement du shader
 	shader.load("lambert_330_vs.glsl", "lambert_330_fs.glsl");
@@ -17,16 +13,22 @@ void TextureDrawer3D::setup()
 	cout << centerY << endl;
 	mesh = model.getMesh(0);
 	model.setPosition(centerX, centerY, 90);
+
+	cam.setTarget(glm::vec3(centerX, centerY, 90));
+	cam.setDistance(700);
 }
 
 void TextureDrawer3D::update()
 {
-	// transformation du teapot
+	model.disableMaterials();
 	model.setScale(modelScale, modelScale, modelScale);
 	model.setPosition(centerX, centerY, 90);
 
-	/*if (use_rotation)
-		model.setRotation(0, ofGetFrameNum() * 0.3f, 0.0f, 1.0f, 0.0f);*/
+	if (useRotationAnimation)
+		model.setRotation(0, ofGetFrameNum() * rotationSpeed, 0.0f, 1.0f, 0.0f);
+	if (useLevitationAnimation) {
+		model.setPosition(centerX, centerY + 30 * sin(ofGetFrameNum() / waveIntensity), 90);
+	}
 
 	// configuration de la lumière
 	light.setPointLight();
@@ -53,6 +55,14 @@ void TextureDrawer3D::updateColors(ofColor color)
 	modelColor = color;
 }
 
+void TextureDrawer3D::updateAnimationParameters(float rotationSpeed, float waveIntensity, bool rotationAnimation, bool waveAnimation)
+{
+	this->rotationSpeed = rotationSpeed;
+	this->waveIntensity= waveIntensity;
+	this->useRotationAnimation = rotationAnimation;
+	this->useLevitationAnimation = waveAnimation;
+}
+
 void TextureDrawer3D::draw()
 {
 	/*ofSetColor(255);
@@ -60,7 +70,7 @@ void TextureDrawer3D::draw()
 	fboTexture3D.begin();
 	drawBoiteDelimitation(ofPoint(64, 64, 0), 64, 64, 64);
 	fboTexture3D.end();*/
-
+	cam.begin();
 	// activer l'occlusion en profondeur
 	ofEnableDepthTest();
 
@@ -76,6 +86,7 @@ void TextureDrawer3D::draw()
 	// dessiner le teapot
 	model.draw(OF_MESH_FILL);
 
+	cam.end();
 	// désactiver le shader
 	shader.end();
 

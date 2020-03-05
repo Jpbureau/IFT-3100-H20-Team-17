@@ -14,17 +14,21 @@ public:
 	void importModel(ofxAssimpModelLoader& model);
 
 	void updateColors(ofColor color);
+	void updateAnimationParameters(float rotationSpeed, float waveIntensity, bool rotationAnimation, bool waveAnimation);
 
 private:
 	const int drawingCanvasSize = 600;
-	int drawingCanvasX = 235 + drawingCanvasSize;
-	int drawingCanvasY = ofGetHeight() / 3.5;
+	int drawingCanvasX = 1500;
+	int drawingCanvasY =500;
 	int centerX = drawingCanvasX + drawingCanvasSize / 2;
 	int centerY = drawingCanvasY + drawingCanvasSize / 2;
 
-	float modelScale = 1.5f;
+	float modelScale = 0.3f;
 
-	bool use_rotation = false;
+	bool useRotationAnimation;
+	bool useLevitationAnimation;
+	float waveIntensity;
+	float rotationSpeed;
 
 	ofFbo fboTexture3D;
 
@@ -36,6 +40,7 @@ private:
 	ofShader shader;
 	ofLight light;
 	ofColor modelColor;
+	ofEasyCam cam;
 
 	ofPoint pointSupGaucheBoite;
 	int largeurModel3D;

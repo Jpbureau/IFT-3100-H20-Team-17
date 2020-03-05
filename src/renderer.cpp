@@ -2,7 +2,7 @@
 
 void Renderer::setup()
 {
-	glm::vec2 initialCanvas2dPosition(225, ofGetHeight() / 3.5);
+	glm::vec2 initialCanvas2dPosition(225, 200);
 	int initialCanvas2dSize = 600;
 
 	cursor.setup();
@@ -34,10 +34,10 @@ void Renderer::setup()
 
 void Renderer::update()
 {
-	canvas2dGui.update();
-	textureDrawer.update();
+	//canvas2dGui.update();
+	//textureDrawer.update();
 	cursor.update();
-	colorHistogramGui.update();	
+	//colorHistogramGui.update();	
 	canvas3DGui.update();
 	textureDrawer3D.update();
 	primitivesGeometriquesGui.update();
@@ -47,11 +47,11 @@ void Renderer::update()
 void Renderer::draw()
 {
 	ofSetBackgroundColor(canvas2dGui.backGroundColor);
-	textureDrawer.draw();
+	//textureDrawer.draw();
 	cursor.draw();
 	fileManagerGui.draw();
-	canvas2dGui.draw();
-	colorHistogramGui.draw();
+	//canvas2dGui.draw();
+	//colorHistogramGui.draw();
 	canvas3DGui.draw();
 	textureDrawer3D.draw();
 	primitivesGeometriquesGui.draw();

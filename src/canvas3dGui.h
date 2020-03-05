@@ -19,10 +19,17 @@ private:
 	ofxButton boiteDelimButton;
 	ofxButton importModelButton;
 
+	ofxGuiGroup animationOptions;
+
 	TextureDrawer3D& textureDrawer3D;
 	FileManager& fileManager;
 
 	ofParameter<ofColor> modelColorPicker;
+
+	ofParameter<float> rotationSpeed;
+	ofParameter<float> waveIntensity;
+	ofParameter<bool> rotationAnimationToggle;
+	ofParameter<bool> levitationAnimationToggle;
 
 	void boiteDelimButtonClicked();
 	void importModelClicked();
