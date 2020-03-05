@@ -31,7 +31,7 @@ private:
 	CanvasGui canvas2dGui = CanvasGui(textureDrawer);
 
 	TextureDrawer3D textureDrawer3D;
-	Canvas3DGui canvas3DGui = Canvas3DGui(textureDrawer3D);
+	Canvas3DGui canvas3DGui = Canvas3DGui(textureDrawer3D, fileManager);
 
 	ColorHistogram colorHistogram;
 	ColorHistogramGui colorHistogramGui = ColorHistogramGui(colorHistogram, textureDrawer);
