@@ -4,6 +4,7 @@
 #include "renderer.h"
 #include "fileManager.h"
 #include "recorder.h"
+#include "cam.h"
 
 class ofApp : public ofBaseApp{
 public:
@@ -26,4 +27,15 @@ public:
 private:
 	Renderer renderer;
 	Recorder recorder;
+	Cam camera;
+
+	//Pour le déplacement de la caméra
+	bool is_key_press_up;
+	bool is_key_press_down;
+	bool is_key_press_left;
+	bool is_key_press_right;
+	bool is_key_press_a;
+	bool is_key_press_s;
+	bool is_key_press_d;
+	bool is_key_press_w;
 };

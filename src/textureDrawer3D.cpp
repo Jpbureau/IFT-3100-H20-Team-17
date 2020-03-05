@@ -2,9 +2,12 @@
 
 void TextureDrawer3D::setup()
 {
+	ofSetFrameRate(60);
+
 	fboTexture3D.allocate(drawingCanvasSize, drawingCanvasSize, GL_RGBA);
 	fboTexture3D.begin();
 	ofClear(255, 255);
+	camera.setup();
 	fboTexture3D.end();
 
 	teapot.loadModel("teapot.obj");
@@ -14,7 +17,7 @@ void TextureDrawer3D::setup()
 
 void TextureDrawer3D::update()
 {
-
+	camera.update();
 }
 
 void TextureDrawer3D::draw()
@@ -23,6 +26,7 @@ void TextureDrawer3D::draw()
 	fboTexture3D.draw(drawingCanvasX + drawingCanvasSize + 10, drawingCanvasY);
 	fboTexture3D.begin();
 	drawBoiteDelimitation(ofPoint(64, 64, 0), 64, 64, 64);
+	camera.draw();
 	fboTexture3D.end();
 }
 
@@ -84,4 +88,9 @@ void TextureDrawer3D::calculerBoiteDelimitation()
 	largeurModel3D = pointDroit.x - pointGauche.x;
 	hauteurModel3D = pointDessus.y - pointDessous.y;
 	profondeurModel3D = pointArriere.z - pointAvant.z;
+}
+
+void TextureDrawer3D::resetCamera()
+{
+	camera.reset();
 }

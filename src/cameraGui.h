@@ -2,6 +2,7 @@
 
 #include "ofxGui.h"
 #include "textureDrawer.h" //Pour faire fonctionner les string
+#include "textureDrawer3D.h"
 
 class CameraGui
 {

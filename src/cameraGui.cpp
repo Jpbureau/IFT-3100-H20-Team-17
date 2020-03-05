@@ -58,7 +58,7 @@ void CameraGui::draw()
 
 void CameraGui::resetCamera()
 {
-	
+	//TextureDrawer3D::resetCamera();
 }
 
 void CameraGui::changerPerspective()
