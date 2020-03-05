@@ -13,7 +13,7 @@ class ColorHistogram
 {
 public:
 	
-	void setup();
+	void setup(int width, int height, int positionX, int positionY);
 	void update();
 	void draw();
 
@@ -24,8 +24,11 @@ private:
 	unsigned int histogramBlack;
 	unsigned int histogramWhite;
 
-	int positionX = 825;
-	int positionY = 800;
+	int m_positionX;
+	int m_positionY;
+
+	int m_width;
+	int m_height;
 
 	int count;
 	int head;
