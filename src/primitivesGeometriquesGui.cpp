@@ -91,11 +91,6 @@ void PrimitivesGeometriquesGui::setup(int positionX, int positionY)
 
 void PrimitivesGeometriquesGui::update()
 {
-	textureDrawer3D.updateColors(strokeColorPicker, fillColorPicker);
-	textureDrawer3D.updateCoordinates(xCoordinateSlider, yCoordinateSlider, zCoordinateSlider);
-	textureDrawer3D.updateRadius(platonSolidRadiusSlider);
-	textureDrawer3D.updateDimensions(widthSlider, heightSlider, depthSlider);
-	textureDrawer3D.updateNbSides(nbSidesSlider);
 
 }
 
@@ -105,37 +100,37 @@ void PrimitivesGeometriquesGui::draw()
 }
 
 void PrimitivesGeometriquesGui::selectTetrahedronType()
-{
+{/*
 	selectedType.set("Tetrahedron");
-	textureDrawer3D.selectTetrahedronType();
+	textureDrawer3D.selectTetrahedronType();*/
 }
 
 void PrimitivesGeometriquesGui::selectHexahedronType()
 {
 	
 	selectedType.set("Hexahedron");
-	textureDrawer3D.selectHexahedronType();
+	//textureDrawer3D.selectHexahedronType();
 }
 
 void PrimitivesGeometriquesGui::selectOctahedronType()
 {
 	
 	selectedType.set("Octahedron");
-	textureDrawer3D.selectOctahedronType();
+	//textureDrawer3D.selectOctahedronType();
 }
 
 void PrimitivesGeometriquesGui::selectDodecahedronType()
 {
 	
 	selectedType.set("Dodecahedron");
-	textureDrawer3D.selectDodecahedronType();
+	//textureDrawer3D.selectDodecahedronType();
 }
 
 void PrimitivesGeometriquesGui::selectIcosahedronType()
 {
 	
 	selectedType.set("Icosahedron");
-	textureDrawer3D.selectIcosahedronType();
+	//textureDrawer3D.selectIcosahedronType();
 }
 
 void PrimitivesGeometriquesGui::selectSphereType()
@@ -149,14 +144,14 @@ void PrimitivesGeometriquesGui::selectEllipseType()
 {
 	
 	selectedType.set("Ellipse");
-	textureDrawer3D.selectEllipseType();
+	//textureDrawer3D.selectEllipseType();
 }
 
 void PrimitivesGeometriquesGui::selectPolygonType()
 {
 	
 	selectedType.set("Polygone");
-	textureDrawer3D.selectPolygonType();
+	//textureDrawer3D.selectPolygonType();
 }
 
 void PrimitivesGeometriquesGui::selectCylinderType()
@@ -170,7 +165,7 @@ void PrimitivesGeometriquesGui::selectRectangleType()
 {
 	
 	selectedType.set("Rectangle");
-	textureDrawer3D.selectRectangleType();
+	//textureDrawer3D.selectRectangleType();
 }
 
 void PrimitivesGeometriquesGui::selectConeType()
@@ -197,5 +192,5 @@ void PrimitivesGeometriquesGui::deselectAction()
 
 void PrimitivesGeometriquesGui::placeObjectAction()
 {
-	textureDrawer3D.addGeometricPrimitive();
+	//textureDrawer3D.addGeometricPrimitive();
 }

@@ -42,8 +42,6 @@ void Renderer::update()
 	colorHistogramGui.update();	
 	canvas3DGui.update();
 	textureDrawer3D.update();
-	//primitivesGeometriquesGui.update();
-	//cameraGui.update();
 	cursor.update();
 }
 
@@ -56,7 +54,5 @@ void Renderer::draw()
 	colorHistogramGui.draw();
 	canvas3DGui.draw();
 	textureDrawer3D.draw();
-	//primitivesGeometriquesGui.draw();
-	//cameraGui.draw();
 	cursor.draw();
 }
