@@ -53,8 +53,7 @@ public:
 	void selectConeType();
 
 
-	void addGeometricRegularPrimitive();
-	void addGeometricOtherPrimitive();
+	void addGeometricPrimitive();
 
 	void updateColors(ofColor stroke, ofColor fill);
 	void updateCoordinates(GLfloat x, GLfloat y, GLfloat z);
@@ -69,10 +68,10 @@ private:
 
 	ofFbo fboTexture3D;
 
-	VectorRegularGeometricPrimitive objet3dTest1;
+	VectorRegularGeometricPrimitive geometricRegularPrimitive;
 	GeometricRegularPrimitiveType geometricRegularPrimitiveSelectedType;
 
-	VectorOtherGeometricPrimitive objet3dTest2;
+	VectorOtherGeometricPrimitive geometricOtherPrimitive;
 	GeometricOtherPrimitiveType geometricOtherPrimitiveSelectedType;
 
 	void calculerBoiteDelimitation();
@@ -112,12 +111,12 @@ private:
 	unsigned char geometricPrimitiveFillColor_b;
 	unsigned char geometricPrimitiveFillColor_a;
 
-	void draw_tetrahedron() const;
-	void draw_hexahedron() const;
-	void draw_octahedron() const;
-	void draw_dodecahedron() const;
-	void draw_icosahedron() const;
-	void draw_sphere() const;
+	void draw_tetrahedron(GLfloat radius, GLfloat x, GLfloat y, GLfloat z) const;
+	void draw_hexahedron(GLfloat radius, GLfloat x, GLfloat y, GLfloat z) const;
+	void draw_octahedron(GLfloat radius, GLfloat x, GLfloat y, GLfloat z) const;
+	void draw_dodecahedron(GLfloat radius, GLfloat x, GLfloat y, GLfloat z) const;
+	void draw_icosahedron(GLfloat radius, GLfloat x, GLfloat y, GLfloat z) const;
+	void draw_sphere(GLfloat radius, GLfloat x, GLfloat y, GLfloat z) const;
 	void draw_ellipse() const;
 	void draw_polygon() const;
 	void draw_cylinder() const;

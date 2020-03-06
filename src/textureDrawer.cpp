@@ -128,8 +128,10 @@ void TextureDrawer::draw()
 void TextureDrawer::update()
 {
 	//On pourrait aussi potentiellement l'activer seulement au clique d'un bouton
-	for (int i = 0; i < head; i++) {
-		if (shapes[i].selected) {
+	for (int i = 0; i < head; i++) 
+	{
+		if (shapes[i].selected) 
+		{
 			shapes[i].stroke_width = stroke_width;
 			shapes[i].radius = radius;
 

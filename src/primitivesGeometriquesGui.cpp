@@ -182,7 +182,7 @@ void PrimitivesGeometriquesGui::selectConeType()
 
 void PrimitivesGeometriquesGui::selectAction()
 {
-	selectedType.set("Selection");
+	//selectedType.set("Selection");
 }
 
 void PrimitivesGeometriquesGui::deleteAction()
@@ -197,5 +197,5 @@ void PrimitivesGeometriquesGui::deselectAction()
 
 void PrimitivesGeometriquesGui::placeObjectAction()
 {
-
+	textureDrawer3D.addGeometricPrimitive();
 }
