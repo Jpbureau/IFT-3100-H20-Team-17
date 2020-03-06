@@ -24,22 +24,26 @@ void TextureDrawer3D::setup(int canvasPositionX, int canvasPositionY, int canvas
 	cam.setupPerspective(true, 60, 0, 0, glm::vec2( -0.4 , -0.1));
 	cam.setDistance(700);
 
-	sphere.setScale(6);
+	sphere.setScale(modelScale * 20);
 	sphere.setPosition(glm::vec3(centerX, centerY, 90));
 
-	cylinder.setScale(2);
+	cylinder.setScale(modelScale * 10);
 	cylinder.setPosition(glm::vec3(centerX, centerY, 90));
 
-	box.setScale(2);
+	box.setScale(modelScale * 10);
 	box.setPosition(glm::vec3(centerX, centerY, 90));
 
-	cone.setScale(5);
+	cone.setScale(modelScale * 20);
 	cone.setPosition(glm::vec3(centerX, centerY, 90));
 }
 
 void TextureDrawer3D::update()
 {
 	model.setScale(modelScale, modelScale, modelScale);
+	sphere.setScale(modelScale * 20);
+	cylinder.setScale(modelScale * 8);
+	box.setScale(modelScale * 8);
+	cone.setScale(modelScale * 17);
 
 	if (useRotationAnimation) {
 		model.setRotation(0, ofGetFrameNum() * rotationSpeed, 0.0f, 1.0f, 0.0f);
@@ -78,10 +82,11 @@ void TextureDrawer3D::update()
 
 }
 
-void TextureDrawer3D::importModel(ofxAssimpModelLoader& model)
+void TextureDrawer3D::importModel(string modelPath)
 {
-	this->model = model;
-	model.setPosition(centerX, centerY, 0);
+	model.loadModel(modelPath);
+	model.setPosition(centerX, centerY, 90);
+	resetCamera();
 }
 
 void TextureDrawer3D::updateModelParameters(ofColor color, float modelScale)
@@ -252,6 +257,15 @@ void TextureDrawer3D::drawModel()
 	default:
 		break;
 	}
+}
+
+void TextureDrawer3D::resetCamera()
+{
+	cam.reset();
+	cam.setControlArea(ofRectangle(modelCanvasX, modelCanvasY, modelCanvasSize, modelCanvasSize));
+	cam.setTarget(glm::vec3(centerX, centerY, 90));
+	cam.setupPerspective(true, 60, 0, 0, glm::vec2(-0.4, -0.1));
+	cam.setDistance(700);
 }
 
 void TextureDrawer3D::calculerBoiteDelimitation()

@@ -17,7 +17,7 @@ public:
 	void setup(int canvasPositionX, int canvasPositionY, int canvasSize);
 	void draw();
 	void update();
-	void importModel(ofxAssimpModelLoader& model);
+	void importModel(string modelPath);
 
 	void updateModelParameters(ofColor color, float modelScale);
 	void updateAnimationParameters(float rotationSpeed, float waveIntensity, bool rotationAnimation, bool waveAnimation);
@@ -32,9 +32,9 @@ public:
 	void selectModelType();
 
 private:
-	int modelCanvasSize = 800;
-	int modelCanvasX = 850;
-	int modelCanvasY = 100;
+	int modelCanvasSize;
+	int modelCanvasX;
+	int modelCanvasY;
 	int centerX;
 	int centerY;
 
@@ -77,4 +77,5 @@ private:
 	float radius;
 
 	void drawModel();
+	void resetCamera();
 };

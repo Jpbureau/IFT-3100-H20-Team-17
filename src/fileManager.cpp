@@ -31,14 +31,14 @@ void FileManager::saveImage() const
 	}
 }
 
-ofxAssimpModelLoader FileManager::importModel() const
+string FileManager::importModel() const
 {
-	ofxAssimpModelLoader model;
+	string path;
 	ofFileDialogResult result = ofSystemLoadDialog("Load file");
 	if (result.bSuccess) {
-		string path = result.getPath();
+		path = result.getPath();
 		cout << path << endl;
-		model.loadModel(path);
+		
 	}
-	return model;
+	return path;
 }

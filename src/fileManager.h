@@ -9,5 +9,5 @@ public:
 	ofImage image_import() const;
 	void saveImage() const;
 
-	ofxAssimpModelLoader importModel() const;
+	string importModel() const;
 };

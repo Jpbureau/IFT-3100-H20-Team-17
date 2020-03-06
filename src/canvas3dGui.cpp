@@ -24,7 +24,7 @@ void Canvas3DGui::setup(int canvasPositionX, int canvasPositionY, int canvasSize
 	selectionType.add(selectCylinderTypeButton.setup("Cylindre"));
 
 	optionsPanel.add(modelColorPicker.set("diffuse color", ofColor(174, 223, 134), ofColor(0, 0), ofColor(255, 255)));
-	optionsPanel.add(modelScale.set("Volume du modele", 0.3f, 0.1f, 0.375f));
+	optionsPanel.add(modelScale.set("Volume du modele", 0.3f, 0.1f, 0.35f));
 
 	animationOptions.add(rotationAnimationToggle.set("Rotation du modele", false));
 	animationOptions.add(levitationAnimationToggle.set("Effet de levitation", false));
@@ -70,8 +70,9 @@ void Canvas3DGui::boiteDelimButtonClicked()
 
 void Canvas3DGui::importModelClicked()
 {
-	ofxAssimpModelLoader model = fileManager.importModel();
-	textureDrawer3D.importModel(model);
+	string modelPath = fileManager.importModel();
+	textureDrawer3D.importModel(modelPath);
+	textureDrawer3D.selectModelType();
 }
 
 void Canvas3DGui::lambertShaderSelected()
