@@ -24,17 +24,18 @@ private:
 
 	ofImage image;
 
-	FileManagerGui fileManagerGui;
+	FileManager fileManager;
+	FileManagerGui fileManagerGui= FileManagerGui(fileManager);
 
 	TextureDrawer textureDrawer;
 	CanvasGui canvas2dGui = CanvasGui(textureDrawer);
 
 	TextureDrawer3D textureDrawer3D;
-	Canvas3DGui canvas3DGui = Canvas3DGui();
+	Canvas3DGui canvas3DGui = Canvas3DGui(textureDrawer3D, fileManager);
 
 	ColorHistogram colorHistogram;
 	ColorHistogramGui colorHistogramGui = ColorHistogramGui(colorHistogram, textureDrawer);
-	PrimitivesGeometriquesGui primitivesGeometriquesGui = PrimitivesGeometriquesGui();
+	PrimitivesGeometriquesGui primitivesGeometriquesGui = PrimitivesGeometriquesGui(textureDrawer3D);
 	CameraGui cameraGui = CameraGui();
 
 	Cursor cursor = Cursor(textureDrawer);

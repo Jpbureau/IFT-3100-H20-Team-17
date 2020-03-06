@@ -5,11 +5,13 @@
 
 class FileManagerGui {
 public:
+	FileManagerGui(FileManager& manager);
+
 	void setup();
 	void draw();
 
 private:
-	FileManager fileManager;
+	FileManager& fileManager;
 
 	ofxPanel menuPanel;
 
