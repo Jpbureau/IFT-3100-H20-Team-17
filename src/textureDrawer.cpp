@@ -121,7 +121,7 @@ bool TextureDrawer::isMouseInsideCanvas(int x, int y)
 
 bool TextureDrawer::isTypeSelection()
 {
-	return selectedType == VectorPrimitiveType::selection;
+	return isSelectionActive;
 }
 
 bool TextureDrawer::isMouseOutsideCanvas()

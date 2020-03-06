@@ -245,7 +245,7 @@ void TextureDrawer3D::draw()
 	}
 
 	ofSetColor(255);
-	fboTexture3D.draw(drawingCanvasX + drawingCanvasSize + 10, drawingCanvasY);
+	fboTexture3D.draw(modelCanvasX + modelCanvasSize + 10, modelCanvasY);
 	fboTexture3D.begin();
 	drawBoiteDelimitation(ofPoint(64, 64, 0), 64, 64, 64);
 
