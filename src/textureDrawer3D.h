@@ -5,25 +5,28 @@
 #include "ofxAssimpModelLoader.h"
 #include <vector>
 
-enum class shaderType { none, lambert };
+enum class ShaderType { none, lambert };
 
 class TextureDrawer3D
 {
 public:
-	void setup();
+	void setup(int canvasPositionX, int canvasPositionY, int canvasSize);
 	void draw();
 	void update();
 	void importModel(ofxAssimpModelLoader& model);
 
-	void updateColors(ofColor color);
+	void updateModelParameters(ofColor color, float modelScale);
 	void updateAnimationParameters(float rotationSpeed, float waveIntensity, bool rotationAnimation, bool waveAnimation);
+	void updateShaderSelection(ShaderType selected);
+
+	bool isMouseInsideModelCanvas(int x, int y);
 
 private:
-	const int drawingCanvasSize = 600;
-	int drawingCanvasX = 1500;
-	int drawingCanvasY =500;
-	int centerX = drawingCanvasX + drawingCanvasSize / 2;
-	int centerY = drawingCanvasY + drawingCanvasSize / 2;
+	int modelCanvasSize = 800;
+	int modelCanvasX = 850;
+	int modelCanvasY = 100;
+	int centerX;
+	int centerY;
 
 	float modelScale = 0.3f;
 
@@ -38,6 +41,7 @@ private:
 	void drawBoiteDelimitation(ofPoint point, float width, float height, float depth);
 
 	void applyLambertShader();
+	ShaderType selectedShader;
 
 	ofxAssimpModelLoader model;
 	ofMesh mesh;

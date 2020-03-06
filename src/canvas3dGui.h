@@ -10,7 +10,7 @@ class Canvas3DGui
 public:
 	Canvas3DGui(TextureDrawer3D& drawer, FileManager& manager);
 
-	void setup();
+	void setup(int canvasPositionX, int canvasPositionY, int canvasSize);
 	void update();
 	void draw();
 
@@ -26,6 +26,9 @@ private:
 	FileManager& fileManager;
 
 	ofParameter<ofColor> modelColorPicker;
+	ofParameter<float> modelScale;
+
+	ofParameter<string> selectedShaderType;
 
 	ofParameter<float> rotationSpeed;
 	ofParameter<float> waveIntensity;

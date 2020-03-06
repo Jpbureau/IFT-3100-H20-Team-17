@@ -1,21 +1,30 @@
 #include "textureDrawer3D.h"
 
-void TextureDrawer3D::setup()
+void TextureDrawer3D::setup(int canvasPositionX, int canvasPositionY, int canvasSize)
 {
+	this->modelCanvasX = canvasPositionX;
+	this->modelCanvasY = canvasPositionY;
+	this->modelCanvasSize = canvasSize;
+	this->centerX = modelCanvasX + modelCanvasSize / 2;
+	this->centerY = modelCanvasY + modelCanvasSize / 2;
+
 	ofSetLogLevel(OF_LOG_VERBOSE);
 
 	model.loadModel("teapot.obj");
+	selectedShader = ShaderType::none;
 
 	mesh = model.getMesh(0);
 	model.setPosition(centerX, centerY, 90);
+	shader.load("lambert_330_vs.glsl", "lambert_330_fs.glsl");
 
+	cam.setControlArea(ofRectangle(modelCanvasX, modelCanvasY, modelCanvasSize, modelCanvasSize));
 	cam.setTarget(glm::vec3(centerX, centerY, 90));
+	cam.setupPerspective(true, 60, 0, 0, glm::vec2( -0.4 , -0.1));
 	cam.setDistance(700);
 }
 
 void TextureDrawer3D::update()
 {
-	model.disableMaterials();
 	model.setScale(modelScale, modelScale, modelScale);
 	model.setPosition(centerX, centerY, 90);
 
@@ -25,13 +34,24 @@ void TextureDrawer3D::update()
 		model.setPosition(centerX, centerY + 30 * sin(ofGetFrameNum() / waveIntensity), 90);
 	}
 
+	switch (selectedShader)
+	{
+	case ShaderType::none:
+		model.enableMaterials();
+		break;
+	case ShaderType::lambert:
+		applyLambertShader();
+		break;
+	default:
+		break;
+	}
+
 	//shader.begin();
 	////we want to pass in some varrying values to animate our type / color 
 	//shader.setUniform1f("timeValX", ofGetElapsedTimef() * 0.1);
 	//shader.setUniform1f("timeValY", -ofGetElapsedTimef() * 0.18);
 
 	//shader.end();
-
 
 }
 
@@ -41,9 +61,10 @@ void TextureDrawer3D::importModel(ofxAssimpModelLoader& model)
 	model.setPosition(centerX, centerY, 0);
 }
 
-void TextureDrawer3D::updateColors(ofColor color)
+void TextureDrawer3D::updateModelParameters(ofColor color, float modelScale)
 {
-	modelColor = color;
+	this->modelColor = color;
+	this->modelScale = modelScale;
 }
 
 void TextureDrawer3D::updateAnimationParameters(float rotationSpeed, float waveIntensity, bool rotationAnimation, bool waveAnimation)
@@ -54,20 +75,63 @@ void TextureDrawer3D::updateAnimationParameters(float rotationSpeed, float waveI
 	this->useLevitationAnimation = waveAnimation;
 }
 
-void TextureDrawer3D::draw()
+void TextureDrawer3D::updateShaderSelection(ShaderType selected)
 {
-	cam.begin();
-	ofEnableDepthTest();
-	ofEnableLighting();
-	light.enable();
-	shader.begin();
-	model.draw(OF_MESH_FILL);
-	cam.end();
-	shader.end();
+	switch (selected)
+	{
+	case ShaderType::lambert:
+		selectedShader = selected;
+		shader.load("lambert_330_vs.glsl", "lambert_330_fs.glsl");
+	case ShaderType::none:
+		selectedShader = selected;
+		light = ofLight();
+		break;
+	default:
+		break;
+	}
+}
 
-	light.disable();
-	ofDisableLighting();
-	ofDisableDepthTest();
+bool TextureDrawer3D::isMouseInsideModelCanvas(int x, int y)
+{
+	return x >= modelCanvasX && x <= (modelCanvasX + modelCanvasSize) &&
+		y >= modelCanvasY && y <= (modelCanvasY + modelCanvasSize);
+}
+
+void TextureDrawer3D::draw()
+{	
+	if (selectedShader == ShaderType::lambert) {
+		cam.begin();
+		ofEnableDepthTest();
+		ofEnableLighting();
+		light.enable();
+		shader.begin();
+		model.draw(OF_MESH_FILL);
+		cam.end();
+		shader.end();
+
+		light.disable();
+		ofDisableLighting();
+		ofDisableDepthTest();
+	}
+	else {
+		ofEnableDepthTest();
+
+		light.enable();
+
+		cam.begin();
+		ofPushMatrix();
+
+		ofTranslate( 0, 0);
+		ofColor(255, 255);
+		model.drawFaces();
+
+		ofPopMatrix();
+		cam.end();
+
+		light.disable();
+
+		ofDisableDepthTest();
+	}
 }
 
 void TextureDrawer3D::drawBoiteDelimitation(ofPoint point, float width, float height, float depth)
@@ -79,6 +143,7 @@ void TextureDrawer3D::drawBoiteDelimitation(ofPoint point, float width, float he
 
 void TextureDrawer3D::applyLambertShader()
 {
+	model.disableMaterials();
 	// configuration de la lumière
 	light.setPointLight();
 	light.setDiffuseColor(255);

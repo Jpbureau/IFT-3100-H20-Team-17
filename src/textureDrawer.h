@@ -32,6 +32,7 @@ public:
 	int mouse_current_posY;
 
 	bool isMouseInsideCanvas(int x, int y);
+	bool isTypeSelection();
 
 	void selectPointType();
 	void selectLineType();

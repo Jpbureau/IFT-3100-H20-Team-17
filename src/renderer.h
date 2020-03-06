@@ -38,5 +38,5 @@ private:
 	PrimitivesGeometriquesGui primitivesGeometriquesGui = PrimitivesGeometriquesGui();
 	CameraGui cameraGui = CameraGui();
 
-	Cursor cursor = Cursor(textureDrawer);
+	Cursor cursor = Cursor(textureDrawer, textureDrawer3D);
 };
