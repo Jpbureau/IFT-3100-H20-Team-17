@@ -17,7 +17,7 @@ void Renderer::setup()
 	const int HISTOGRAM_X_POSITION = initialCanvas2dPosition.x;
 	const int HISTOGRAM_Y_POSITION = initialCanvas2dPosition.y + initialCanvas2dSize + HISTOGRAM_HEIGHT + 1;
 	colorHistogram.setup(HISTOGRAM_WIDTH, HISTOGRAM_HEIGHT, HISTOGRAM_X_POSITION, HISTOGRAM_Y_POSITION);
-	colorHistogramGui.setup(10, 560);
+	colorHistogramGui.setup(10, 70);
 
 	const int PRIMITIVES_GEOMETRIQUES_GUI_POSITION_X = ofGetWidth() - 210;
 	const int PRIMITIVES_GEOMETRIQUES_GUI_POSITION_Y = 100;

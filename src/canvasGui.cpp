@@ -16,25 +16,32 @@ void CanvasGui::setup(int drawingCanvasY)
 	fillColorPicker.set("Couleur du remplissage", ofColor::crimson, ofColor(0, 0), ofColor(255, 255));
 	strokeWeightSlider.set("Largeur de la ligne", 1.0f, 0.0f, 5.0f);
 
-	radiusSlider.set("LRayon", 1.0f, 0.0f, 40.0f);
-	optionsPoint.setup("Point");
-	optionsPoint.add(radiusSlider);
-	optionsPoint.add(drawPointButton.setup("point"));
-
 	drawingOptionsPanel.add(backGroundColor);
 	drawingOptionsPanel.add(strokeColorPicker);
 	drawingOptionsPanel.add(fillColorPicker);
 	drawingOptionsPanel.add(strokeWeightSlider);
 	drawingOptionsPanel.add(selectedType);
-	drawingOptionsPanel.add(&optionsPoint);
-	drawingOptionsPanel.add(drawLineButton.setup("ligne"));
-	drawingOptionsPanel.add(drawRectangleButton.setup("rectangle"));
-	drawingOptionsPanel.add(drawSquareButton.setup("Carre"));
-	drawingOptionsPanel.add(drawEllipseButton.setup("ellipse"));
-	drawingOptionsPanel.add(drawCircleButton.setup("Cercle"));
+
+	shapeSelectionGroup.setup("Formes");
+
+	radiusSlider.set("LRayon", 1.0f, 0.0f, 40.0f);
+	optionsPoint.setup("Point");
+	optionsPoint.add(radiusSlider);
+	optionsPoint.add(drawPointButton.setup("point"));
+	shapeSelectionGroup.add(&optionsPoint);
+
+	shapeSelectionGroup.add(drawLineButton.setup("Ligne"));
+	shapeSelectionGroup.add(drawRectangleButton.setup("Rectangle"));
+	shapeSelectionGroup.add(drawSquareButton.setup("Carre"));
+	shapeSelectionGroup.add(drawEllipseButton.setup("Ellipse"));
+	shapeSelectionGroup.add(drawCircleButton.setup("Cercle"));
+	drawingOptionsPanel.add(&shapeSelectionGroup);
+
 	drawingOptionsPanel.add(selectButton.setup("Selectionner"));
 	drawingOptionsPanel.add(deselectButton.setup("Deselectionner"));
 	drawingOptionsPanel.add(deleteButton.setup("Supprimer"));
+	drawingOptionsPanel.add(groupButton.setup("Grouper"));
+	drawingOptionsPanel.add(ungroupButton.setup("Degrouper"));
 
 	drawPointButton.addListener(this, &CanvasGui::selectPointType);
 	drawLineButton.addListener(this, &CanvasGui::selectLineType);
@@ -45,6 +52,10 @@ void CanvasGui::setup(int drawingCanvasY)
 	selectButton.addListener(this, &CanvasGui::selectAction);
 	deselectButton.addListener(this, &CanvasGui::deselectAction);
 	deleteButton.addListener(this, &CanvasGui::deleteAction);
+	groupButton.addListener(this, &CanvasGui::groupAction);
+	ungroupButton.addListener(this, &CanvasGui::ungroupAction);
+
+	selectRectangleType();
 }
 
 void CanvasGui::update()
@@ -106,4 +117,14 @@ void CanvasGui::deleteAction()
 void CanvasGui::deselectAction()
 {
 	textureDrawer.resetSelection();
+}
+
+void CanvasGui::groupAction()
+{
+	textureDrawer.groupSelectedShapes();
+}
+
+void CanvasGui::ungroupAction()
+{
+	textureDrawer.ungroupSelectedGroup();
 }

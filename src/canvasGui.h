@@ -24,6 +24,7 @@ private:
 
 	ofxPanel drawingOptionsPanel;
 	ofxGuiGroup optionsPoint;
+	ofxGuiGroup shapeSelectionGroup;
 
 	ofxButton drawLineButton;
 	ofxButton drawPointButton;
@@ -34,6 +35,8 @@ private:
 	ofxButton selectButton;
 	ofxButton deselectButton;
 	ofxButton deleteButton;
+	ofxButton groupButton;
+	ofxButton ungroupButton;
 
 	void selectPointType();
 	void selectLineType();
@@ -44,4 +47,6 @@ private:
 	void selectAction();
 	void deleteAction();
 	void deselectAction();
+	void groupAction();
+	void ungroupAction();
 };

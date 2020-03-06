@@ -365,6 +365,7 @@ void TextureDrawer3D::draw()
 
 void TextureDrawer3D::drawBoiteDelimitation(ofPoint point, float width, float height, float depth)
 {
+	ofNoFill();
 	ofSetLineWidth(5);
 	ofSetColor(51);
 	ofDrawBox(point.x, point.y, point.z, width, height, depth);
