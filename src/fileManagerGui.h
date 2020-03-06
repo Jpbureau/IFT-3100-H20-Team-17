@@ -2,16 +2,18 @@
 
 #include "ofxGui.h"
 #include "fileManager.h"
+#include "textureDrawer.h"
 
 class FileManagerGui {
 public:
-	FileManagerGui(FileManager& manager);
+	FileManagerGui(FileManager& manager, TextureDrawer& textureDrawer);
 
 	void setup();
 	void draw();
 
 private:
 	FileManager& fileManager;
+	TextureDrawer& textureDrawer;
 
 	ofxPanel menuPanel;
 

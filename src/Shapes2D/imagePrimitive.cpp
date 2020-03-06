@@ -1,32 +1,29 @@
-#include "line.h"
+#include "imagePrimitive.h"
 
-Line::Line(glm::vec2 p1, glm::vec2 p2, float lineWidth, ofColor color, string name):
-	p1(p1), p2(p2), lineWidth(lineWidth), color(color), selected(name, false)
+ImagePrimitive::ImagePrimitive(ofImage image, glm::vec2 p1, glm::vec2 p2, string name) :
+	image(image), p1(p1), p2(p2), selected(name, false)
 {
 	representation->setup(selected);
 }
 
-void Line::draw()
+void ImagePrimitive::draw()
 {
-	ofNoFill();
-	ofSetLineWidth(lineWidth);
-	ofSetColor(color);
-	ofDrawLine(p1, p2);
+	ofFill();
+	ofSetColor(255);
+	image.draw(p1, p2.x - p1.x, p2.y - p1.y);
 
 	if (selected) drawSelectionRectangle();
 }
 
-void Line::update()
+void ImagePrimitive::update()
 {
 }
 
-void Line::updateCommonAttributes(ofColor fill, ofColor stroke, float strokeWidth)
+void ImagePrimitive::updateCommonAttributes(ofColor fill, ofColor stroke, float strokeWidth)
 {
-	this->color = stroke;
-	this->lineWidth = strokeWidth;
 }
 
-bool Line::isPointInside(int x, int y)
+bool ImagePrimitive::isPointInside(int x, int y)
 {
 	int x1 = p1.x;
 	int y1 = p1.y;
@@ -49,27 +46,27 @@ bool Line::isPointInside(int x, int y)
 	return x > x1 && x < x2 && y > y1 && y < y2;
 }
 
-void Line::select()
+void ImagePrimitive::select()
 {
 	selected = true;
 }
 
-void Line::unselect()
+void ImagePrimitive::unselect()
 {
 	selected = false;
 }
 
-bool Line::isSelected()
+bool ImagePrimitive::isSelected()
 {
 	return selected;
 }
 
-ofxBaseGui * Line::getGuiRepresentation()
+ofxBaseGui* ImagePrimitive::getGuiRepresentation()
 {
 	return representation.get();
 }
 
-void Line::drawSelectionRectangle()
+void ImagePrimitive::drawSelectionRectangle()
 {
 	ofNoFill();
 	ofSetLineWidth(2);

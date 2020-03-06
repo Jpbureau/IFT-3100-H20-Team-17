@@ -23,6 +23,13 @@ void Rectangle2D::update()
 {
 }
 
+void Rectangle2D::updateCommonAttributes(ofColor fill, ofColor stroke, float strokeWidth)
+{
+	this->fillColor = fill;
+	this->strokeColor = stroke;
+	this->strokeWidth = strokeWidth;
+}
+
 bool Rectangle2D::isPointInside(int x, int y)
 {
 	int x1 = p1.x;

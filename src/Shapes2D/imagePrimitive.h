@@ -3,9 +3,9 @@
 #include "ofMain.h"
 #include "graphPrimitive.h"
 
-class Ellipse2D : public GraphPrimitive {
+class ImagePrimitive : public GraphPrimitive {
 public:
-	Ellipse2D(glm::vec2 p1, glm::vec2 p2, float strokeWidth, ofColor fillColor, ofColor strokeColor, string name);
+	ImagePrimitive(ofImage image, glm::vec2 p1, glm::vec2 p2, string name);
 
 	virtual void draw();
 	virtual void update();
@@ -23,9 +23,7 @@ public:
 private:
 	glm::vec2 p1;
 	glm::vec2 p2;
-	float strokeWidth;
-	ofColor fillColor;
-	ofColor strokeColor;
+	ofImage image;
 
 	ofParameter<bool> selected;
 	void drawSelectionRectangle();

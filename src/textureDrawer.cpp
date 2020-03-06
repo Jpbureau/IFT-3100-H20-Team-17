@@ -63,6 +63,13 @@ void TextureDrawer::selectCircleType()
 	isSelectionActive = false;
 }
 
+void TextureDrawer::selectImageType(ofImage image)
+{
+	currentImage = image;
+	selectedType = ShapeType::image;
+	isSelectionActive = false;
+}
+
 void TextureDrawer::selectSelectionType()
 {
 	isSelectionActive = true;
@@ -84,7 +91,7 @@ void TextureDrawer::add_vector_shape()
 		}
 	}
 
-	root.addChild(shapeFactory.createShape(selectedType, p1, p2, fillColor, strokeColor, stroke_width, radius));
+	root.addChild(shapeFactory.createShape(selectedType, p1, p2, fillColor, strokeColor, stroke_width, radius, currentImage));
 }
 
 void TextureDrawer::updateColors(ofColor stroke, ofColor fill)
@@ -103,6 +110,11 @@ void TextureDrawer::updateRadius(float newRadius)
 	radius = newRadius;
 }
 
+void TextureDrawer::applyToSelected()
+{
+	root.updateCommonAttributes(fillColor, strokeColor, stroke_width);
+}
+
 void TextureDrawer::setStrokeColor(ofColor color)
 {
 	strokeColor = color;
@@ -117,6 +129,35 @@ bool TextureDrawer::isMouseInsideCanvas(int x, int y)
 {
 	return x >= drawingCanvasX && x <= (drawingCanvasX + drawingCanvasSize) &&
 		y >= drawingCanvasY && y <= (drawingCanvasY + drawingCanvasSize);
+}
+
+
+string TextureDrawer::getCurrentlySelectedType()
+{
+	if (isSelectionActive)
+	{
+		return "Selection";
+	}
+
+	switch (selectedType)
+	{
+	case ShapeType::point:
+		return "Point";
+	case ShapeType::line:
+		return "Ligne";
+	case ShapeType::rectangle:
+		return "Rectangle";
+	case ShapeType::square:
+		return "Carre";
+	case ShapeType::ellipse:
+		return "Ellipse";
+	case ShapeType::circle:
+		return "Cercle";
+	case ShapeType::image:
+		return "Image";
+	default:
+		break;
+	}
 }
 
 bool TextureDrawer::isTypeSelection()

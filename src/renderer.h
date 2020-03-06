@@ -24,11 +24,11 @@ private:
 
 	ofImage image;
 
-	FileManager fileManager;
-	FileManagerGui fileManagerGui= FileManagerGui(fileManager);
-
 	TextureDrawer textureDrawer;
 	CanvasGui canvas2dGui = CanvasGui(textureDrawer);
+
+	FileManager fileManager;
+	FileManagerGui fileManagerGui = FileManagerGui(fileManager, textureDrawer);
 
 	TextureDrawer3D textureDrawer3D;
 	Canvas3DGui canvas3DGui = Canvas3DGui(textureDrawer3D, fileManager);

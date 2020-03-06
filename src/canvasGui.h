@@ -22,6 +22,9 @@ private:
 	ofParameter<float> radiusSlider;
 	ofParameter<string> selectedType;
 
+	ofxButton applyToSelectedButton;
+	void applyToSelectedAction();
+
 	ofxPanel drawingOptionsPanel;
 	ofxGuiGroup optionsPoint;
 	ofxGuiGroup shapeSelectionGroup;

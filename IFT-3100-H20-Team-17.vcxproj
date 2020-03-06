@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -196,6 +196,7 @@
     <ClCompile Include="src\renderer.cpp" />
     <ClCompile Include="src\sceneGraph2dGui.cpp" />
     <ClCompile Include="src\Shapes2D\ellipse.cpp" />
+    <ClCompile Include="src\Shapes2D\imagePrimitive.cpp" />
     <ClCompile Include="src\Shapes2D\line.cpp" />
     <ClCompile Include="src\Shapes2D\point.cpp" />
     <ClCompile Include="src\Shapes2D\rectangle.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="src\renderer.h" />
     <ClInclude Include="src\sceneGraph2dGui.h" />
     <ClInclude Include="src\Shapes2D\ellipse.h" />
+    <ClInclude Include="src\Shapes2D\imagePrimitive.h" />
     <ClInclude Include="src\Shapes2D\line.h" />
     <ClInclude Include="src\Shapes2D\point.h" />
     <ClInclude Include="src\Shapes2D\rectangle.h" />
