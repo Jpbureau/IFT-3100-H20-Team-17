@@ -29,7 +29,7 @@ void CameraGui::setup(int positionX, int positionY)
 	frustumFarSlider.set("Frustum eloigne", 200.0f, 5.0f, 1000.0f);
 
 	CameraPanel.add(selectedViewMode);
-	CameraPanel.add(perpesctiveModeButton.setup("Orthogonale"));
+	CameraPanel.add(perpesctiveModeButton.setup("Orthogonale/Perspective"));
 	CameraPanel.add(xCoordinateSlider);
 	CameraPanel.add(yCoordinateSlider);
 	CameraPanel.add(zCoordinateSlider);
@@ -67,11 +67,9 @@ void CameraGui::changerPerspective()
 	if (perspective)
 	{
 		selectedViewMode.set("Perspective");
-		perpesctiveModeButton.setName("Orthogonale");
 	}
 	else
 	{
 		selectedViewMode.set("Orthogonale");
-		perpesctiveModeButton.setName("Perspective");
 	}
 }

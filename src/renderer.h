@@ -35,7 +35,7 @@ private:
 
 	ColorHistogram colorHistogram;
 	ColorHistogramGui colorHistogramGui = ColorHistogramGui(colorHistogram, textureDrawer);
-	PrimitivesGeometriquesGui primitivesGeometriquesGui = PrimitivesGeometriquesGui();
+	PrimitivesGeometriquesGui primitivesGeometriquesGui = PrimitivesGeometriquesGui(textureDrawer3D);
 	CameraGui cameraGui = CameraGui();
 
 	Cursor cursor = Cursor(textureDrawer, textureDrawer3D);

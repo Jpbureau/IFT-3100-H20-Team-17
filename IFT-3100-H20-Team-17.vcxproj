@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -180,6 +180,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\graphNode.cpp" />
     <ClCompile Include="src\cameraGui.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
@@ -193,6 +194,12 @@
     <ClCompile Include="src\primitivesGeometriquesGui.cpp" />
     <ClCompile Include="src\recorder.cpp" />
     <ClCompile Include="src\renderer.cpp" />
+    <ClCompile Include="src\sceneGraph2dGui.cpp" />
+    <ClCompile Include="src\Shapes2D\ellipse.cpp" />
+    <ClCompile Include="src\Shapes2D\line.cpp" />
+    <ClCompile Include="src\Shapes2D\point.cpp" />
+    <ClCompile Include="src\Shapes2D\rectangle.cpp" />
+    <ClCompile Include="src\Shapes2D\shapeFactory.cpp" />
     <ClCompile Include="src\textureDrawer.cpp" />
     <ClCompile Include="src\textureDrawer3D.cpp" />
     <ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.cpp" />
@@ -211,6 +218,8 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\graphNode.h" />
+    <ClInclude Include="src\graphPrimitive.h" />
     <ClInclude Include="src\cameraGui.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\canvas3dGui.h" />
@@ -223,6 +232,12 @@
     <ClInclude Include="src\primitivesGeometriquesGui.h" />
     <ClInclude Include="src\recorder.h" />
     <ClInclude Include="src\renderer.h" />
+    <ClInclude Include="src\sceneGraph2dGui.h" />
+    <ClInclude Include="src\Shapes2D\ellipse.h" />
+    <ClInclude Include="src\Shapes2D\line.h" />
+    <ClInclude Include="src\Shapes2D\point.h" />
+    <ClInclude Include="src\Shapes2D\rectangle.h" />
+    <ClInclude Include="src\Shapes2D\shapeFactory.h" />
     <ClInclude Include="src\textureDrawer.h" />
     <ClInclude Include="src\textureDrawer3D.h" />
     <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.h" />

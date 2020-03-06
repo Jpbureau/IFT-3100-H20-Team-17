@@ -1,17 +1,19 @@
 #pragma once
 
 #include "ofxGui.h"
-#include "textureDrawer.h"
+#include "textureDrawer3D.h"
 
 class PrimitivesGeometriquesGui
 {
 public:
-	PrimitivesGeometriquesGui();
+	PrimitivesGeometriquesGui(TextureDrawer3D& drawer);
 
 	void setup(int positionX, int positionY);
 	void update();
 	void draw();
 private:
+	TextureDrawer3D& textureDrawer3D;
+
 	ofxPanel primitivesGeometriquesPanel;
 
 	ofxGuiGroup optionsGeneral;
@@ -42,14 +44,14 @@ private:
 	ofxButton drawRectangleType;
 	ofxButton drawConeType;
 
-	ofParameter<float> platonSolidRadiusSlider;
-	ofParameter<float> heightSlider;
-	ofParameter<float> widthSlider;
-	ofParameter<float> depthSlider;
+	ofParameter<GLfloat> platonSolidRadiusSlider;
+	ofParameter<GLfloat> heightSlider;
+	ofParameter<GLfloat> widthSlider;
+	ofParameter<GLfloat> depthSlider;
 
-	ofParameter<float> xCoordinateSlider;
-	ofParameter<float> yCoordinateSlider;
-	ofParameter<float> zCoordinateSlider;
+	ofParameter<GLfloat> xCoordinateSlider;
+	ofParameter<GLfloat> yCoordinateSlider;
+	ofParameter<GLfloat> zCoordinateSlider;
 
 	ofParameter<int> nbSidesSlider;
 
