@@ -5,6 +5,8 @@
 #include "ofxAssimpModelLoader.h"
 #include <vector>
 
+enum class shaderType { none, lambert };
+
 class TextureDrawer3D
 {
 public:
@@ -34,6 +36,8 @@ private:
 
 	void calculerBoiteDelimitation();
 	void drawBoiteDelimitation(ofPoint point, float width, float height, float depth);
+
+	void applyLambertShader();
 
 	ofxAssimpModelLoader model;
 	ofMesh mesh;

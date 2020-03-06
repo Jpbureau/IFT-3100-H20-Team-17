@@ -20,6 +20,7 @@ private:
 	ofxButton importModelButton;
 
 	ofxGuiGroup animationOptions;
+	ofxGuiGroup shaderType;
 
 	TextureDrawer3D& textureDrawer3D;
 	FileManager& fileManager;
@@ -31,6 +32,12 @@ private:
 	ofParameter<bool> rotationAnimationToggle;
 	ofParameter<bool> levitationAnimationToggle;
 
+	ofxButton lambertShaderSelectedButton;
+	ofxButton noShaderSelectedButton;
+
 	void boiteDelimButtonClicked();
 	void importModelClicked();
+
+	void lambertShaderSelected();
+	void noShaderSelected();
 };

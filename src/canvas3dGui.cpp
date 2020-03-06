@@ -8,6 +8,7 @@ void Canvas3DGui::setup()
 {
 	optionsPanel.setup("Panneau3D");
 	animationOptions.setup("Options d'animation");
+	shaderType.setup("Type choisi de shader");
 	optionsPanel.setPosition(215, 10);
 
 	optionsPanel.add(boiteDelimButton.setup("Boite délimitation"));
@@ -20,10 +21,15 @@ void Canvas3DGui::setup()
 	animationOptions.add(waveIntensity.set("Intensité de lévitation", 10.0f, 20.0f, 4.0f));
 
 	optionsPanel.add(&animationOptions);
+	
+	shaderType.add(noShaderSelectedButton.setup("Aucun"));
+	shaderType.add(lambertShaderSelectedButton.setup("Shader de lambert"));
+
+	noShaderSelectedButton.addListener(this, &Canvas3DGui::noShaderSelected);
+	lambertShaderSelectedButton.addListener(this, &Canvas3DGui::lambertShaderSelected);
 
 	boiteDelimButton.addListener(this, &Canvas3DGui::boiteDelimButtonClicked);
 	importModelButton.addListener(this, &Canvas3DGui::importModelClicked);
-
 }
 
 void Canvas3DGui::update()
@@ -46,4 +52,12 @@ void Canvas3DGui::importModelClicked()
 {
 	ofxAssimpModelLoader model = fileManager.importModel();
 	textureDrawer3D.importModel(model);
+}
+
+void Canvas3DGui::lambertShaderSelected()
+{
+}
+
+void Canvas3DGui::noShaderSelected()
+{
 }
