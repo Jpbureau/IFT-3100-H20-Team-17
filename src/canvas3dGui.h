@@ -19,8 +19,15 @@ private:
 	ofxButton boiteDelimButton;
 	ofxButton importModelButton;
 
+	ofxButton selectModelTypeButton;
+	ofxButton selectBoxTypeButton;
+	ofxButton selectSphereTypeButton;
+	ofxButton selectCylinderTypeButton;
+	ofxButton selectConeTypeButton;
+
 	ofxGuiGroup animationOptions;
 	ofxGuiGroup shaderType;
+	ofxGuiGroup selectionType;
 
 	TextureDrawer3D& textureDrawer3D;
 	FileManager& fileManager;
@@ -29,6 +36,7 @@ private:
 	ofParameter<float> modelScale;
 
 	ofParameter<string> selectedShaderType;
+	ofParameter<string> selectedPrimitiveType;
 
 	ofParameter<float> rotationSpeed;
 	ofParameter<float> waveIntensity;
@@ -43,4 +51,10 @@ private:
 
 	void lambertShaderSelected();
 	void noShaderSelected();
+
+	void selectModelType();
+	void selectBoxType();
+	void selectSphereType();
+	void selectCylinderType();
+	void selectConeType();
 };
