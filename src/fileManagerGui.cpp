@@ -2,7 +2,8 @@
 
 
 
-FileManagerGui::FileManagerGui(FileManager & manager) : fileManager(manager)
+FileManagerGui::FileManagerGui(FileManager & manager, TextureDrawer & textureDrawer) :
+	fileManager(manager), textureDrawer(textureDrawer)
 {
 }
 
@@ -24,6 +25,8 @@ void FileManagerGui::draw()
 void FileManagerGui::importButton_pressed()
 {
 	ofImage image = fileManager.image_import();
+	
+	textureDrawer.selectImageType(image);
 }
 
 void FileManagerGui::exportButtonPressed()

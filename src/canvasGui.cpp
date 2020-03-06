@@ -63,6 +63,8 @@ void CanvasGui::update()
 	textureDrawer.updateColors(strokeColorPicker, fillColorPicker);
 	textureDrawer.updateStrokeWeight(strokeWeightSlider);
 	textureDrawer.updateRadius(radiusSlider);
+
+	selectedType.set(textureDrawer.getCurrentlySelectedType());
 }
 
 void CanvasGui::draw()
@@ -74,39 +76,32 @@ void CanvasGui::draw()
 void CanvasGui::selectPointType()
 {
 	textureDrawer.selectPointType();
-	selectedType.set("Point");
 }
 void CanvasGui::selectLineType()
 {
 	textureDrawer.selectLineType();
-	selectedType.set("Ligne");
 }
 void CanvasGui::selectRectangleType()
 {
 	textureDrawer.selectRectangleType();
-	selectedType.set("Rectangle");
 }
 void CanvasGui::selectSquareType()
 {
 	textureDrawer.selectSquareType();
-	selectedType.set("Carre");
 }
 void CanvasGui::selectEllipseType()
 {
 	textureDrawer.selectEllipseType();
-	selectedType.set("Ellipse");
 }
 
 void CanvasGui::selectCircleType()
 {
 	textureDrawer.selectCircleType();
-	selectedType.set("Cercle");
 }
 
 void CanvasGui::selectAction()
 {
 	textureDrawer.selectSelectionType();
-	selectedType.set("Selection");
 }
 
 void CanvasGui::deleteAction()

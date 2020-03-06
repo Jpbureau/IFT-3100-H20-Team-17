@@ -1,6 +1,6 @@
 #include "shapeFactory.h"
 
-GraphPrimitive * ShapeFactory::createShape(ShapeType type, glm::vec2 p1, glm::vec2 p2, ofColor fillColor, ofColor strokeColor, float strokeWidth, float radius)
+GraphPrimitive * ShapeFactory::createShape(ShapeType type, glm::vec2 p1, glm::vec2 p2, ofColor fillColor, ofColor strokeColor, float strokeWidth, float radius, ofImage image)
 {
 	switch (type)
 	{
@@ -23,6 +23,10 @@ GraphPrimitive * ShapeFactory::createShape(ShapeType type, glm::vec2 p1, glm::ve
 	case ShapeType::circle:
 		p2 = squaricize(p1, p2);
 		return new Ellipse2D(p1, p2, strokeWidth, fillColor, strokeColor, "Cercle");
+
+	case ShapeType::image:
+		return new ImagePrimitive(image, p1, p2, "Image");
+
 	default:
 		throw exception("Illegal Shape Type");
 	}

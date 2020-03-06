@@ -20,13 +20,17 @@ public:
 	bool isMouseInsideCanvas(int x, int y);
 	bool isTypeSelection();
 
+	string getCurrentlySelectedType();
+
 	void selectPointType();
 	void selectLineType();
 	void selectRectangleType();
 	void selectSquareType();
 	void selectEllipseType();
 	void selectCircleType();
+	void selectImageType(ofImage image);
 	void selectSelectionType();
+
 	void deleteSelectedShapes();
 	void groupSelectedShapes();
 	void ungroupSelectedGroup();
@@ -55,6 +59,8 @@ private:
 
 	ofColor fillColor;
 	ofColor strokeColor;
+
+	ofImage currentImage;
 
 	ShapeType selectedType;
 	bool isSelectionActive = false;
