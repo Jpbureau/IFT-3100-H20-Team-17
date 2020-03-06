@@ -1,5 +1,11 @@
 #include "fileManagerGui.h"
 
+
+
+FileManagerGui::FileManagerGui(FileManager & manager) : fileManager(manager)
+{
+}
+
 void FileManagerGui::setup()
 {
 	exportButton.addListener(this, &FileManagerGui::exportButtonPressed);

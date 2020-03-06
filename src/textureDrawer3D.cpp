@@ -7,9 +7,8 @@ void TextureDrawer3D::setup()
 	ofClear(255, 255);
 	fboTexture3D.end();
 
-	teapot.loadModel("teapot.obj");
+	model.loadModel("teapot.obj");
 	//vbo = meshHelper.vbo();
-	mesh = teapot.getMesh(0);
 
 	geometricRegularPrimitive.type = GeometricRegularPrimitiveType::none;
 	geometricOtherPrimitive.type = GeometricOtherPrimitiveType::none;
@@ -21,6 +20,9 @@ void TextureDrawer3D::setup()
 
 	geometricRegularPrimitive.stroke_width = 1;
 	geometricOtherPrimitive.stroke_width = 1;
+
+	mesh = model.getMesh(0);
+
 }
 
 void TextureDrawer3D::update()
@@ -323,8 +325,8 @@ void TextureDrawer3D::calculerBoiteDelimitation()
 	glm::vec3 pointDessus = vertices.at(0);
 	glm::vec3 pointDessous = vertices.at(0);
 
-	// Parcours du conteneur de vertices pour déterminer ceux qui
-	// Sont le plus aux extrémités
+	// Parcours du conteneur de vertices pour dÃ©terminer ceux qui
+	// Sont le plus aux extrÃ©mitÃ©s
 	for (it = vertices.begin(); it != vertices.end(); ++it)
 	{
 		if ((*it).x < pointGauche.x)
