@@ -19,6 +19,8 @@ public:
 
 	bool isMouseInsideCanvas(int x, int y);
 
+	string getCurrentlySelectedType();
+
 	void selectPointType();
 	void selectLineType();
 	void selectRectangleType();

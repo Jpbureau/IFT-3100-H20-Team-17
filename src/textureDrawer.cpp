@@ -126,6 +126,33 @@ bool TextureDrawer::isMouseInsideCanvas(int x, int y)
 		y >= drawingCanvasY && y <= (drawingCanvasY + drawingCanvasSize);
 }
 
+string TextureDrawer::getCurrentlySelectedType()
+{
+	if (isSelectionActive) {
+		return "Selection";
+	}
+
+	switch (selectedType)
+	{
+	case ShapeType::point:
+		return "Point";
+	case ShapeType::line:
+		return "Ligne";
+	case ShapeType::rectangle:
+		return "Rectangle";
+	case ShapeType::square:
+		return "Carre";
+	case ShapeType::ellipse:
+		return "Ellipse";
+	case ShapeType::circle:
+		return "Cercle";
+	case ShapeType::image:
+		return "Image";
+	default:
+		break;
+	}
+}
+
 bool TextureDrawer::isMouseOutsideCanvas()
 {
 	int maxValidX = drawingCanvasX + drawingCanvasSize;
