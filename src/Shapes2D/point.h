@@ -10,6 +10,8 @@ public:
 	virtual void draw();
 	virtual void update();
 
+	virtual void updateCommonAttributes(ofColor fill, ofColor stroke, float strokeWidth);
+
 	virtual bool isPointInside(int x, int y);
 
 	virtual void select();

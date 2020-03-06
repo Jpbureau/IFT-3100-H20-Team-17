@@ -26,6 +26,15 @@ void GraphNode::draw()
 	}
 }
 
+void GraphNode::updateCommonAttributes(ofColor fill, ofColor stroke, float strokeWidth)
+{
+	for (auto child : children) {
+		if (child->isSelected()) {
+			child->updateCommonAttributes(fill, stroke, strokeWidth);
+		}
+	}
+}
+
 bool GraphNode::isPointInside(int x, int y)
 {
 	for (auto& child : children) {

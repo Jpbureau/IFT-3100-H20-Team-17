@@ -30,6 +30,13 @@ void Ellipse2D::update()
 {
 }
 
+void Ellipse2D::updateCommonAttributes(ofColor fill, ofColor stroke, float strokeWidth)
+{
+	this->fillColor = fill;
+	this->strokeColor = stroke;
+	this->strokeWidth = strokeWidth;
+}
+
 bool Ellipse2D::isPointInside(int x, int y)
 {
 	int x1 = p1.x;

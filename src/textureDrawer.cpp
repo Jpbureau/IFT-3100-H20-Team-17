@@ -110,6 +110,11 @@ void TextureDrawer::updateRadius(float newRadius)
 	radius = newRadius;
 }
 
+void TextureDrawer::applyToSelected()
+{
+	root.updateCommonAttributes(fillColor, strokeColor, stroke_width);
+}
+
 void TextureDrawer::setStrokeColor(ofColor color)
 {
 	strokeColor = color;

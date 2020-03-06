@@ -19,6 +19,10 @@ void ImagePrimitive::update()
 {
 }
 
+void ImagePrimitive::updateCommonAttributes(ofColor fill, ofColor stroke, float strokeWidth)
+{
+}
+
 bool ImagePrimitive::isPointInside(int x, int y)
 {
 	int x1 = p1.x;

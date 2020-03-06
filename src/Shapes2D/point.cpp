@@ -20,6 +20,11 @@ void Point::update()
 {
 }
 
+void Point::updateCommonAttributes(ofColor fill, ofColor stroke, float strokeWidth)
+{
+	this->color = stroke;
+}
+
 bool Point::isPointInside(int x, int y)
 {
 	return (

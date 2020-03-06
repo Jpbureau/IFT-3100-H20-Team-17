@@ -20,6 +20,12 @@ void Line::update()
 {
 }
 
+void Line::updateCommonAttributes(ofColor fill, ofColor stroke, float strokeWidth)
+{
+	this->color = stroke;
+	this->lineWidth = strokeWidth;
+}
+
 bool Line::isPointInside(int x, int y)
 {
 	int x1 = p1.x;

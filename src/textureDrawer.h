@@ -41,6 +41,8 @@ public:
 	void updateStrokeWeight(float newWeight);
 	void updateRadius(float newRadius); 
 
+	void applyToSelected();
+
 	void resetSelection();
 
 	ofImage grabCanvasScreen();
