@@ -119,6 +119,11 @@ bool TextureDrawer::isMouseInsideCanvas(int x, int y)
 		y >= drawingCanvasY && y <= (drawingCanvasY + drawingCanvasSize);
 }
 
+bool TextureDrawer::isTypeSelection()
+{
+	return isSelectionActive;
+}
+
 bool TextureDrawer::isMouseOutsideCanvas()
 {
 	int maxValidX = drawingCanvasX + drawingCanvasSize;
