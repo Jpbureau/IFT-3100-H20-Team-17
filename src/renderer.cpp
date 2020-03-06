@@ -2,8 +2,11 @@
 
 void Renderer::setup()
 {
-	glm::vec2 initialCanvas2dPosition(225, ofGetHeight() / 3.5);
+	glm::vec2 initialCanvas2dPosition(225, 200);
 	int initialCanvas2dSize = 600;
+
+	glm::vec2 initialCanvas3dposition(850, 100);
+	int initialCanvas3dSize = 800;
 
 	cursor.setup();
 
@@ -27,8 +30,8 @@ void Renderer::setup()
 	const int CAMERA_GUI_POSITION_Y = 500;
 	cameraGui.setup(CAMERA_GUI_POSITION_X, CAMERA_GUI_POSITION_Y);
 
-	textureDrawer3D.setup();
-	canvas3DGui.setup();
+	textureDrawer3D.setup(initialCanvas3dposition.x, initialCanvas3dposition.y, initialCanvas3dSize);
+	canvas3DGui.setup(initialCanvas3dposition.x, initialCanvas3dposition.y, initialCanvas3dSize);
 	
 }
 
@@ -36,24 +39,24 @@ void Renderer::update()
 {
 	canvas2dGui.update();
 	textureDrawer.update();
-	cursor.update();
 	colorHistogramGui.update();	
 	canvas3DGui.update();
 	textureDrawer3D.update();
-	primitivesGeometriquesGui.update();
-	cameraGui.update();
+	//primitivesGeometriquesGui.update();
+	//cameraGui.update();
+	cursor.update();
 }
 
 void Renderer::draw()
 {
 	ofSetBackgroundColor(canvas2dGui.backGroundColor);
 	textureDrawer.draw();
-	cursor.draw();
 	fileManagerGui.draw();
 	canvas2dGui.draw();
 	colorHistogramGui.draw();
 	canvas3DGui.draw();
 	textureDrawer3D.draw();
-	primitivesGeometriquesGui.draw();
-	cameraGui.draw();
+	//primitivesGeometriquesGui.draw();
+	//cameraGui.draw();
+	cursor.draw();
 }

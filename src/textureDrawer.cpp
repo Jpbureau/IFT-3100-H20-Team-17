@@ -126,9 +126,11 @@ bool TextureDrawer::isMouseInsideCanvas(int x, int y)
 		y >= drawingCanvasY && y <= (drawingCanvasY + drawingCanvasSize);
 }
 
+
 string TextureDrawer::getCurrentlySelectedType()
 {
-	if (isSelectionActive) {
+	if (isSelectionActive) 
+  {
 		return "Selection";
 	}
 
@@ -151,6 +153,11 @@ string TextureDrawer::getCurrentlySelectedType()
 	default:
 		break;
 	}
+
+bool TextureDrawer::isTypeSelection()
+{
+	return isSelectionActive;
+
 }
 
 bool TextureDrawer::isMouseOutsideCanvas()

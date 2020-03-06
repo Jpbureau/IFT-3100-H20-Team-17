@@ -18,6 +18,7 @@ public:
 	int mouse_current_posY;
 
 	bool isMouseInsideCanvas(int x, int y);
+	bool isTypeSelection();
 
 	string getCurrentlySelectedType();
 
