@@ -238,6 +238,7 @@ void TextureDrawer3D::draw()
 			geometricRegularPrimitive.position[0],
 			geometricRegularPrimitive.position[1],
 			geometricRegularPrimitive.position[2]);
+		
 		break;
 
 	default:
@@ -256,47 +257,103 @@ void TextureDrawer3D::draw()
 	switch (geometricOtherPrimitive.type)
 	{
 	case GeometricOtherPrimitiveType::ellipse:
-		draw_ellipse();
+		draw_ellipse(
+			geometricOtherPrimitive.width,
+			geometricOtherPrimitive.heigth,
+			geometricOtherPrimitive.depth,
+			geometricOtherPrimitive.position[0],
+			geometricOtherPrimitive.position[1],
+			geometricOtherPrimitive.position[2]);
 		break;
 
 	case GeometricOtherPrimitiveType::polygon:
-		draw_polygon();
+		draw_polygon(
+			geometricOtherPrimitive.width,
+			geometricOtherPrimitive.heigth,
+			geometricOtherPrimitive.depth,
+			geometricOtherPrimitive.position[0],
+			geometricOtherPrimitive.position[1],
+			geometricOtherPrimitive.position[2],
+			geometricOtherPrimitive.nbSides);
 		ofNoFill();
 		ofSetColor(
 			geometricOtherPrimitive.stroke_color[0],
 			geometricOtherPrimitive.stroke_color[1],
 			geometricOtherPrimitive.stroke_color[2]);
-		draw_polygon();
+		draw_polygon(
+			geometricOtherPrimitive.width,
+			geometricOtherPrimitive.heigth,
+			geometricOtherPrimitive.depth,
+			geometricOtherPrimitive.position[0],
+			geometricOtherPrimitive.position[1],
+			geometricOtherPrimitive.position[2],
+			geometricOtherPrimitive.nbSides);
 		break;
 
 	case GeometricOtherPrimitiveType::cylinder:
-		draw_cylinder();
+		draw_cylinder(
+			geometricOtherPrimitive.width,
+			geometricOtherPrimitive.heigth,
+			geometricOtherPrimitive.depth,
+			geometricOtherPrimitive.position[0],
+			geometricOtherPrimitive.position[1],
+			geometricOtherPrimitive.position[2]);
 		ofNoFill();
 		ofSetColor(
 			geometricOtherPrimitive.stroke_color[0],
 			geometricOtherPrimitive.stroke_color[1],
 			geometricOtherPrimitive.stroke_color[2]);
-		draw_cylinder();
+		draw_cylinder(
+			geometricOtherPrimitive.width,
+			geometricOtherPrimitive.heigth,
+			geometricOtherPrimitive.depth,
+			geometricOtherPrimitive.position[0],
+			geometricOtherPrimitive.position[1],
+			geometricOtherPrimitive.position[2]);
 		break;
 
 	case GeometricOtherPrimitiveType::rectangle:
-		draw_rectangle();
+		draw_rectangle(
+			geometricOtherPrimitive.width,
+			geometricOtherPrimitive.heigth,
+			geometricOtherPrimitive.depth,
+			geometricOtherPrimitive.position[0],
+			geometricOtherPrimitive.position[1],
+			geometricOtherPrimitive.position[2]);
 		ofNoFill();
 		ofSetColor(
 			geometricOtherPrimitive.stroke_color[0],
 			geometricOtherPrimitive.stroke_color[1],
 			geometricOtherPrimitive.stroke_color[2]);
-		draw_rectangle();
+		draw_rectangle(
+			geometricOtherPrimitive.width,
+			geometricOtherPrimitive.heigth,
+			geometricOtherPrimitive.depth,
+			geometricOtherPrimitive.position[0],
+			geometricOtherPrimitive.position[1],
+			geometricOtherPrimitive.position[2]);
 		break;
 
 	case GeometricOtherPrimitiveType::cone:
-		draw_cone();
+		draw_cone(
+			geometricOtherPrimitive.width,
+			geometricOtherPrimitive.heigth,
+			geometricOtherPrimitive.depth,
+			geometricOtherPrimitive.position[0],
+			geometricOtherPrimitive.position[1],
+			geometricOtherPrimitive.position[2]);
 		ofNoFill();
 		ofSetColor(
 			geometricOtherPrimitive.stroke_color[0],
 			geometricOtherPrimitive.stroke_color[1],
 			geometricOtherPrimitive.stroke_color[2]);
-		draw_cone();
+		draw_cone(
+			geometricOtherPrimitive.width,
+			geometricOtherPrimitive.heigth,
+			geometricOtherPrimitive.depth,
+			geometricOtherPrimitive.position[0],
+			geometricOtherPrimitive.position[1],
+			geometricOtherPrimitive.position[2]);
 		break;
 
 	default:
@@ -368,12 +425,32 @@ void TextureDrawer3D::calculerBoiteDelimitation()
 
 void TextureDrawer3D::draw_tetrahedron(GLfloat radius, GLfloat x, GLfloat y, GLfloat z) const
 {
-	
+	//x = 2, y = 2, z = 2, radius = 2
+
+	//x1 + x2 + x3 + x4 = 8, y1 + y2 + y3 + y4 = 8, z1 + z2 + z3+ z4 = 8
+	//2, 4, 2 //6, 4, 6
+	//0.67, 1.33, 1.33 //5.33, 2.66, 4.66
+	//3.33, 1.33, 1.33 //2, 1.33, 3.33
+	//2, 1.33, 3.33 //0, 0, 0
+
+	//(radius / 1.5) = 1.33
+	//(radius / 3) = 0.66
+
+
+	glm::vec3 pointHaut = {x, y + radius, z};
+	glm::vec3 pointGauche= { x - (radius / 1.5), y - (radius/3), z - (radius / 3) };
+	glm::vec3 pointDroite= { x + (radius / 1.5), y - (radius/3), z - (radius / 3) };
+	glm::vec3 pointFond= {x, y - (radius/3), z + (radius / 1.5) };
+
+	//Je fais quoi ensuite?
+
 }
 
 void TextureDrawer3D::draw_hexahedron(GLfloat radius, GLfloat x, GLfloat y, GLfloat z) const
 {
-	ofDrawBox(x, y, z, radius * 2, radius * 2, radius * 2);
+	
+	float cubeDimension = sqrt((radius*2)*(radius*2)/3);
+	ofDrawBox(x, y, z, cubeDimension, cubeDimension, cubeDimension);
 }
 
 void TextureDrawer3D::draw_octahedron(GLfloat radius, GLfloat x, GLfloat y, GLfloat z) const
@@ -393,32 +470,34 @@ void TextureDrawer3D::draw_icosahedron(GLfloat radius, GLfloat x, GLfloat y, GLf
 
 void TextureDrawer3D::draw_sphere(GLfloat radius, GLfloat x, GLfloat y, GLfloat z) const
 {
+
 	ofDrawSphere(x, y, z, radius);
 }
 
-void TextureDrawer3D::draw_ellipse() const
+void TextureDrawer3D::draw_ellipse(GLfloat width, GLfloat height, GLfloat depth, GLfloat x, GLfloat y, GLfloat z) const
+{
+	
+}
+
+void TextureDrawer3D::draw_polygon(GLfloat width, GLfloat height, GLfloat depth, GLfloat x, GLfloat y, GLfloat z, GLubyte nbSides) const
 {
 
 }
 
-void TextureDrawer3D::draw_polygon() const
+void TextureDrawer3D::draw_cylinder(GLfloat width, GLfloat height, GLfloat depth, GLfloat x, GLfloat y, GLfloat z) const
 {
-
+	ofDrawCylinder(x, y, z, width / 2, height);
 }
 
-void TextureDrawer3D::draw_cylinder() const
+void TextureDrawer3D::draw_rectangle(GLfloat width, GLfloat height, GLfloat depth, GLfloat x, GLfloat y, GLfloat z) const
 {
-
+	ofDrawBox(x, y, z, width, height, depth);
 }
 
-void TextureDrawer3D::draw_rectangle() const
+void TextureDrawer3D::draw_cone(GLfloat width, GLfloat height, GLfloat depth, GLfloat x, GLfloat y, GLfloat z) const
 {
-
-}
-
-void TextureDrawer3D::draw_cone() const
-{
-
+	//Ceci ne peut pas faire de cônes elliptique
+	ofDrawCone(x, y, z, width / 2, height);
 }
 
 
