@@ -117,10 +117,10 @@ private:
 	void draw_dodecahedron(GLfloat radius, GLfloat x, GLfloat y, GLfloat z) const;
 	void draw_icosahedron(GLfloat radius, GLfloat x, GLfloat y, GLfloat z) const;
 	void draw_sphere(GLfloat radius, GLfloat x, GLfloat y, GLfloat z) const;
-	void draw_ellipse() const;
-	void draw_polygon() const;
-	void draw_cylinder() const;
-	void draw_rectangle() const;
-	void draw_cone() const;
+	void draw_ellipse(GLfloat width, GLfloat height, GLfloat depth, GLfloat x, GLfloat y, GLfloat z) const;
+	void draw_polygon(GLfloat width, GLfloat height, GLfloat depth, GLfloat x, GLfloat y, GLfloat z, GLubyte nbSides) const;
+	void draw_cylinder(GLfloat width, GLfloat height, GLfloat depth, GLfloat x, GLfloat y, GLfloat z) const;
+	void draw_rectangle(GLfloat width, GLfloat height, GLfloat depth, GLfloat x, GLfloat y, GLfloat z) const;
+	void draw_cone(GLfloat width, GLfloat height, GLfloat depth, GLfloat x, GLfloat y, GLfloat z) const;
 
 };
