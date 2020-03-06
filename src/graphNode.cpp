@@ -111,6 +111,33 @@ void GraphNode::createGroupWithSelectedPrimitives()
 	updateRepresentation();
 }
 
+void GraphNode::ungroupSelected()
+{
+	std::list<std::shared_ptr<GraphNode>> selectedNodes;
+
+	for (auto child : children) {
+		std::shared_ptr<GraphNode> node = std::dynamic_pointer_cast<GraphNode>(child);
+
+		if (node != nullptr && node->isSelected()) {
+			selectedNodes.push_back(node);
+		}
+	}
+
+	children.remove_if([](std::shared_ptr<GraphPrimitive>& child) {
+		return std::dynamic_pointer_cast<GraphNode>(child) != nullptr && child->isSelected();
+	});
+
+	for (auto node : selectedNodes) {
+		for (auto child : node->children) {
+			children.push_back(child);
+		}
+	}
+
+	updateRepresentation();
+}
+
+
+
 void GraphNode::updateRepresentation()
 {
 	representation->clear();

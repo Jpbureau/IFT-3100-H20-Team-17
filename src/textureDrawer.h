@@ -28,6 +28,7 @@ public:
 	void selectSelectionType();
 	void deleteSelectedShapes();
 	void groupSelectedShapes();
+	void ungroupSelectedGroup();
 
 	void add_vector_shape();
 

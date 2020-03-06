@@ -8,7 +8,7 @@ SceneGraph2dGui::SceneGraph2dGui(GraphNode & root) :
 void SceneGraph2dGui::setup()
 {
 	gui.setup("Graphe de scene");
-	gui.setPosition(10, 600);
+	gui.setPosition(10, 620);
 	gui.add(root.getGuiRepresentation());
 }
 

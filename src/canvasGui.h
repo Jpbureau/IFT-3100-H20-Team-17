@@ -36,6 +36,7 @@ private:
 	ofxButton deselectButton;
 	ofxButton deleteButton;
 	ofxButton groupButton;
+	ofxButton ungroupButton;
 
 	void selectPointType();
 	void selectLineType();
@@ -47,4 +48,5 @@ private:
 	void deleteAction();
 	void deselectAction();
 	void groupAction();
+	void ungroupAction();
 };

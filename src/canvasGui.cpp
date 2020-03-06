@@ -41,6 +41,7 @@ void CanvasGui::setup(int drawingCanvasY)
 	drawingOptionsPanel.add(deselectButton.setup("Deselectionner"));
 	drawingOptionsPanel.add(deleteButton.setup("Supprimer"));
 	drawingOptionsPanel.add(groupButton.setup("Grouper"));
+	drawingOptionsPanel.add(ungroupButton.setup("Degrouper"));
 
 	drawPointButton.addListener(this, &CanvasGui::selectPointType);
 	drawLineButton.addListener(this, &CanvasGui::selectLineType);
@@ -52,6 +53,7 @@ void CanvasGui::setup(int drawingCanvasY)
 	deselectButton.addListener(this, &CanvasGui::deselectAction);
 	deleteButton.addListener(this, &CanvasGui::deleteAction);
 	groupButton.addListener(this, &CanvasGui::groupAction);
+	ungroupButton.addListener(this, &CanvasGui::ungroupAction);
 
 	selectRectangleType();
 }
@@ -120,4 +122,9 @@ void CanvasGui::deselectAction()
 void CanvasGui::groupAction()
 {
 	textureDrawer.groupSelectedShapes();
+}
+
+void CanvasGui::ungroupAction()
+{
+	textureDrawer.ungroupSelectedGroup();
 }

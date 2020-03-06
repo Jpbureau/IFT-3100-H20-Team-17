@@ -25,6 +25,7 @@ public:
 	void selectChildsAtPoint(int x, int y);
 	void deleteSelectedPrimitives();
 	void createGroupWithSelectedPrimitives();
+	void ungroupSelected();
 
 protected:
 	std::list<std::shared_ptr<GraphPrimitive>> children;
