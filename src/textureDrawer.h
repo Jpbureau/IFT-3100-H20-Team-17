@@ -25,7 +25,9 @@ public:
 	void selectSquareType();
 	void selectEllipseType();
 	void selectCircleType();
+	void selectImageType(ofImage image);
 	void selectSelectionType();
+
 	void deleteSelectedShapes();
 	void groupSelectedShapes();
 	void ungroupSelectedGroup();
@@ -54,6 +56,8 @@ private:
 
 	ofColor fillColor;
 	ofColor strokeColor;
+
+	ofImage currentImage;
 
 	ShapeType selectedType;
 	bool isSelectionActive = false;

@@ -63,6 +63,13 @@ void TextureDrawer::selectCircleType()
 	isSelectionActive = false;
 }
 
+void TextureDrawer::selectImageType(ofImage image)
+{
+	currentImage = image;
+	selectedType = ShapeType::image;
+	isSelectionActive = false;
+}
+
 void TextureDrawer::selectSelectionType()
 {
 	isSelectionActive = true;
@@ -84,7 +91,7 @@ void TextureDrawer::add_vector_shape()
 		}
 	}
 
-	root.addChild(shapeFactory.createShape(selectedType, p1, p2, fillColor, strokeColor, stroke_width, radius));
+	root.addChild(shapeFactory.createShape(selectedType, p1, p2, fillColor, strokeColor, stroke_width, radius, currentImage));
 }
 
 void TextureDrawer::updateColors(ofColor stroke, ofColor fill)

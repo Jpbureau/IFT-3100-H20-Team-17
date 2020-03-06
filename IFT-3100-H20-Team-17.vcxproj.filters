@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\ofApp.cpp">
@@ -114,6 +114,9 @@
     </ClCompile>
     <ClCompile Include="src\sceneGraph2dGui.cpp">
       <Filter>src\SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Shapes2D\imagePrimitive.cpp">
+      <Filter>src\Canvas2D\Shapes2D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -421,6 +424,9 @@
     </ClInclude>
     <ClInclude Include="src\sceneGraph2dGui.h">
       <Filter>src\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Shapes2D\imagePrimitive.h">
+      <Filter>src\Canvas2D\Shapes2D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
