@@ -13,7 +13,8 @@ void TextureDrawer3D::setup(int canvasPositionX, int canvasPositionY, int canvas
 	model.loadModel("teapot.obj");
 
 	selectedShader = ShaderType::none;
-	selectedType = ModelType::model;
+	//selectedType = ModelType::model;
+	selectedType = ModelType::sphere;
 
 	mesh = model.getMesh(0);
 	model.setPosition(centerX, centerY, 90);
@@ -166,15 +167,13 @@ void TextureDrawer3D::draw()
 	}
 }
 
-void TextureDrawer3D::drawBoiteDelimitation()
+void TextureDrawer3D::drawBoiteDelimitationModel()
 {
 	ofPoint sceneMax = model.getSceneMax();
 	ofPoint sceneMin = model.getSceneMin();
 	ofPoint sceneCenter = model.getSceneCenter();
 
-	float scaling;
-	float scale = model.getScale().x;
-	scaling = model.getNormalizedScale()*scale;
+	float scaling = model.getNormalizedScale() * modelScale;
 
 	ofPoint tailleBoiteDelimitation = ofPoint((sceneMax.x - sceneMin.x) * scaling, (sceneMax.y - sceneMin.y) * scaling, (sceneMax.z - sceneMin.z) * scaling);
 	
@@ -218,7 +217,7 @@ void TextureDrawer3D::drawModel()
 	case ModelType::model:
 		model.drawFaces();
 		if(boiteDelimitation)
-			drawBoiteDelimitation();
+			drawBoiteDelimitationModel();
 		break;
 	case ModelType::box:
 		if (selectedShader == ShaderType::none) {
@@ -249,6 +248,7 @@ void TextureDrawer3D::drawModel()
 		
 		break;
 	case ModelType::sphere:
+
 		if (selectedShader == ShaderType::none) {
 			material.begin();
 			sphere.enableColors();
@@ -256,24 +256,27 @@ void TextureDrawer3D::drawModel()
 			sphere.enableTextures();
 			sphere.draw(OF_MESH_FILL);
 			material.end();
+			
+			if (boiteDelimitation)
+			{
+				float size = sphere.getRadius() * 2 * sphere.getGlobalScale().x;
+				ofNoFill();
+				ofSetLineWidth(7);
+				ofSetColor(0, 255, 0);
+				ofDrawBox(sphere.getPosition(), size, size, size);
+			}
 
-			float rayon = sphere.getRadius();
-			ofNoFill();
-			ofSetLineWidth(7);
-			ofSetColor(0, 255, 0);
-			ofDrawBox(sphere.getPosition(), rayon*2*5, rayon*2*5, rayon*2*5);
-			cout << rayon << "\n";
 		}
 		else {
 			sphere.drawFaces();
-
-
-			float rayon = sphere.getRadius();
-			ofNoFill();
-			ofSetLineWidth(7);
-			ofSetColor(0, 255, 0);
-			ofDrawBox(sphere.getPosition(), rayon * 2 * 5, rayon * 2 * 5, rayon * 2 * 5);
-			cout << rayon << "\n";
+			if (boiteDelimitation)
+			{
+				float size = sphere.getRadius() * 2 * sphere.getGlobalScale().x;
+				ofNoFill();
+				ofSetLineWidth(7);
+				ofSetColor(0, 255, 0);
+				ofDrawBox(sphere.getPosition(), size, size, size);
+			}
 		}
 		
 		break;
@@ -321,7 +324,6 @@ void TextureDrawer3D::selectConeType()
 {
 	selectedType = ModelType::cone;
 }
-
 void TextureDrawer3D::selectModelType()
 {
 	selectedType = ModelType::model;

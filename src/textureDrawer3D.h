@@ -50,7 +50,7 @@ private:
 
 	ofFbo fboTexture3D;
 
-	void drawBoiteDelimitation();
+	void drawBoiteDelimitationModel();
 	bool boiteDelimitation;
 
 	void applyLambertShader();
