@@ -8,6 +8,7 @@ public:
 	virtual void draw() = 0;
 
 	virtual void updateCommonAttributes(ofColor fill, ofColor stroke, float strokeWidth) = 0;
+	virtual void translate(int x, int y) = 0;
 
 	virtual bool isPointInside(int x, int y) = 0;
 

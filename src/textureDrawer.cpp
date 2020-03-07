@@ -31,36 +31,42 @@ void TextureDrawer::selectPointType()
 {
 	selectedType = ShapeType::point;
 	isSelectionActive = false;
+	isTranslationActive = false;
 }
 
 void TextureDrawer::selectLineType()
 {
 	selectedType = ShapeType::line;
 	isSelectionActive = false;
+	isTranslationActive = false;
 }
 
 void TextureDrawer::selectRectangleType()
 {
 	selectedType = ShapeType::rectangle;
 	isSelectionActive = false;
+	isTranslationActive = false;
 }
 
 void TextureDrawer::selectSquareType()
 {
 	selectedType = ShapeType::square;
 	isSelectionActive = false;
+	isTranslationActive = false;
 }
 
 void TextureDrawer::selectEllipseType()
 {
 	selectedType = ShapeType::ellipse;
 	isSelectionActive = false;
+	isTranslationActive = false;
 }
 
 void TextureDrawer::selectCircleType()
 {
 	selectedType = ShapeType::circle;
 	isSelectionActive = false;
+	isTranslationActive = false;
 }
 
 void TextureDrawer::selectImageType(ofImage image)
@@ -68,11 +74,19 @@ void TextureDrawer::selectImageType(ofImage image)
 	currentImage = image;
 	selectedType = ShapeType::image;
 	isSelectionActive = false;
+	isTranslationActive = false;
 }
 
 void TextureDrawer::selectSelectionType()
 {
 	isSelectionActive = true;
+	isTranslationActive = false;
+}
+
+void TextureDrawer::selectTranslateType()
+{
+	isTranslationActive = true;
+	isSelectionActive = false;
 }
 
 void TextureDrawer::add_vector_shape()
@@ -137,6 +151,9 @@ string TextureDrawer::getCurrentlySelectedType()
 	if (isSelectionActive)
 	{
 		return "Selection";
+	}
+	if (isTranslationActive) {
+		return "Deplacer";
 	}
 
 	switch (selectedType)
@@ -216,5 +233,15 @@ void TextureDrawer::mouseReleased(ofMouseEventArgs & mouse)
 	mouse_current_posX = mouse.x;
 	mouse_current_posY = mouse.y;
 	
-	if (!isSelectionActive) add_vector_shape();
+	if (!isSelectionActive && !isTranslationActive) add_vector_shape();
+	if (isTranslationActive && !isMouseOutsideCanvas()) {
+		root.translate(mouse_current_posX - mouse_pressed_posX, mouse_current_posY - mouse_pressed_posY);
+	}
+}
+
+void TextureDrawer::mouseDragged(ofMouseEventArgs & mouse)
+{
+	if (isTranslationActive) {
+		root.translate(mouse.x, mouse.y);
+	}
 }

@@ -30,6 +30,7 @@ public:
 	void selectCircleType();
 	void selectImageType(ofImage image);
 	void selectSelectionType();
+	void selectTranslateType();
 
 	void deleteSelectedShapes();
 	void groupSelectedShapes();
@@ -66,6 +67,7 @@ private:
 
 	ShapeType selectedType;
 	bool isSelectionActive = false;
+	bool isTranslationActive = false;
 
 	void setStrokeColor(ofColor color);
 	void setFillColor(ofColor color);
@@ -74,5 +76,6 @@ private:
 
 	void mousePressed(ofMouseEventArgs & mouse);
 	void mouseReleased(ofMouseEventArgs & mouse);
+	void mouseDragged(ofMouseEventArgs & mouse);
 };
 

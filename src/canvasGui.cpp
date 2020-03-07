@@ -41,6 +41,7 @@ void CanvasGui::setup(int drawingCanvasY)
 
 	drawingOptionsPanel.add(selectButton.setup("Selectionner"));
 	drawingOptionsPanel.add(deselectButton.setup("Deselectionner"));
+	drawingOptionsPanel.add(translateButton.setup("Deplacer"));
 	drawingOptionsPanel.add(deleteButton.setup("Supprimer"));
 	drawingOptionsPanel.add(groupButton.setup("Grouper"));
 	drawingOptionsPanel.add(ungroupButton.setup("Degrouper"));
@@ -53,6 +54,7 @@ void CanvasGui::setup(int drawingCanvasY)
 	drawCircleButton.addListener(this, &CanvasGui::selectCircleType);
 	selectButton.addListener(this, &CanvasGui::selectAction);
 	deselectButton.addListener(this, &CanvasGui::deselectAction);
+	translateButton.addListener(this, &CanvasGui::translateAction);
 	deleteButton.addListener(this, &CanvasGui::deleteAction);
 	groupButton.addListener(this, &CanvasGui::groupAction);
 	ungroupButton.addListener(this, &CanvasGui::ungroupAction);
@@ -119,6 +121,11 @@ void CanvasGui::deleteAction()
 void CanvasGui::deselectAction()
 {
 	textureDrawer.resetSelection();
+}
+
+void CanvasGui::translateAction()
+{
+	textureDrawer.selectTranslateType();
 }
 
 void CanvasGui::groupAction()
