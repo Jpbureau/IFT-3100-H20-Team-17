@@ -26,6 +26,13 @@ void Line::updateCommonAttributes(ofColor fill, ofColor stroke, float strokeWidt
 	this->lineWidth = strokeWidth;
 }
 
+void Line::translate(int x, int y)
+{
+	glm::vec2 t(x, y);
+	p1 += t;
+	p2 += t;
+}
+
 bool Line::isPointInside(int x, int y)
 {
 	int x1 = p1.x;

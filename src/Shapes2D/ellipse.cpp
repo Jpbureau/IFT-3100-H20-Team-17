@@ -37,6 +37,13 @@ void Ellipse2D::updateCommonAttributes(ofColor fill, ofColor stroke, float strok
 	this->strokeWidth = strokeWidth;
 }
 
+void Ellipse2D::translate(int x, int y)
+{
+	glm::vec2 t(x, y);
+	p1 += t;
+	p2 += t;
+}
+
 bool Ellipse2D::isPointInside(int x, int y)
 {
 	int x1 = p1.x;

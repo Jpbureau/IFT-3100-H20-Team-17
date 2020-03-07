@@ -11,6 +11,7 @@ public:
 	virtual void update();
 
 	virtual void updateCommonAttributes(ofColor fill, ofColor stroke, float strokeWidth);
+	virtual void translate(int x, int y);
 
 	virtual bool isPointInside(int x, int y);
 
