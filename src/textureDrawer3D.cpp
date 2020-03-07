@@ -13,8 +13,7 @@ void TextureDrawer3D::setup(int canvasPositionX, int canvasPositionY, int canvas
 	model.loadModel("teapot.obj");
 
 	selectedShader = ShaderType::none;
-	//selectedType = ModelType::model;
-	selectedType = ModelType::cone;
+	selectedType = ModelType::model;
 
 	mesh = model.getMesh(0);
 	model.setPosition(centerX, centerY, 90);
