@@ -31,6 +31,8 @@ public:
 	void selectConeType();
 	void selectModelType();
 
+	void calculerBoiteDelimitation();
+
 private:
 	int modelCanvasSize;
 	int modelCanvasX;
@@ -47,7 +49,7 @@ private:
 
 	ofFbo fboTexture3D;
 
-	void calculerBoiteDelimitation();
+	void calculerBoiteDelimitationPrimitive();
 	void drawBoiteDelimitation(ofPoint point, float width, float height, float depth);
 
 	void applyLambertShader();

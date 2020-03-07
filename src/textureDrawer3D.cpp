@@ -269,6 +269,11 @@ void TextureDrawer3D::resetCamera()
 
 void TextureDrawer3D::calculerBoiteDelimitation()
 {
+	if (selectedType == ModelType::cone)
+	{
+		mesh = cone.getMesh();
+	}
+
 	std::vector<glm::vec3> vertices = mesh.getVertices();
 	std::vector<glm::vec3>::iterator it;
 
@@ -314,10 +319,15 @@ void TextureDrawer3D::calculerBoiteDelimitation()
 		}
 	}
 
-	pointSupGaucheBoite = ofPoint(pointGauche.x, pointDessus.y, pointAvant.z);
+	pointSupGaucheBoite = ofPoint(centerX  + pointGauche.x, centerY + pointDessus.y, 90 + pointAvant.z);
 	largeurModel3D = pointDroit.x - pointGauche.x;
 	hauteurModel3D = pointDessus.y - pointDessous.y;
 	profondeurModel3D = pointArriere.z - pointAvant.z;
+	/*else
+	{
+		calculerBoiteDelimitationPrimitive();
+	}*/
+	drawBoiteDelimitation(pointSupGaucheBoite, largeurModel3D, hauteurModel3D, profondeurModel3D);
 }
 
 void TextureDrawer3D::selectSphereType()
@@ -340,4 +350,22 @@ void TextureDrawer3D::selectConeType()
 void TextureDrawer3D::selectModelType()
 {
 	selectedType = ModelType::model;
+}
+
+void TextureDrawer3D::calculerBoiteDelimitationPrimitive()
+{
+	ofPoint positionModel = model.getPosition();
+	ofPoint scaleModel  = model.getScale();
+	std::cout << positionModel << " " << scaleModel << std::endl;
+
+	if (selectedType == ModelType::box)
+	{
+		ofSetColor(255, 0, 0);
+		ofDrawSphere(centerX, centerY, 90, 1);
+	}
+	else if (selectedType == ModelType::cone)
+	{
+		//cone.
+	}
+
 }

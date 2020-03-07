@@ -65,7 +65,7 @@ void Canvas3DGui::draw()
 
 void Canvas3DGui::boiteDelimButtonClicked()
 {
-	std::cout << "BoiteDelimButtonCLicked" << std::endl;
+	textureDrawer3D.calculerBoiteDelimitation();
 }
 
 void Canvas3DGui::importModelClicked()
