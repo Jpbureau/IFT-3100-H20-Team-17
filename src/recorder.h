@@ -4,13 +4,18 @@
 
 class Recorder {
 public:
+	void setup();
 	void listen();
-	void startRecording();
-	void stopRecording();
-	void toggleRecording();
+
+	ofParameter<bool>& getIsRecording();
 
 private:
-	bool isRecording = false;
+	ofParameter<bool> isRecording;
+	void recordingTogglePressed(bool& r);
+
+	int firstFrameNum;
+	int maxNumberOfFrames = 120;
+
 	vector<ofImage> frames;
 
 	void saveFrames();

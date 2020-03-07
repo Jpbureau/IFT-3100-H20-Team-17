@@ -3,10 +3,11 @@
 #include "ofxGui.h"
 #include "fileManager.h"
 #include "textureDrawer.h"
+#include "recorder.h"
 
 class FileManagerGui {
 public:
-	FileManagerGui(FileManager& manager, TextureDrawer& textureDrawer);
+	FileManagerGui(FileManager& manager, TextureDrawer& textureDrawer, Recorder& recorder);
 
 	void setup();
 	void draw();
@@ -14,6 +15,7 @@ public:
 private:
 	FileManager& fileManager;
 	TextureDrawer& textureDrawer;
+	Recorder& recorder;
 
 	ofxPanel menuPanel;
 

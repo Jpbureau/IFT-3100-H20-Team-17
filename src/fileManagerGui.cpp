@@ -2,8 +2,8 @@
 
 
 
-FileManagerGui::FileManagerGui(FileManager & manager, TextureDrawer & textureDrawer) :
-	fileManager(manager), textureDrawer(textureDrawer)
+FileManagerGui::FileManagerGui(FileManager & manager, TextureDrawer & textureDrawer, Recorder & recorder) :
+	fileManager(manager), textureDrawer(textureDrawer), recorder(recorder)
 {
 }
 
@@ -15,6 +15,7 @@ void FileManagerGui::setup()
 	menuPanel.setup("Menu");
 	menuPanel.add(importButton.setup("Importer Image"));
 	menuPanel.add(exportButton.setup("Exporter Image"));
+	menuPanel.add(recorder.getIsRecording().set("Enregistrer Sequence", false));
 }
 
 void FileManagerGui::draw()
