@@ -105,6 +105,11 @@ void TextureDrawer3D::updateAnimationParameters(float rotationSpeed, float waveI
 	this->useLevitationAnimation = waveAnimation;
 }
 
+void TextureDrawer3D::updateDelimitationBox(bool boiteDelimitation)
+{
+	this->boiteDelimitation = boiteDelimitation;
+}
+
 void TextureDrawer3D::updateShaderSelection(ShaderType selected)
 {
 	switch (selected)
@@ -143,39 +148,22 @@ void TextureDrawer3D::draw()
 		light.enable();
 		shader.begin();
 		drawModel();
-		drawBoiteDelimitation();
 		cam.end();
 		shader.end();
-
 		light.disable();
 		ofDisableLighting();
 		ofDisableDepthTest();
 	}
 	else 
-  {
+	{
 		ofEnableDepthTest();
-
 		light.enable();
-
 		cam.begin();
 		drawModel();
-		
 		cam.end();
-
 		light.disable();
-
 		ofDisableDepthTest();
 	}
-
-	ofPoint positionModel = ofPoint(centerX, centerY, 90);
-
-	
-
-	//ofSetColor(255);
-	//fboTexture3D.draw(modelCanvasX + modelCanvasSize + 10, modelCanvasY);
-	//fboTexture3D.begin();
-
-	//fboTexture3D.end();
 }
 
 void TextureDrawer3D::drawBoiteDelimitation()
@@ -229,7 +217,8 @@ void TextureDrawer3D::drawModel()
 	{
 	case ModelType::model:
 		model.drawFaces();
-		drawBoiteDelimitation();
+		if(boiteDelimitation)
+			drawBoiteDelimitation();
 		break;
 	case ModelType::box:
 		if (selectedShader == ShaderType::none) {

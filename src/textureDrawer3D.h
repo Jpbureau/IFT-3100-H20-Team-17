@@ -23,6 +23,8 @@ public:
 	void updateAnimationParameters(float rotationSpeed, float waveIntensity, bool rotationAnimation, bool waveAnimation);
 	void updateShaderSelection(ShaderType selected);
 
+	void updateDelimitationBox(bool boiteDelimitation);
+
 	bool isMouseInsideModelCanvas(int x, int y);
 
 	void selectSphereType();
@@ -49,6 +51,7 @@ private:
 	ofFbo fboTexture3D;
 
 	void drawBoiteDelimitation();
+	bool boiteDelimitation;
 
 	void applyLambertShader();
 	ShaderType selectedShader;
