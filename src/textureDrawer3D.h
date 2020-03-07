@@ -31,6 +31,8 @@ public:
 	void selectConeType();
 	void selectModelType();
 
+	ofVec3f getMeshBoundingBoxDimension(const ofMesh &mesh);
+
 private:
 	int modelCanvasSize;
 	int modelCanvasX;
@@ -48,7 +50,7 @@ private:
 	ofFbo fboTexture3D;
 
 	void calculerBoiteDelimitation();
-	void drawBoiteDelimitation(ofPoint point, float width, float height, float depth);
+	void drawBoiteDelimitation(const ofMesh &mesh);
 
 	void applyLambertShader();
 	ShaderType selectedShader;

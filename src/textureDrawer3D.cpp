@@ -128,6 +128,14 @@ bool TextureDrawer3D::isMouseInsideModelCanvas(int x, int y)
 
 void TextureDrawer3D::draw()
 {	
+
+	ofFill();
+	ofSetColor(255);
+	ofDrawRectangle(modelCanvasX, modelCanvasY, modelCanvasSize, modelCanvasSize);
+
+	ofSetColor(255,0,0);
+	ofDrawCircle( centerX, centerY, 90, 10);
+
 	if (selectedShader == ShaderType::lambert) 
     {
 		cam.begin();
@@ -158,6 +166,10 @@ void TextureDrawer3D::draw()
 		ofDisableDepthTest();
 	}
 
+	ofPoint positionModel = ofPoint(centerX, centerY, 90);
+
+	drawBoiteDelimitation(mesh);
+
 	ofSetColor(255);
 	fboTexture3D.draw(modelCanvasX + modelCanvasSize + 10, modelCanvasY);
 	fboTexture3D.begin();
@@ -165,13 +177,37 @@ void TextureDrawer3D::draw()
 	fboTexture3D.end();
 }
 
-void TextureDrawer3D::drawBoiteDelimitation(ofPoint point, float width, float height, float depth)
+void TextureDrawer3D::drawBoiteDelimitation(const ofMesh &mesh)
 {
+	ofVec3f boundingWigthHeightDepth = getMeshBoundingBoxDimension(mesh);
+	glm::vec3 positionModel = glm::vec3(centerX, centerY, 90);
+	cout << positionModel.x << ", " << positionModel.y << ", " << positionModel.z << "\n";
+	cout << boundingWigthHeightDepth.x << ", " << boundingWigthHeightDepth.y << ", " << boundingWigthHeightDepth.z << "\n";
 	ofNoFill();
-	ofSetLineWidth(5);
-	ofSetColor(51);
-	ofDrawBox(point.x, point.y, point.z, width, height, depth);
+	ofSetLineWidth(7);
+	ofSetColor(0, 255, 0);
+	ofDrawBox(positionModel, boundingWigthHeightDepth.x, boundingWigthHeightDepth.y, boundingWigthHeightDepth.z);
 }
+
+ofVec3f TextureDrawer3D::getMeshBoundingBoxDimension(const ofMesh &mesh) {
+
+	auto xExtremes = minmax_element(mesh.getVertices().begin(), mesh.getVertices().end(),
+		[](const ofPoint& lhs, const ofPoint& rhs) {
+		return lhs.x < rhs.x;
+	});
+	auto yExtremes = minmax_element(mesh.getVertices().begin(), mesh.getVertices().end(),
+		[](const ofPoint& lhs, const ofPoint& rhs) {
+		return lhs.y < rhs.y;
+	});
+	auto zExtremes = minmax_element(mesh.getVertices().begin(), mesh.getVertices().end(),
+		[](const ofPoint& lhs, const ofPoint& rhs) {
+		return lhs.z < rhs.z;
+	});
+	return ofVec3f(xExtremes.second->x - xExtremes.first->x,
+		yExtremes.second->y - yExtremes.first->y,
+		zExtremes.second->z - zExtremes.first->z);
+}
+
 
 void TextureDrawer3D::applyLambertShader()
 {
