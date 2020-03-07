@@ -14,7 +14,7 @@ void TextureDrawer3D::setup(int canvasPositionX, int canvasPositionY, int canvas
 
 	selectedShader = ShaderType::none;
 	//selectedType = ModelType::model;
-	selectedType = ModelType::box;
+	selectedType = ModelType::cone;
 
 	mesh = model.getMesh(0);
 	model.setPosition(centerX, centerY, 90);
@@ -179,16 +179,10 @@ void TextureDrawer3D::drawBoiteDelimitationModel()
 	
 	ofPoint positionModel = model.getPosition();
 	ofPoint positionBox = ofPoint(positionModel.x - (sceneCenter.x * scaling), positionModel.y - (sceneCenter.y * scaling), positionModel.z - (sceneCenter.z * scaling));
-	cout << scaling << "\n";
-	cout << positionModel.x << ", " << positionModel.y << ", " << positionModel.z << "\n";
-	cout << sceneCenter.x << ", " << sceneCenter.y << ", " << sceneCenter.z << "\n";
-	cout << positionBox.x << ", " << positionBox.y << ", " << positionBox.z << "\n";
-	cout << tailleBoiteDelimitation.x << ", " << tailleBoiteDelimitation.y << ", " << tailleBoiteDelimitation.z << "\n";
 	ofNoFill();
 	ofSetLineWidth(7);
 	ofSetColor(0, 255, 0);
 	ofDrawBox(positionBox.x, positionBox.y, positionBox.z, tailleBoiteDelimitation.x, tailleBoiteDelimitation.y, tailleBoiteDelimitation.z);
-
 }
 
 void TextureDrawer3D::applyLambertShader()
@@ -254,10 +248,26 @@ void TextureDrawer3D::drawModel()
 			cone.enableNormals();
 			cone.enableTextures();
 			cone.draw(OF_MESH_FILL);
-			material.end();
+			material.end();			
+			if (boiteDelimitation)
+			{
+				float sizeBase = cone.getRadius() * 2 * cone.getGlobalScale().x;
+				ofNoFill();
+				ofSetLineWidth(7);
+				ofSetColor(0, 255, 0);
+				ofDrawBox(cone.getPosition(), sizeBase, cone.getHeight() * cone.getGlobalScale().x, sizeBase);
+			}
 		}
 		else {
 			cone.drawFaces();
+			if (boiteDelimitation)
+			{
+				float sizeBase = cone.getRadius() * 2 * cone.getGlobalScale().x;
+				ofNoFill();
+				ofSetLineWidth(7);
+				ofSetColor(0, 255, 0);
+				ofDrawBox(cone.getPosition(), sizeBase, cone.getHeight() * cone.getGlobalScale().x, sizeBase);
+			}
 		}
 		
 		break;
@@ -302,9 +312,25 @@ void TextureDrawer3D::drawModel()
 			cylinder.enableTextures();
 			cylinder.draw(OF_MESH_FILL);
 			material.end();
+			if (boiteDelimitation)
+			{
+				float sizeBase = cylinder.getRadius() * 2 * cylinder.getGlobalScale().x;
+				ofNoFill();
+				ofSetLineWidth(7);
+				ofSetColor(0, 255, 0);
+				ofDrawBox(cylinder.getPosition(), sizeBase, cylinder.getHeight() * cylinder.getGlobalScale().x, sizeBase);
+			}
 		}
 		else {
 			cylinder.drawFaces();
+			if (boiteDelimitation)
+			{
+				float sizeBase = cylinder.getRadius() * 2 * cylinder.getGlobalScale().x;
+				ofNoFill();
+				ofSetLineWidth(7);
+				ofSetColor(0, 255, 0);
+				ofDrawBox(cylinder.getPosition(), sizeBase, cylinder.getHeight() * cylinder.getGlobalScale().x, sizeBase);
+			}
 		}
 		
 		break;
