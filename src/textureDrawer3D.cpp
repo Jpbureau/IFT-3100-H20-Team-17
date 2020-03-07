@@ -135,9 +135,6 @@ void TextureDrawer3D::draw()
 	//ofSetColor(255);
 	//ofDrawRectangle(modelCanvasX, modelCanvasY, modelCanvasSize, modelCanvasSize);
 
-	ofSetColor(255,0,0);
-	ofDrawCircle( centerX, centerY, 90, 10);
-
 	if (selectedShader == ShaderType::lambert) 
     {
 		cam.begin();
@@ -146,7 +143,7 @@ void TextureDrawer3D::draw()
 		light.enable();
 		shader.begin();
 		drawModel();
-		drawBoiteDelimitation(mesh);
+		drawBoiteDelimitation();
 		cam.end();
 		shader.end();
 
@@ -181,10 +178,8 @@ void TextureDrawer3D::draw()
 	//fboTexture3D.end();
 }
 
-void TextureDrawer3D::drawBoiteDelimitation(const ofMesh &mesh)
+void TextureDrawer3D::drawBoiteDelimitation()
 {
-	//ofVec3f boundingWigthHeightDepth = getMeshBoundingBoxDimension(mesh);
-	//glm::vec3 positionModel = glm::vec3(centerX, centerY - (boundingWigthHeightDepth.y/2), 90);
 	ofPoint sceneMax = model.getSceneMax();
 	ofPoint sceneMin = model.getSceneMin();
 	ofPoint sceneCenter = model.getSceneCenter();
@@ -196,9 +191,11 @@ void TextureDrawer3D::drawBoiteDelimitation(const ofMesh &mesh)
 	ofPoint tailleBoiteDelimitation = ofPoint((sceneMax.x - sceneMin.x) * scaling, (sceneMax.y - sceneMin.y) * scaling, (sceneMax.z - sceneMin.z) * scaling);
 	
 	ofPoint positionModel = model.getPosition();
-	ofPoint positionBox = ofPoint((sceneCenter.x * scaling) + positionModel.x, (sceneCenter.y * scaling) + positionModel.y, (sceneCenter.z * scaling)+ positionModel.z);
+	ofPoint positionBox = ofPoint(positionModel.x - (sceneCenter.x * scaling), positionModel.y - (sceneCenter.y * scaling), positionModel.z - (sceneCenter.z * scaling));
 	cout << scaling << "\n";
 	cout << positionModel.x << ", " << positionModel.y << ", " << positionModel.z << "\n";
+	cout << sceneCenter.x << ", " << sceneCenter.y << ", " << sceneCenter.z << "\n";
+	cout << positionBox.x << ", " << positionBox.y << ", " << positionBox.z << "\n";
 	cout << tailleBoiteDelimitation.x << ", " << tailleBoiteDelimitation.y << ", " << tailleBoiteDelimitation.z << "\n";
 	ofNoFill();
 	ofSetLineWidth(7);
@@ -207,28 +204,6 @@ void TextureDrawer3D::drawBoiteDelimitation(const ofMesh &mesh)
 
 }
 
-ofVec3f TextureDrawer3D::getMeshBoundingBoxDimension(const ofMesh &mesh) {
-
-	auto xExtremes = minmax_element(mesh.getVertices().begin(), mesh.getVertices().end(),
-		[](const ofPoint& lhs, const ofPoint& rhs) {
-		return lhs.x < rhs.x;
-	});
-	auto yExtremes = minmax_element(mesh.getVertices().begin(), mesh.getVertices().end(),
-		[](const ofPoint& lhs, const ofPoint& rhs) {
-		return lhs.y < rhs.y;
-	});
-	auto zExtremes = minmax_element(mesh.getVertices().begin(), mesh.getVertices().end(),
-		[](const ofPoint& lhs, const ofPoint& rhs) {
-		return lhs.z < rhs.z;
-	});
-	float scaling;
-	float scale = model.getScale().x;
-	scaling = model.getNormalizedScale()*scale;
-	ofVec3f dim = ofVec3f((xExtremes.second->x - xExtremes.first->x) * scaling,
-						(yExtremes.second->y - yExtremes.first->y) * scaling,
-						(zExtremes.second->z - zExtremes.first->z) * scaling);
-	return dim;
-}
 
 
 void TextureDrawer3D::applyLambertShader()
@@ -254,7 +229,7 @@ void TextureDrawer3D::drawModel()
 	{
 	case ModelType::model:
 		model.drawFaces();
-		drawBoiteDelimitation(mesh);
+		drawBoiteDelimitation();
 		break;
 	case ModelType::box:
 		if (selectedShader == ShaderType::none) {
@@ -292,6 +267,7 @@ void TextureDrawer3D::drawModel()
 			sphere.enableTextures();
 			sphere.draw(OF_MESH_FILL);
 			material.end();
+
 			float rayon = sphere.getRadius();
 			ofNoFill();
 			ofSetLineWidth(7);
@@ -301,6 +277,8 @@ void TextureDrawer3D::drawModel()
 		}
 		else {
 			sphere.drawFaces();
+
+
 			float rayon = sphere.getRadius();
 			ofNoFill();
 			ofSetLineWidth(7);
@@ -336,59 +314,6 @@ void TextureDrawer3D::resetCamera()
 	cam.setTarget(glm::vec3(centerX, centerY, 90));
 	cam.setupPerspective(true, 60, 0, 0, glm::vec2(-0.4, -0.1));
 	cam.setDistance(700);
-}
-
-void TextureDrawer3D::calculerBoiteDelimitation()
-{
-	std::vector<glm::vec3> vertices = mesh.getVertices();
-	std::vector<glm::vec3>::iterator it;
-
-	glm::vec3 pointGauche = vertices.at(0);
-	glm::vec3 pointAvant = vertices.at(0);
-	glm::vec3 pointDroit = vertices.at(0);
-	glm::vec3 pointArriere = vertices.at(0);
-	glm::vec3 pointDessus = vertices.at(0);
-	glm::vec3 pointDessous = vertices.at(0);
-
-	// Parcours du conteneur de vertices pour déterminer ceux qui
-	// Sont le plus aux extrémités
-	for (it = vertices.begin(); it != vertices.end(); ++it)
-	{
-		if ((*it).x < pointGauche.x)
-		{
-			pointGauche = *it;
-		}
-
-		if ((*it).x > pointDroit.x)
-		{
-			pointDroit = *it;
-		}
-
-		if ((*it).y < pointDessus.y)
-		{
-			pointDessus = *it;
-		}
-
-		if ((*it).y > pointDessous.y)
-		{
-			pointDessous = *it;
-		}
-
-		if ((*it).z < pointAvant.z)
-		{
-			pointAvant = *it;
-		}
-
-		if ((*it).z > pointArriere.z)
-		{
-			pointArriere = *it;
-		}
-	}
-
-	pointSupGaucheBoite = ofPoint(pointGauche.x, pointDessus.y, pointAvant.z);
-	largeurModel3D = pointDroit.x - pointGauche.x;
-	hauteurModel3D = pointDessus.y - pointDessous.y;
-	profondeurModel3D = pointArriere.z - pointAvant.z;
 }
 
 void TextureDrawer3D::selectSphereType()
