@@ -7,7 +7,7 @@ Canvas3DGui::Canvas3DGui(TextureDrawer3D& drawer, FileManager& manager) : textur
 void Canvas3DGui::setup(int canvasPositionX, int canvasPositionY, int canvasSize)
 {
 	optionsPanel.setup("Panneau3D");
-	optionsPanel.setPosition(canvasPositionX + canvasSize + 50, canvasPositionY + 100);
+	optionsPanel.setPosition(ofGetWidth() - 210, canvasPositionY + 100);	//canvasPositionX + canvasSize + 50
 	animationOptions.setup("Options d'animation");
 	shaderType.setup("Type choisi de shader");
 	selectionType.setup("Type de modele choisi");
