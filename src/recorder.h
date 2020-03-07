@@ -13,6 +13,9 @@ private:
 	ofParameter<bool> isRecording;
 	void recordingTogglePressed(bool& r);
 
+	int firstFrameNum;
+	int maxNumberOfFrames = 120;
+
 	vector<ofImage> frames;
 
 	void saveFrames();

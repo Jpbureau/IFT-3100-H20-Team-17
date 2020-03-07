@@ -9,9 +9,14 @@ void Recorder::listen()
 {
 	// On ne conserve qu'une frame sur 3 -> donne 20 fps quand on enregistre a 60 fps
 	if (isRecording && ofGetFrameNum() % 3 == 0) {
-		ofImage frame;
-		frame.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
-		frames.push_back(frame);
+		if (ofGetFrameNum() - firstFrameNum > 3 * maxNumberOfFrames) {
+			isRecording = false;
+		}
+		else {
+			ofImage frame;
+			frame.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
+			frames.push_back(frame);
+		}
 	}
 }
 
@@ -22,6 +27,9 @@ ofParameter<bool>& Recorder::getIsRecording()
 
 void Recorder::recordingTogglePressed(bool & r)
 {
+	if (r) {
+		firstFrameNum = ofGetFrameNum();
+	}
 	if (!r && frames.size() != 0) {
 		saveFrames();
 	}
