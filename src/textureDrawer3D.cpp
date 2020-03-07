@@ -203,9 +203,13 @@ ofVec3f TextureDrawer3D::getMeshBoundingBoxDimension(const ofMesh &mesh) {
 		[](const ofPoint& lhs, const ofPoint& rhs) {
 		return lhs.z < rhs.z;
 	});
-	return ofVec3f(xExtremes.second->x - xExtremes.first->x,
-		yExtremes.second->y - yExtremes.first->y,
-		zExtremes.second->z - zExtremes.first->z);
+
+	double scaling = model.getNormalizedScale();
+	//model.calculateDimensions();
+	ofVec3f dim = ofVec3f((xExtremes.second->x - xExtremes.first->x) * scaling,
+						(yExtremes.second->y - yExtremes.first->y) * scaling,
+						(zExtremes.second->z - zExtremes.first->z) * scaling);
+	return dim;
 }
 
 
