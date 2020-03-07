@@ -8,6 +8,7 @@ void Renderer::setup()
 	glm::vec2 initialCanvas3dposition(850, 100);
 	int initialCanvas3dSize = 800;
 
+	int hauteurMenuHistogramme = 190; // initialCanvas2dPosition.y - marge
 	int largeurMenuGauche = 200;
 	int largeurMeneuDroit = 200;
 	int marge = 10;
@@ -37,7 +38,7 @@ void Renderer::setup()
 	const int CAMERA_GUI_POSITION_Y = 500;
 	cameraGui.setup(CAMERA_GUI_POSITION_X, CAMERA_GUI_POSITION_Y);
 
-	textureDrawer3D.setup(largeurMenuGauche + largeurScene + 2 * marge, initialCanvas3dposition.y, largeurScene);
+	textureDrawer3D.setup(largeurMenuGauche + largeurScene + 2 * marge, initialCanvas2dPosition.y, largeurScene);
 	canvas3DGui.setup(initialCanvas3dposition.x, initialCanvas3dposition.y, initialCanvas3dSize);
 	
 }
