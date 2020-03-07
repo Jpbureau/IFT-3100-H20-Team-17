@@ -182,6 +182,11 @@ bool TextureDrawer::isTypeSelection()
 	return isSelectionActive;
 }
 
+bool TextureDrawer::isTypeTranslation()
+{
+	return isTranslationActive;
+}
+
 bool TextureDrawer::isMouseOutsideCanvas()
 {
 	int maxValidX = drawingCanvasX + drawingCanvasSize;
@@ -236,12 +241,5 @@ void TextureDrawer::mouseReleased(ofMouseEventArgs & mouse)
 	if (!isSelectionActive && !isTranslationActive) add_vector_shape();
 	if (isTranslationActive && !isMouseOutsideCanvas()) {
 		root.translate(mouse_current_posX - mouse_pressed_posX, mouse_current_posY - mouse_pressed_posY);
-	}
-}
-
-void TextureDrawer::mouseDragged(ofMouseEventArgs & mouse)
-{
-	if (isTranslationActive) {
-		root.translate(mouse.x, mouse.y);
 	}
 }

@@ -19,6 +19,7 @@ public:
 
 	bool isMouseInsideCanvas(int x, int y);
 	bool isTypeSelection();
+	bool isTypeTranslation();
 
 	string getCurrentlySelectedType();
 
@@ -76,6 +77,5 @@ private:
 
 	void mousePressed(ofMouseEventArgs & mouse);
 	void mouseReleased(ofMouseEventArgs & mouse);
-	void mouseDragged(ofMouseEventArgs & mouse);
 };
 
