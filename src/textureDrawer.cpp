@@ -30,63 +30,59 @@ void TextureDrawer::update()
 void TextureDrawer::selectPointType()
 {
 	selectedType = ShapeType::point;
-	isSelectionActive = false;
-	isTranslationActive = false;
+	selectedOption = DrawerOptions::draw;
 }
 
 void TextureDrawer::selectLineType()
 {
 	selectedType = ShapeType::line;
-	isSelectionActive = false;
-	isTranslationActive = false;
+	selectedOption = DrawerOptions::draw;
 }
 
 void TextureDrawer::selectRectangleType()
 {
 	selectedType = ShapeType::rectangle;
-	isSelectionActive = false;
-	isTranslationActive = false;
+	selectedOption = DrawerOptions::draw;
 }
 
 void TextureDrawer::selectSquareType()
 {
 	selectedType = ShapeType::square;
-	isSelectionActive = false;
-	isTranslationActive = false;
+	selectedOption = DrawerOptions::draw;
 }
 
 void TextureDrawer::selectEllipseType()
 {
 	selectedType = ShapeType::ellipse;
-	isSelectionActive = false;
-	isTranslationActive = false;
+	selectedOption = DrawerOptions::draw;
 }
 
 void TextureDrawer::selectCircleType()
 {
 	selectedType = ShapeType::circle;
-	isSelectionActive = false;
-	isTranslationActive = false;
+	selectedOption = DrawerOptions::draw;
 }
 
 void TextureDrawer::selectImageType(ofImage image)
 {
 	currentImage = image;
 	selectedType = ShapeType::image;
-	isSelectionActive = false;
-	isTranslationActive = false;
+	selectedOption = DrawerOptions::draw;
 }
 
 void TextureDrawer::selectSelectionType()
 {
-	isSelectionActive = true;
-	isTranslationActive = false;
+	selectedOption = DrawerOptions::select;
 }
 
 void TextureDrawer::selectTranslateType()
 {
-	isTranslationActive = true;
-	isSelectionActive = false;
+	selectedOption = DrawerOptions::translate;
+}
+
+void TextureDrawer::selectScaleType()
+{
+	selectedOption = DrawerOptions::scale;
 }
 
 void TextureDrawer::add_vector_shape()
@@ -148,30 +144,35 @@ bool TextureDrawer::isMouseInsideCanvas(int x, int y)
 
 string TextureDrawer::getCurrentlySelectedType()
 {
-	if (isSelectionActive)
+	switch (selectedOption)
 	{
+	case select:
 		return "Selection";
-	}
-	if (isTranslationActive) {
+	case translate:
 		return "Deplacer";
-	}
-
-	switch (selectedType)
-	{
-	case ShapeType::point:
-		return "Point";
-	case ShapeType::line:
-		return "Ligne";
-	case ShapeType::rectangle:
-		return "Rectangle";
-	case ShapeType::square:
-		return "Carre";
-	case ShapeType::ellipse:
-		return "Ellipse";
-	case ShapeType::circle:
-		return "Cercle";
-	case ShapeType::image:
-		return "Image";
+	case scale:
+		return "Proportionner";
+	case DrawerOptions::draw:
+		switch (selectedType)
+		{
+		case ShapeType::point:
+			return "Point";
+		case ShapeType::line:
+			return "Ligne";
+		case ShapeType::rectangle:
+			return "Rectangle";
+		case ShapeType::square:
+			return "Carre";
+		case ShapeType::ellipse:
+			return "Ellipse";
+		case ShapeType::circle:
+			return "Cercle";
+		case ShapeType::image:
+			return "Image";
+		default:
+			break;
+		}
+		break;
 	default:
 		break;
 	}
@@ -179,12 +180,12 @@ string TextureDrawer::getCurrentlySelectedType()
 
 bool TextureDrawer::isTypeSelection()
 {
-	return isSelectionActive;
+	return selectedOption == DrawerOptions::select;
 }
 
 bool TextureDrawer::isTypeTranslation()
 {
-	return isTranslationActive;
+	return selectedOption == DrawerOptions::translate;
 }
 
 bool TextureDrawer::isMouseOutsideCanvas()
@@ -230,7 +231,7 @@ void TextureDrawer::mousePressed(ofMouseEventArgs & mouse)
 	mouse_pressed_posX = mouse.x;
 	mouse_pressed_posY = mouse.y;
 
-	if (isSelectionActive) root.selectChildsAtPoint(mouse.x, mouse.y);
+	if (selectedOption == DrawerOptions::select) root.selectChildsAtPoint(mouse.x, mouse.y);
 }
 
 void TextureDrawer::mouseReleased(ofMouseEventArgs & mouse)
@@ -238,8 +239,8 @@ void TextureDrawer::mouseReleased(ofMouseEventArgs & mouse)
 	mouse_current_posX = mouse.x;
 	mouse_current_posY = mouse.y;
 	
-	if (!isSelectionActive && !isTranslationActive) add_vector_shape();
-	if (isTranslationActive && !isMouseOutsideCanvas()) {
+	if (selectedOption == DrawerOptions::draw) add_vector_shape();
+	if (selectedOption == DrawerOptions::translate && !isMouseOutsideCanvas()) {
 		root.translate(mouse_current_posX - mouse_pressed_posX, mouse_current_posY - mouse_pressed_posY);
 	}
 }
