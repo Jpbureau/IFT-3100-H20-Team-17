@@ -69,16 +69,12 @@ void TextureDrawer3D::update()
 	case ShaderType::lambert:
 		applyLambertShader();
 		break;
+	case ShaderType::noise:
+		applyNoiseShader();
+		break;
 	default:
 		break;
 	}
-
-	//shader.begin();
-	////we want to pass in some varrying values to animate our type / color 
-	//shader.setUniform1f("timeValX", ofGetElapsedTimef() * 0.1);
-	//shader.setUniform1f("timeValY", -ofGetElapsedTimef() * 0.18);
-
-	//shader.end();
 
 }
 
@@ -109,7 +105,14 @@ void TextureDrawer3D::updateShaderSelection(ShaderType selected)
 	{
 	case ShaderType::lambert:
 		selectedShader = selected;
+		shader.unload();
 		shader.load("lambert_330_vs.glsl", "lambert_330_fs.glsl");
+		break;
+	case ShaderType::noise:
+		selectedShader = selected;
+		shader.unload();
+		shader.load("shaders_gl3/noise.vert", "shaders_gl3/noise.frag");
+		break;
 	case ShaderType::none:
 		selectedShader = selected;
 		light = ofLight();
@@ -128,7 +131,7 @@ bool TextureDrawer3D::isMouseInsideModelCanvas(int x, int y)
 
 void TextureDrawer3D::draw()
 {	
-	if (selectedShader == ShaderType::lambert) 
+	if (selectedShader != ShaderType::none) 
     {
 		cam.begin();
 		ofEnableDepthTest();
@@ -157,12 +160,6 @@ void TextureDrawer3D::draw()
 
 		ofDisableDepthTest();
 	}
-
-	ofSetColor(255);
-	fboTexture3D.draw(modelCanvasX + modelCanvasSize + 10, modelCanvasY);
-	fboTexture3D.begin();
-
-	fboTexture3D.end();
 }
 
 void TextureDrawer3D::drawBoiteDelimitation(ofPoint point, float width, float height, float depth)
@@ -186,6 +183,17 @@ void TextureDrawer3D::applyLambertShader()
 	shader.setUniform3f("color_ambient", 0.1f, 0.1f, 0.1f);
 	shader.setUniform3f("color_diffuse", modelColor.r / 255.0f, modelColor.g / 255.0f, modelColor.b / 255.0f);
 	shader.setUniform3f("light_position", glm::vec4(light.getGlobalPosition(), 0.0f) * ofGetCurrentMatrix(OF_MATRIX_MODELVIEW));
+
+	shader.end();
+}
+
+void TextureDrawer3D::applyNoiseShader()
+{
+	model.disableMaterials();
+	shader.begin();
+
+	shader.setUniform1f("timeValX", ofGetElapsedTimef() * 0.1);
+	shader.setUniform1f("timeValY", -ofGetElapsedTimef() * 0.18);
 
 	shader.end();
 }

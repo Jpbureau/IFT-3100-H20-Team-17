@@ -36,11 +36,13 @@ void Canvas3DGui::setup(int canvasPositionX, int canvasPositionY, int canvasSize
 	selectedShaderType.setName("Type choisi");
 	shaderType.add(noShaderSelectedButton.setup("Aucun"));
 	shaderType.add(lambertShaderSelectedButton.setup("Shader de lambert"));
+	shaderType.add(noiseShaderSelectedButton.setup("Shader noise"));
 	shaderType.add(selectedShaderType.set("Aucun"));
 	optionsPanel.add(&shaderType);
 
 	noShaderSelectedButton.addListener(this, &Canvas3DGui::noShaderSelected);
 	lambertShaderSelectedButton.addListener(this, &Canvas3DGui::lambertShaderSelected);
+	noiseShaderSelectedButton.addListener(this, &Canvas3DGui::noiseShaderSelected);
 
 	boiteDelimButton.addListener(this, &Canvas3DGui::boiteDelimButtonClicked);
 	importModelButton.addListener(this, &Canvas3DGui::importModelClicked);
@@ -79,6 +81,12 @@ void Canvas3DGui::lambertShaderSelected()
 {
 	selectedShaderType.set("lambert");
 	textureDrawer3D.updateShaderSelection(ShaderType::lambert);
+}
+
+void Canvas3DGui::noiseShaderSelected()
+{
+	selectedShaderType.set("Noise");
+	textureDrawer3D.updateShaderSelection(ShaderType::noise);
 }
 
 void Canvas3DGui::noShaderSelected()
