@@ -30,6 +30,7 @@ void CanvasGui::setup(int drawingCanvasY)
 	optionsPoint.setup("Point");
 	optionsPoint.add(radiusSlider);
 	optionsPoint.add(drawPointButton.setup("point"));
+	optionsPoint.minimize();
 	shapeSelectionGroup.add(&optionsPoint);
 
 	shapeSelectionGroup.add(drawLineButton.setup("Ligne"));
