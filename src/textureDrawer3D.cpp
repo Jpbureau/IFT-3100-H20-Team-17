@@ -14,7 +14,7 @@ void TextureDrawer3D::setup(int canvasPositionX, int canvasPositionY, int canvas
 
 	selectedShader = ShaderType::none;
 	//selectedType = ModelType::model;
-	selectedType = ModelType::sphere;
+	selectedType = ModelType::box;
 
 	mesh = model.getMesh(0);
 	model.setPosition(centerX, centerY, 90);
@@ -191,8 +191,6 @@ void TextureDrawer3D::drawBoiteDelimitationModel()
 
 }
 
-
-
 void TextureDrawer3D::applyLambertShader()
 {
 	model.disableMaterials();
@@ -227,9 +225,25 @@ void TextureDrawer3D::drawModel()
 			box.enableTextures();
 			box.draw(OF_MESH_FILL);
 			material.end();
+			if (boiteDelimitation)
+			{
+				float size = box.getDepth() * box.getGlobalScale().x;
+				ofNoFill();
+				ofSetLineWidth(7);
+				ofSetColor(0, 255, 0);
+				ofDrawBox(box.getPosition(), size, size, size);
+			}
 		}
 		else {
 			box.drawFaces();
+			if (boiteDelimitation)
+			{
+				float size = box.getDepth() * box.getGlobalScale().x;
+				ofNoFill();
+				ofSetLineWidth(7);
+				ofSetColor(0, 255, 0);
+				ofDrawBox(box.getPosition(), size, size, size);
+			}
 		}
 		
 		break;
