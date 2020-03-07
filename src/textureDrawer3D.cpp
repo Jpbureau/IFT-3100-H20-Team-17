@@ -26,6 +26,7 @@ void TextureDrawer3D::setup(int canvasPositionX, int canvasPositionY, int canvas
 
 	sphere.setScale(modelScale * 20);
 	sphere.setPosition(glm::vec3(centerX, centerY, 90));
+	sphere.setRadius(30.0);
 
 	cylinder.setScale(modelScale * 10);
 	cylinder.setPosition(glm::vec3(centerX, centerY, 90));
@@ -44,6 +45,7 @@ void TextureDrawer3D::update()
 	cylinder.setScale(modelScale * 8);
 	box.setScale(modelScale * 8);
 	cone.setScale(modelScale * 17);
+	mesh = model.getCurrentAnimatedMesh(0);
 
 	if (useRotationAnimation) {
 		model.setRotation(0, ofGetFrameNum() * rotationSpeed, 0.0f, 1.0f, 0.0f);
@@ -129,9 +131,9 @@ bool TextureDrawer3D::isMouseInsideModelCanvas(int x, int y)
 void TextureDrawer3D::draw()
 {	
 
-	ofFill();
-	ofSetColor(255);
-	ofDrawRectangle(modelCanvasX, modelCanvasY, modelCanvasSize, modelCanvasSize);
+	//ofFill();
+	//ofSetColor(255);
+	//ofDrawRectangle(modelCanvasX, modelCanvasY, modelCanvasSize, modelCanvasSize);
 
 	ofSetColor(255,0,0);
 	ofDrawCircle( centerX, centerY, 90, 10);
@@ -144,6 +146,7 @@ void TextureDrawer3D::draw()
 		light.enable();
 		shader.begin();
 		drawModel();
+		drawBoiteDelimitation(mesh);
 		cam.end();
 		shader.end();
 
@@ -159,6 +162,7 @@ void TextureDrawer3D::draw()
 
 		cam.begin();
 		drawModel();
+		
 		cam.end();
 
 		light.disable();
@@ -168,25 +172,39 @@ void TextureDrawer3D::draw()
 
 	ofPoint positionModel = ofPoint(centerX, centerY, 90);
 
-	drawBoiteDelimitation(mesh);
+	
 
-	ofSetColor(255);
-	fboTexture3D.draw(modelCanvasX + modelCanvasSize + 10, modelCanvasY);
-	fboTexture3D.begin();
+	//ofSetColor(255);
+	//fboTexture3D.draw(modelCanvasX + modelCanvasSize + 10, modelCanvasY);
+	//fboTexture3D.begin();
 
-	fboTexture3D.end();
+	//fboTexture3D.end();
 }
 
 void TextureDrawer3D::drawBoiteDelimitation(const ofMesh &mesh)
 {
-	ofVec3f boundingWigthHeightDepth = getMeshBoundingBoxDimension(mesh);
-	glm::vec3 positionModel = glm::vec3(centerX, centerY, 90);
+	//ofVec3f boundingWigthHeightDepth = getMeshBoundingBoxDimension(mesh);
+	//glm::vec3 positionModel = glm::vec3(centerX, centerY - (boundingWigthHeightDepth.y/2), 90);
+	ofPoint sceneMax = model.getSceneMax();
+	ofPoint sceneMin = model.getSceneMin();
+	ofPoint sceneCenter = model.getSceneCenter();
+
+	float scaling;
+	float scale = model.getScale().x;
+	scaling = model.getNormalizedScale()*scale;
+
+	ofPoint tailleBoiteDelimitation = ofPoint((sceneMax.x - sceneMin.x) * scaling, (sceneMax.y - sceneMin.y) * scaling, (sceneMax.z - sceneMin.z) * scaling);
+	
+	ofPoint positionModel = model.getPosition();
+	ofPoint positionBox = ofPoint((sceneCenter.x * scaling) + positionModel.x, (sceneCenter.y * scaling) + positionModel.y, (sceneCenter.z * scaling)+ positionModel.z);
+	cout << scaling << "\n";
 	cout << positionModel.x << ", " << positionModel.y << ", " << positionModel.z << "\n";
-	cout << boundingWigthHeightDepth.x << ", " << boundingWigthHeightDepth.y << ", " << boundingWigthHeightDepth.z << "\n";
+	cout << tailleBoiteDelimitation.x << ", " << tailleBoiteDelimitation.y << ", " << tailleBoiteDelimitation.z << "\n";
 	ofNoFill();
 	ofSetLineWidth(7);
 	ofSetColor(0, 255, 0);
-	ofDrawBox(positionModel, boundingWigthHeightDepth.x, boundingWigthHeightDepth.y, boundingWigthHeightDepth.z);
+	ofDrawBox(positionBox.x, positionBox.y, positionBox.z, tailleBoiteDelimitation.x, tailleBoiteDelimitation.y, tailleBoiteDelimitation.z);
+
 }
 
 ofVec3f TextureDrawer3D::getMeshBoundingBoxDimension(const ofMesh &mesh) {
@@ -203,9 +221,9 @@ ofVec3f TextureDrawer3D::getMeshBoundingBoxDimension(const ofMesh &mesh) {
 		[](const ofPoint& lhs, const ofPoint& rhs) {
 		return lhs.z < rhs.z;
 	});
-
-	double scaling = model.getNormalizedScale();
-	//model.calculateDimensions();
+	float scaling;
+	float scale = model.getScale().x;
+	scaling = model.getNormalizedScale()*scale;
 	ofVec3f dim = ofVec3f((xExtremes.second->x - xExtremes.first->x) * scaling,
 						(yExtremes.second->y - yExtremes.first->y) * scaling,
 						(zExtremes.second->z - zExtremes.first->z) * scaling);
@@ -236,6 +254,7 @@ void TextureDrawer3D::drawModel()
 	{
 	case ModelType::model:
 		model.drawFaces();
+		drawBoiteDelimitation(mesh);
 		break;
 	case ModelType::box:
 		if (selectedShader == ShaderType::none) {
@@ -273,9 +292,21 @@ void TextureDrawer3D::drawModel()
 			sphere.enableTextures();
 			sphere.draw(OF_MESH_FILL);
 			material.end();
+			float rayon = sphere.getRadius();
+			ofNoFill();
+			ofSetLineWidth(7);
+			ofSetColor(0, 255, 0);
+			ofDrawBox(sphere.getPosition(), rayon*2*5, rayon*2*5, rayon*2*5);
+			cout << rayon << "\n";
 		}
 		else {
 			sphere.drawFaces();
+			float rayon = sphere.getRadius();
+			ofNoFill();
+			ofSetLineWidth(7);
+			ofSetColor(0, 255, 0);
+			ofDrawBox(sphere.getPosition(), rayon * 2 * 5, rayon * 2 * 5, rayon * 2 * 5);
+			cout << rayon << "\n";
 		}
 		
 		break;
