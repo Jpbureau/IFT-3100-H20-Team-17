@@ -33,6 +33,17 @@ void Line::translate(int x, int y)
 	p2 += t;
 }
 
+void Line::scale(glm::vec2 s)
+{
+	glm::vec2 prop = s / (p2 - p1);
+	glm::vec2 center = p1 + (p2 - p1) / 2;
+	p1 *= prop;
+	p2 *= prop;
+	glm::vec2 center2 = p1 + (p2 - p1) / 2;
+	glm::vec2 offset = (center - center2);
+	translate(offset.x, offset.y);
+}
+
 bool Line::isPointInside(int x, int y)
 {
 	int x1 = p1.x;

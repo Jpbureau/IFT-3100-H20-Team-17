@@ -39,14 +39,11 @@ void Rectangle2D::translate(int x, int y)
 
 void Rectangle2D::scale(glm::vec2 s)
 {
-	glm::vec2 diago = p2 - p1;
-	glm::vec2 prop = s / diago;
-	glm::vec2 center = p1 + diago / 2;
-
+	glm::vec2 prop = s / (p2 - p1);
+	glm::vec2 center = p1 + (p2 - p1) / 2;
 	p1 *= prop;
 	p2 *= prop;
-
-	glm::vec2 center2 = p1 + diago / 2;
+	glm::vec2 center2 = p1 + (p2 - p1) / 2;
 	glm::vec2 offset = (center - center2);
 	translate(offset.x, offset.y);
 }

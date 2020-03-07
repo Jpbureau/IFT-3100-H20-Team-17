@@ -12,6 +12,7 @@ public:
 
 	virtual void updateCommonAttributes(ofColor fill, ofColor stroke, float strokeWidth);
 	virtual void translate(int x, int y);
+	virtual void scale(glm::vec2 s);
 
 	virtual bool isPointInside(int x, int y);
 
