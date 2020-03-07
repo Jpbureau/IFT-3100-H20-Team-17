@@ -45,7 +45,6 @@ void TextureDrawer3D::update()
 	cylinder.setScale(modelScale * 8);
 	box.setScale(modelScale * 8);
 	cone.setScale(modelScale * 17);
-	mesh = model.getCurrentAnimatedMesh(0);
 
 	if (useRotationAnimation) {
 		model.setRotation(0, ofGetFrameNum() * rotationSpeed, 0.0f, 1.0f, 0.0f);
@@ -135,11 +134,6 @@ bool TextureDrawer3D::isMouseInsideModelCanvas(int x, int y)
 
 void TextureDrawer3D::draw()
 {	
-
-	//ofFill();
-	//ofSetColor(255);
-	//ofDrawRectangle(modelCanvasX, modelCanvasY, modelCanvasSize, modelCanvasSize);
-
 	if (selectedShader == ShaderType::lambert) 
     {
 		cam.begin();
