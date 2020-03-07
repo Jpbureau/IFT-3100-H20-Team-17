@@ -23,6 +23,8 @@ public:
 	void updateAnimationParameters(float rotationSpeed, float waveIntensity, bool rotationAnimation, bool waveAnimation);
 	void updateShaderSelection(ShaderType selected);
 
+	void updateDelimitationBox(bool boiteDelimitation);
+
 	bool isMouseInsideModelCanvas(int x, int y);
 
 	void selectSphereType();
@@ -30,6 +32,7 @@ public:
 	void selectBoxType();
 	void selectConeType();
 	void selectModelType();
+
 
 private:
 	int modelCanvasSize;
@@ -47,8 +50,8 @@ private:
 
 	ofFbo fboTexture3D;
 
-	void calculerBoiteDelimitation();
-	void drawBoiteDelimitation(ofPoint point, float width, float height, float depth);
+	void drawBoiteDelimitationModel();
+	bool boiteDelimitation;
 
 	void applyLambertShader();
 	void applyNoiseShader();

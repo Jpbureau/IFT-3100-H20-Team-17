@@ -16,7 +16,7 @@ public:
 
 private:
 	ofxPanel optionsPanel;
-	ofxButton boiteDelimButton;
+	ofParameter<bool> boiteDelimitationToggle;
 	ofxButton importModelButton;
 
 	ofxButton selectModelTypeButton;
@@ -47,7 +47,7 @@ private:
 	ofxButton noShaderSelectedButton;
 	ofxButton noiseShaderSelectedButton;
 
-	void boiteDelimButtonClicked();
+	//void boiteDelimButtonClicked();
 	void importModelClicked();
 
 	void lambertShaderSelected();

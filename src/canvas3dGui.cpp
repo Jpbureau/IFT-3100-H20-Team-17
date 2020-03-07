@@ -12,7 +12,7 @@ void Canvas3DGui::setup(int canvasPositionX, int canvasPositionY, int canvasSize
 	shaderType.setup("Type choisi de shader");
 	selectionType.setup("Type de modele choisi");
 
-	optionsPanel.add(boiteDelimButton.setup("Boite delimitation"));
+	optionsPanel.add(boiteDelimitationToggle.set("Boite delimitation",false));
 	optionsPanel.add(importModelButton.setup("import model"));
 
 	selectedPrimitiveType.setName("Primitive:");
@@ -44,7 +44,7 @@ void Canvas3DGui::setup(int canvasPositionX, int canvasPositionY, int canvasSize
 	lambertShaderSelectedButton.addListener(this, &Canvas3DGui::lambertShaderSelected);
 	noiseShaderSelectedButton.addListener(this, &Canvas3DGui::noiseShaderSelected);
 
-	boiteDelimButton.addListener(this, &Canvas3DGui::boiteDelimButtonClicked);
+//	boiteDelimitationToggle.addListener(this, &Canvas3DGui::boiteDelimButtonClicked);
 	importModelButton.addListener(this, &Canvas3DGui::importModelClicked);
 
 	selectModelTypeButton.addListener(this, &Canvas3DGui::selectModelType);
@@ -58,6 +58,7 @@ void Canvas3DGui::update()
 {
 	textureDrawer3D.updateModelParameters(modelColorPicker, modelScale);
 	textureDrawer3D.updateAnimationParameters(rotationSpeed, waveIntensity, rotationAnimationToggle, levitationAnimationToggle);
+	textureDrawer3D.updateDelimitationBox(boiteDelimitationToggle);
 }
 
 void Canvas3DGui::draw()
@@ -65,10 +66,11 @@ void Canvas3DGui::draw()
 	optionsPanel.draw();
 }
 
-void Canvas3DGui::boiteDelimButtonClicked()
-{
-	std::cout << "BoiteDelimButtonCLicked" << std::endl;
-}
+//void Canvas3DGui::boiteDelimButtonClicked()
+//{
+//
+//	std::cout << "BoiteDelimButtonCLicked" << std::endl;
+//}
 
 void Canvas3DGui::importModelClicked()
 {
