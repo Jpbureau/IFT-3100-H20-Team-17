@@ -45,11 +45,13 @@ private:
 
 	ofxButton lambertShaderSelectedButton;
 	ofxButton noShaderSelectedButton;
+	ofxButton noiseShaderSelectedButton;
 
 	//void boiteDelimButtonClicked();
 	void importModelClicked();
 
 	void lambertShaderSelected();
+	void noiseShaderSelected();
 	void noShaderSelected();
 
 	void selectModelType();

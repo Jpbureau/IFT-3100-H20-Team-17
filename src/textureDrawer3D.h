@@ -6,7 +6,7 @@
 #include <vector>
 
 
-enum class ShaderType { none, lambert };
+enum class ShaderType { none, lambert, noise };
 
 enum class ModelType { model, box, cylinder, cone, sphere };
 
@@ -54,6 +54,7 @@ private:
 	bool boiteDelimitation;
 
 	void applyLambertShader();
+	void applyNoiseShader();
 	ShaderType selectedShader;
 
 	ofxAssimpModelLoader model;
