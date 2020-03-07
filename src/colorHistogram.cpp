@@ -25,6 +25,14 @@ void ColorHistogram::update()
 
 }
 
+void ColorHistogram::updateProperties(int width, int height, int positionX, int positionY)
+{
+	m_width = width;
+	m_height = height;
+	m_positionX = positionX;
+	m_positionY = positionY;
+}
+
 void ColorHistogram::draw()
 {
 	
@@ -56,6 +64,8 @@ void ColorHistogram::draw()
 		
 	}
 }
+
+
 
 void ColorHistogram::showHistogram(ofPixels& p_pixels, int binSize)
 {

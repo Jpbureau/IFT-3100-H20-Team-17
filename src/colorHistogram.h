@@ -17,6 +17,8 @@ public:
 	void update();
 	void draw();
 
+	void updateProperties(int width, int height, int positionX, int positionY);
+
 	void showHistogram(ofPixels& p_pixels, int binSize);
 
 private:
