@@ -44,6 +44,15 @@ void GraphNode::translate(int x, int y)
 	}
 }
 
+void GraphNode::scale(glm::vec2 s)
+{
+	for (auto& child : children) {
+		if (child->isSelected()) {
+			child->scale(s);
+		}
+	}
+}
+
 bool GraphNode::isPointInside(int x, int y)
 {
 	for (auto& child : children) {

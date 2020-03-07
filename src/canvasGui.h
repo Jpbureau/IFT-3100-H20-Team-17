@@ -38,6 +38,7 @@ private:
 	ofxButton selectButton;
 	ofxButton deselectButton;
 	ofxButton translateButton;
+	ofxButton scaleButton;
 	ofxButton deleteButton;
 	ofxButton groupButton;
 	ofxButton ungroupButton;
@@ -51,6 +52,7 @@ private:
 	void selectAction();
 	void deselectAction();
 	void translateAction();
+	void scaleAction();
 	void deleteAction();
 	void groupAction();
 	void ungroupAction();

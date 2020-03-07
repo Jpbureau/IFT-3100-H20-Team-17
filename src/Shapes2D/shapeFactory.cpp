@@ -4,28 +4,28 @@ GraphPrimitive * ShapeFactory::createShape(ShapeType type, glm::vec2 p1, glm::ve
 {
 	switch (type)
 	{
-	case ShapeType::point:
-		return new Point(p2, radius, strokeColor, "Point");
+	//case ShapeType::point:
+	//	return new Point(p2, radius, strokeColor, "Point");
 
-	case ShapeType::line:
-		return new Line(p1, p2, strokeWidth, strokeColor, "Ligne");
+	//case ShapeType::line:
+	//	return new Line(p1, p2, strokeWidth, strokeColor, "Ligne");
 
 	case ShapeType::rectangle:
 		return new Rectangle2D(p1, p2, strokeWidth, fillColor, strokeColor, "Rectangle");
 
-	case ShapeType::square:
-		p2 = squaricize(p1, p2);
-		return new Rectangle2D(p1, p2, strokeWidth, fillColor, strokeColor, "Carre");
+	//case ShapeType::square:
+	//	p2 = squaricize(p1, p2);
+	//	return new Rectangle2D(p1, p2, strokeWidth, fillColor, strokeColor, "Carre");
 
-	case ShapeType::ellipse:
-		return new Ellipse2D(p1, p2, strokeWidth, fillColor, strokeColor, "Ellipse");
+	//case ShapeType::ellipse:
+	//	return new Ellipse2D(p1, p2, strokeWidth, fillColor, strokeColor, "Ellipse");
 
-	case ShapeType::circle:
-		p2 = squaricize(p1, p2);
-		return new Ellipse2D(p1, p2, strokeWidth, fillColor, strokeColor, "Cercle");
+	//case ShapeType::circle:
+	//	p2 = squaricize(p1, p2);
+	//	return new Ellipse2D(p1, p2, strokeWidth, fillColor, strokeColor, "Cercle");
 
-	case ShapeType::image:
-		return new ImagePrimitive(image, p1, p2, "Image");
+	//case ShapeType::image:
+	//	return new ImagePrimitive(image, p1, p2, "Image");
 
 	default:
 		throw exception("Illegal Shape Type");

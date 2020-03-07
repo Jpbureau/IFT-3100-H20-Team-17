@@ -151,7 +151,7 @@ string TextureDrawer::getCurrentlySelectedType()
 	case translate:
 		return "Deplacer";
 	case scale:
-		return "Proportionner";
+		return "Proportion";
 	case DrawerOptions::draw:
 		switch (selectedType)
 		{
@@ -240,7 +240,10 @@ void TextureDrawer::mouseReleased(ofMouseEventArgs & mouse)
 	mouse_current_posY = mouse.y;
 	
 	if (selectedOption == DrawerOptions::draw) add_vector_shape();
-	if (selectedOption == DrawerOptions::translate && !isMouseOutsideCanvas()) {
+	else if (selectedOption == DrawerOptions::translate && !isMouseOutsideCanvas()) {
 		root.translate(mouse_current_posX - mouse_pressed_posX, mouse_current_posY - mouse_pressed_posY);
+	}
+	else if (selectedOption == DrawerOptions::scale && !isMouseOutsideCanvas()) {
+		root.scale((glm::vec2(mouse_current_posX, mouse_current_posY) - glm::vec2(mouse_pressed_posX, mouse_pressed_posY)));
 	}
 }
