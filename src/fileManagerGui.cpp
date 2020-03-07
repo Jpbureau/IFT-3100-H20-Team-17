@@ -13,8 +13,8 @@ void FileManagerGui::setup()
 	importButton.addListener(this, &FileManagerGui::importButton_pressed);
 
 	menuPanel.setup("Menu");
-	menuPanel.add(importButton.setup("Import Image"));
-	menuPanel.add(exportButton.setup("Export Image"));
+	menuPanel.add(importButton.setup("Importer Image"));
+	menuPanel.add(exportButton.setup("Exporter Image"));
 }
 
 void FileManagerGui::draw()
