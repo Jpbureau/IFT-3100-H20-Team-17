@@ -30,6 +30,24 @@ void Rectangle2D::updateCommonAttributes(ofColor fill, ofColor stroke, float str
 	this->strokeWidth = strokeWidth;
 }
 
+void Rectangle2D::translate(int x, int y)
+{
+	glm::vec2 t(x, y);
+	p1 += t;
+	p2 += t;
+}
+
+void Rectangle2D::scale(glm::vec2 s)
+{
+	glm::vec2 prop = s / (p2 - p1);
+	glm::vec2 center = p1 + (p2 - p1) / 2;
+	p1 *= prop;
+	p2 *= prop;
+	glm::vec2 center2 = p1 + (p2 - p1) / 2;
+	glm::vec2 offset = (center - center2);
+	translate(offset.x, offset.y);
+}
+
 bool Rectangle2D::isPointInside(int x, int y)
 {
 	int x1 = p1.x;

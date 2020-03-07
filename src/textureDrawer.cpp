@@ -30,49 +30,59 @@ void TextureDrawer::update()
 void TextureDrawer::selectPointType()
 {
 	selectedType = ShapeType::point;
-	isSelectionActive = false;
+	selectedOption = DrawerOptions::draw;
 }
 
 void TextureDrawer::selectLineType()
 {
 	selectedType = ShapeType::line;
-	isSelectionActive = false;
+	selectedOption = DrawerOptions::draw;
 }
 
 void TextureDrawer::selectRectangleType()
 {
 	selectedType = ShapeType::rectangle;
-	isSelectionActive = false;
+	selectedOption = DrawerOptions::draw;
 }
 
 void TextureDrawer::selectSquareType()
 {
 	selectedType = ShapeType::square;
-	isSelectionActive = false;
+	selectedOption = DrawerOptions::draw;
 }
 
 void TextureDrawer::selectEllipseType()
 {
 	selectedType = ShapeType::ellipse;
-	isSelectionActive = false;
+	selectedOption = DrawerOptions::draw;
 }
 
 void TextureDrawer::selectCircleType()
 {
 	selectedType = ShapeType::circle;
-	isSelectionActive = false;
+	selectedOption = DrawerOptions::draw;
 }
 
 void TextureDrawer::selectImageType(ofImage image)
 {
 	currentImage = image;
 	selectedType = ShapeType::image;
-	isSelectionActive = false;
+	selectedOption = DrawerOptions::draw;
 }
 
 void TextureDrawer::selectSelectionType()
 {
-	isSelectionActive = true;
+	selectedOption = DrawerOptions::select;
+}
+
+void TextureDrawer::selectTranslateType()
+{
+	selectedOption = DrawerOptions::translate;
+}
+
+void TextureDrawer::selectScaleType()
+{
+	selectedOption = DrawerOptions::scale;
 }
 
 void TextureDrawer::add_vector_shape()
@@ -134,27 +144,35 @@ bool TextureDrawer::isMouseInsideCanvas(int x, int y)
 
 string TextureDrawer::getCurrentlySelectedType()
 {
-	if (isSelectionActive)
+	switch (selectedOption)
 	{
+	case select:
 		return "Selection";
-	}
-
-	switch (selectedType)
-	{
-	case ShapeType::point:
-		return "Point";
-	case ShapeType::line:
-		return "Ligne";
-	case ShapeType::rectangle:
-		return "Rectangle";
-	case ShapeType::square:
-		return "Carre";
-	case ShapeType::ellipse:
-		return "Ellipse";
-	case ShapeType::circle:
-		return "Cercle";
-	case ShapeType::image:
-		return "Image";
+	case translate:
+		return "Deplacer";
+	case scale:
+		return "Proportion";
+	case DrawerOptions::draw:
+		switch (selectedType)
+		{
+		case ShapeType::point:
+			return "Point";
+		case ShapeType::line:
+			return "Ligne";
+		case ShapeType::rectangle:
+			return "Rectangle";
+		case ShapeType::square:
+			return "Carre";
+		case ShapeType::ellipse:
+			return "Ellipse";
+		case ShapeType::circle:
+			return "Cercle";
+		case ShapeType::image:
+			return "Image";
+		default:
+			break;
+		}
+		break;
 	default:
 		break;
 	}
@@ -162,7 +180,12 @@ string TextureDrawer::getCurrentlySelectedType()
 
 bool TextureDrawer::isTypeSelection()
 {
-	return isSelectionActive;
+	return selectedOption == DrawerOptions::select;
+}
+
+bool TextureDrawer::isTypeTranslation()
+{
+	return selectedOption == DrawerOptions::translate;
 }
 
 bool TextureDrawer::isMouseOutsideCanvas()
@@ -208,7 +231,7 @@ void TextureDrawer::mousePressed(ofMouseEventArgs & mouse)
 	mouse_pressed_posX = mouse.x;
 	mouse_pressed_posY = mouse.y;
 
-	if (isSelectionActive) root.selectChildsAtPoint(mouse.x, mouse.y);
+	if (selectedOption == DrawerOptions::select) root.selectChildsAtPoint(mouse.x, mouse.y);
 }
 
 void TextureDrawer::mouseReleased(ofMouseEventArgs & mouse)
@@ -216,5 +239,11 @@ void TextureDrawer::mouseReleased(ofMouseEventArgs & mouse)
 	mouse_current_posX = mouse.x;
 	mouse_current_posY = mouse.y;
 	
-	if (!isSelectionActive) add_vector_shape();
+	if (selectedOption == DrawerOptions::draw) add_vector_shape();
+	else if (selectedOption == DrawerOptions::translate && !isMouseOutsideCanvas()) {
+		root.translate(mouse_current_posX - mouse_pressed_posX, mouse_current_posY - mouse_pressed_posY);
+	}
+	else if (selectedOption == DrawerOptions::scale && !isMouseOutsideCanvas()) {
+		root.scale((glm::vec2(mouse_current_posX, mouse_current_posY) - glm::vec2(mouse_pressed_posX, mouse_pressed_posY)));
+	}
 }

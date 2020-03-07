@@ -37,6 +37,8 @@ private:
 	ofxButton drawCircleButton;
 	ofxButton selectButton;
 	ofxButton deselectButton;
+	ofxButton translateButton;
+	ofxButton scaleButton;
 	ofxButton deleteButton;
 	ofxButton groupButton;
 	ofxButton ungroupButton;
@@ -48,8 +50,10 @@ private:
 	void selectEllipseType();
 	void selectCircleType();
 	void selectAction();
-	void deleteAction();
 	void deselectAction();
+	void translateAction();
+	void scaleAction();
+	void deleteAction();
 	void groupAction();
 	void ungroupAction();
 };

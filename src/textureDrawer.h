@@ -5,6 +5,8 @@
 #include "Shapes2D/shapeFactory.h"
 #include "sceneGraph2dGui.h"
 
+enum DrawerOptions { draw, select, translate, scale };
+
 class TextureDrawer
 {
 public:
@@ -19,6 +21,7 @@ public:
 
 	bool isMouseInsideCanvas(int x, int y);
 	bool isTypeSelection();
+	bool isTypeTranslation();
 
 	string getCurrentlySelectedType();
 
@@ -30,6 +33,8 @@ public:
 	void selectCircleType();
 	void selectImageType(ofImage image);
 	void selectSelectionType();
+	void selectTranslateType();
+	void selectScaleType();
 
 	void deleteSelectedShapes();
 	void groupSelectedShapes();
@@ -65,7 +70,7 @@ private:
 	ofImage currentImage;
 
 	ShapeType selectedType;
-	bool isSelectionActive = false;
+	DrawerOptions selectedOption = DrawerOptions::draw;
 
 	void setStrokeColor(ofColor color);
 	void setFillColor(ofColor color);

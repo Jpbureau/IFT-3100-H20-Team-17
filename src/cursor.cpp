@@ -58,6 +58,12 @@ void Cursor::update()
 		if (textureDrawer.isTypeSelection()) {
 			setCursorImage(selection);
 		}
+		else if (textureDrawer.isTypeTranslation() && !mouseIsPressed) {
+			setCursorImage(hand);
+		}
+		else if (textureDrawer.isTypeTranslation() && mouseIsPressed) {
+			setCursorImage(closedHand);
+		}
 		else {
 			setCursorImage(pencil);
 		}

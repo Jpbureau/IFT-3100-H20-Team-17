@@ -25,6 +25,16 @@ void Point::updateCommonAttributes(ofColor fill, ofColor stroke, float strokeWid
 	this->color = stroke;
 }
 
+void Point::translate(int x, int y)
+{
+	position += glm::vec2(x, y);
+}
+
+void Point::scale(glm::vec2 s)
+{
+	radius = glm::length(s);
+}
+
 bool Point::isPointInside(int x, int y)
 {
 	return (

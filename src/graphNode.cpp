@@ -35,6 +35,24 @@ void GraphNode::updateCommonAttributes(ofColor fill, ofColor stroke, float strok
 	}
 }
 
+void GraphNode::translate(int x, int y)
+{
+	for (auto& child : children) {
+		if (child->isSelected()) {
+			child->translate(x, y);
+		}
+	}
+}
+
+void GraphNode::scale(glm::vec2 s)
+{
+	for (auto& child : children) {
+		if (child->isSelected()) {
+			child->scale(s);
+		}
+	}
+}
+
 bool GraphNode::isPointInside(int x, int y)
 {
 	for (auto& child : children) {
