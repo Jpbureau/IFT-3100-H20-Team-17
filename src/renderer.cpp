@@ -18,6 +18,7 @@ void Renderer::setup()
 	cursor.setup();
 
 	textureDrawer.setup(largeurMenuGauche + 2 * marge, initialCanvas2dPosition.y, largeurScene);
+	recorder.setup();
 	fileManagerGui.setup();
 	canvas2dGui.setup(initialCanvas2dPosition.y);
 	
@@ -63,4 +64,5 @@ void Renderer::draw()
 	canvas3DGui.draw();
 	textureDrawer3D.draw();
 	cursor.draw();
+	recorder.listen();
 }

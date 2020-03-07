@@ -1,32 +1,29 @@
 #include "recorder.h"
 
+void Recorder::setup()
+{
+	isRecording.addListener(this, &Recorder::recordingTogglePressed);
+}
+
 void Recorder::listen()
 {
-	if (isRecording) {
+	// On ne conserve qu'une frame sur 3 -> donne 20 fps quand on enregistre a 60 fps
+	if (isRecording && ofGetFrameNum() % 3 == 0) {
 		ofImage frame;
 		frame.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
 		frames.push_back(frame);
 	}
 }
 
-void Recorder::startRecording()
+ofParameter<bool>& Recorder::getIsRecording()
 {
-	isRecording = true;
+	return isRecording;
 }
 
-void Recorder::stopRecording()
+void Recorder::recordingTogglePressed(bool & r)
 {
-	isRecording = false;
-	saveFrames();
-}
-
-void Recorder::toggleRecording()
-{
-	if (!isRecording) {
-		startRecording();
-	}
-	else {
-		stopRecording();
+	if (!r && frames.size() != 0) {
+		saveFrames();
 	}
 }
 
@@ -34,15 +31,10 @@ void Recorder::saveFrames()
 {
 	string time_stamp = ofGetTimestampString("%y%m%d-%H%M%S-%i");
 	int i = 0;
-	int j = 0;
 	for (ofImage frame : frames)
 	{
-		// On ne conserve qu'une frame sur 3 -> donne 20 fps quand on enregistre a 60 fps
-		if (i % 3 == 0) {
-			string file_name = "recorder/" + time_stamp + "/" + to_string(j) + ".png";
-			frame.save(file_name);
-			j++;
-		}
+		string file_name = "recorder/" + time_stamp + "/" + to_string(i) + ".png";
+		frame.save(file_name);
 		i++;
 	}
 

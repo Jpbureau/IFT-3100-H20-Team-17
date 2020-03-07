@@ -16,19 +16,10 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	renderer.draw();
-	recorder.listen();
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-	switch (key)
-	{
-	case 'r':
-		recorder.toggleRecording();
-		break;
-	default:
-		break;
-	}
 }
 
 //--------------------------------------------------------------

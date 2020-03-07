@@ -2,8 +2,6 @@
 
 #include "ofMain.h"
 #include "renderer.h"
-#include "fileManager.h"
-#include "recorder.h"
 
 class ofApp : public ofBaseApp{
 public:
@@ -25,5 +23,4 @@ public:
 
 private:
 	Renderer renderer;
-	Recorder recorder;
 };

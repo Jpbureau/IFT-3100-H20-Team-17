@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "fileManagerGui.h"
+#include "recorder.h"
 #include "cursor.h"
 #include "textureDrawer.h"
 #include "canvasGui.h"
@@ -28,7 +29,8 @@ private:
 	CanvasGui canvas2dGui = CanvasGui(textureDrawer);
 
 	FileManager fileManager;
-	FileManagerGui fileManagerGui = FileManagerGui(fileManager, textureDrawer);
+	Recorder recorder;
+	FileManagerGui fileManagerGui = FileManagerGui(fileManager, textureDrawer, recorder);
 
 	TextureDrawer3D textureDrawer3D;
 	Canvas3DGui canvas3DGui = Canvas3DGui(textureDrawer3D, fileManager);
