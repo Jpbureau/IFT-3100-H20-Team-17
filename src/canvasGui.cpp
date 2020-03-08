@@ -19,7 +19,7 @@ void CanvasGui::setup(int drawingCanvasY)
 	drawingOptionsPanel.add(backGroundColor);
 	drawingOptionsPanel.add(strokeColorPicker);
 	drawingOptionsPanel.add(fillColorPicker);
-	drawingOptionsPanel.add(strokeWeightSlider);
+	//drawingOptionsPanel.add(strokeWeightSlider);
 	drawingOptionsPanel.add(applyToSelectedButton.setup("Appliquer a la selection"));
 	applyToSelectedButton.addListener(this, &CanvasGui::applyToSelectedAction);
 	drawingOptionsPanel.add(selectedType);
