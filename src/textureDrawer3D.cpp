@@ -8,8 +8,6 @@ void TextureDrawer3D::setup(int canvasPositionX, int canvasPositionY, int canvas
 	this->centerX = modelCanvasX + modelCanvasSize / 2;
 	this->centerY = modelCanvasY + modelCanvasSize / 2;
 
-	ofSetLogLevel(OF_LOG_VERBOSE);
-
 	model.loadModel("teapot.obj");
 
 	selectedShader = ShaderType::none;
@@ -188,6 +186,7 @@ void TextureDrawer3D::drawBoiteDelimitationModel()
 
 void TextureDrawer3D::applyLambertShader()
 {
+	// Pris de l'exemple 4.12 du professeur
 	model.disableMaterials();
 	// configuration de la lumi�re
 	light.setPointLight();
@@ -205,6 +204,7 @@ void TextureDrawer3D::applyLambertShader()
 
 void TextureDrawer3D::applyNoiseShader()
 {
+	// Pris d'un exemple d'openFrameworks sur les shaders
 	model.disableMaterials();
 	shader.begin();
 
